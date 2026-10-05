@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Cooking Corner</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
+  <link rel="icon" type="image/x-icon" href="../../images/MB_Icon_02.svg"></link>
+  <link rel="stylesheet" href="../../assets/css/main.css"></link>
+  <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+  <script src="scripts/xlsx.full.min.js"></script>
+  <style>
+  header {text-align: center;margin-bottom: 1em;}
+  .category_filter {width: 100%;margin-bottom: 1em;outline: none;text-align: center;}
+  select, input {width: 100%;background: #222222;color: #dbdbdb;border: none;padding: 0.5em;border-radius: 1em;margin-bottom: 1.5em;cursor: pointer;outline: none;text-align: center;}
+  input::placeholder {color: #dbdbdb;}
+
+  #recipe_container {display: grid;grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));gap: 1em;}
+  .recipe_card {background: #222222;border-radius: 1em;padding: 1em;box-shadow: 0 0 10px rgba(0,0,0,0.4);transition: transform 0.2s;cursor: pointer;}
+  .recipe_card img {width: 100%;height: 200px;object-fit: cover;border-radius: 0.6em;margin-bottom: 0.5em;}
+  .recipe_name {font-size: 1.2em;color: #dbdbdb;margin-bottom: 0.3em;}
+  .recipe_ingredients, .recipe_preparation, .recipe_category {font-size: 0.9em;line-height: 1.4;color: #dbdbdb;margin-bottom: 0.5em;}
+  .recipe_ingredients strong, .recipe_preparation strong, .recipe_category strong {color: #ffcc66;}
+  
+  summary::-webkit-details-marker {display: none !important;}
+  summary::marker {content: "";display: none !important;}
+  summary {display: flex;align-items: center;cursor: pointer;list-style: none;position: relative;padding-left: 0.5em;color: #dbdbdb;font-size: 1.1em;}
+  summary::before {content: "+";color: #00ff00;margin-right: 0.5em;transition: transform 1s ease;}
+  details[open] summary::before {content: "–";color: #ff0000;}
+</style>
+</head>
+<body onload="window.location.href = '#cooking_corner';load_recipes();" class="is-preload">
+  <div id="wrapper">
+    
+    <nav id="nav">
+      <a href="../../index.html"><img class="mb_icon" src="../../images/MB_Icon_02.svg"></img><span>Home</span></a>
+      <a href="../../Web-Tools/web-tools.html"><img class="mb_icon" src="../../images/Web_Icon_01.png"></img><span>Web-Tools</span></a>
+      <a href="../../Local-Tools/local-tools.html"><img class="mb_icon" src="../../images/CMD_Icon_01.png"></img><span>Local-Tools</span></a>
+	  <a href="../../Games/games.html"><img class="mb_icon" src="../../images/Games_Icon_01.png"></img><span>Games</span></a>
+      <a href="#cooking_corner"><img class="mb_icon" src="icon_01.png"></img><span>Cooking Corner</span></a>
+    </nav>
+    
+    <div id="main">
+      <article id="cooking_corner" class="panel">
+        <header><h2>Cooking Corner</h2></header>
+        <select id="category_filter" class="category_filter" onchange="filter_recipes()"><option value="alle">Alle Rezepte</option></select>
+        
+        <input type="text" id="search_input" placeholder="Rezept-Suche..." oninput="filter_recipes()">
+
+        <div id="recipe_container"></div>
+      </article>
+    </div>
+
+    <div id="footer"><ul class="copyright"><li>&copy; Master B</li></ul></div>
+
+  </div>
+</body>
+
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/browser.min.js"></script>
+<script src="../../assets/js/breakpoints.min.js"></script>
+<script src="../../assets/js/util.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script>
+let all_recipes = [];
+
+async function load_recipes() {
+  try {
+    const response = await fetch('Rezepte.xlsx');
+    if (!response.ok) throw new Error('Excel-Datei konnte nicht geladen werden.');
+    const arrayBuffer = await response.arrayBuffer();
+    const data = new Uint8Array(arrayBuffer);
+    const workbook = XLSX.read(data, { type: 'array' });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const json = XLSX.utils.sheet_to_json(sheet);
+    const filtered = json.filter(r => r.ID && r.ID !== 'ID' && r.Name && r.Name !== 'Name');
+    json.forEach(r => {if (r.ID !== undefined) {r.ID = r.ID.toString().padStart(4, '0');}});
+    all_recipes = json;
+    populate_categories(json);console.log(json.map(r => r.ID));
+    display_recipes(json);
+  }
+  catch (err) {document.getElementById('recipe_container').textContent = 'Fehler: ' + err.message;}
+}
+
+function populate_categories(recipes) {
+  const select = document.getElementById('category_filter');
+  const categories = [...new Set(recipes.map(r => r.Kategorie))].sort();
+  categories.forEach(cat => {const option = document.createElement('option');option.value = cat;option.textContent = cat;select.appendChild(option);});
+}
+
+function display_recipes(recipes) {
+  recipes.sort((a, b) => (a.Name || '').localeCompare(b.Name || '', 'de', { sensitivity: 'base' }));
+  const container = document.getElementById('recipe_container');
+  container.innerHTML = '';
+  if (recipes.length === 0) {container.innerHTML = '<p>Keine Rezepte gefunden.</p>';return;}
+
+  recipes.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'recipe_card';
+
+    const img = document.createElement('img');
+    img.src = `pics/${r.ID}.jpg`;
+    img.alt = r.Name;
+    img.loading = 'lazy';
+
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = r.Name;
+    summary.className = 'recipe_name';
+
+    const content = document.createElement('div');
+    content.className = 'recipe_details';
+
+    const cat = document.createElement('div');
+    cat.className = 'recipe_category';
+    cat.innerHTML = `<strong>Kategorie:</strong>&nbsp;&nbsp;&nbsp;${r.Kategorie}`;
+
+    const ing = document.createElement('div');
+    ing.className = 'recipe_ingredients';
+    const zutatenText = (r.Zutaten ?? '').replace(/(\r\n|\n|\r)/g, '<br>');
+    ing.innerHTML = `<strong>Zutaten:</strong><br>${zutatenText}`;
+
+    const prep = document.createElement('div');
+    prep.className = 'recipe_preparation';
+    const zubereitungText = (r.Zubereitung ?? '').replace(/(\r\n|\n|\r)/g, '<br>');
+    prep.innerHTML = `<strong>Zubereitung:</strong><br>${zubereitungText}`;
+
+    content.append(cat, ing, prep);
+    details.append(summary, content);
+
+    card.append(img, details);
+    container.appendChild(card);
+    card.addEventListener('click', (e) => {if (!e.target.closest('summary')) {details.open = !details.open;}});
+  });
+}
+
+function filter_recipes() {
+  const catValue = document.getElementById('category_filter').value.toLowerCase();
+  const searchValue = document.getElementById('search_input').value.toLowerCase();
+  const filtered = all_recipes.filter(r => {
+    const matchesCat = catValue === 'alle' || (r.Kategorie ?? '').toLowerCase() === catValue;
+    const matchesSearch = (r.Name ?? '').toLowerCase().includes(searchValue);
+    return matchesCat && matchesSearch;
+  });
+  display_recipes(filtered);
+}
+</script>

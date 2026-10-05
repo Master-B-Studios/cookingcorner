@@ -4,10 +4,8 @@
   <title>Cooking Corner</title>
   <meta charset="utf-8"></meta>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
-  <link rel="icon" type="image/x-icon" href="../../images/MB_Icon_02.svg"></link>
-  <link rel="stylesheet" href="../../assets/css/main.css"></link>
-  <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
-  <script src="scripts/xlsx.full.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
+  <link rel="stylesheet" href="../homepage/assets/index.css"></link>
   <style>
   header {text-align: center;margin-bottom: 1em;}
   .category_filter {width: 100%;margin-bottom: 1em;outline: none;text-align: center;}
@@ -28,14 +26,13 @@
   details[open] summary::before {content: "–";color: #ff0000;}
 </style>
 </head>
-<body onload="window.location.href = '#cooking_corner';load_recipes();" class="is-preload">
+<body onload="window.location.href = '#cooking_corner';" class="is-preload">
   <div id="wrapper">
     
     <nav id="nav">
-      <a href="../../index.html"><img class="mb_icon" src="../../images/MB_Icon_02.svg"></img><span>Home</span></a>
-      <a href="../../Web-Tools/web-tools.html"><img class="mb_icon" src="../../images/Web_Icon_01.png"></img><span>Web-Tools</span></a>
-      <a href="../../Local-Tools/local-tools.html"><img class="mb_icon" src="../../images/CMD_Icon_01.png"></img><span>Local-Tools</span></a>
-	  <a href="../../Games/games.html"><img class="mb_icon" src="../../images/Games_Icon_01.png"></img><span>Games</span></a>
+      <a href="../homepage/index.html"><img class="mb_icon" src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
+      <a href="../homepage/tools/tools.html"><img class="mb_icon" src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
+	  <a href="../homepage/games/games.html"><img class="mb_icon" src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
       <a href="#cooking_corner"><img class="mb_icon" src="icon_01.png"></img><span>Cooking Corner</span></a>
     </nav>
     
@@ -55,11 +52,6 @@
   </div>
 </body>
 
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
 <script>
 let all_recipes = [];
 

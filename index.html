@@ -1,128 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Cooking Corner</title>
-  <meta charset="utf-8"></meta>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
-  <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
-  <link rel="stylesheet" href="../homepage/assets/index.css"></link>
-  <style>
-    
-    tbody {width: 100%;height: auto;}
+    <title>Cooking Corner</title>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
+    <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
+    <style>
+      body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;} #menubar {width: auto;height: 4rem;position: fixed;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {border-color: #dbdbdb;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(100%);}
+      
+      #header {width: 100%;height: 4rem;position: fixed;z-index: 900;display: flex;margin: 0;padding: 0;font-size: 0.7rem;}
+      #header div {width: 100%;height: 4rem;display: grid;grid-template-columns: auto auto;grid-template-rows: min-content;place-items: center;}
+      #navigation_container {grid-column: 1;grid-row: 1;}
+      #search_container {grid-column: 2;grid-row: 1;}
 
-    .group_button {display: none;}
-    .group_button.aktiv {display: block;}
-
-    #navigation_container {width: 100%;display: flex;justify-content: center;align-items: center;gap: 0.5rem;margin: 1rem 0;}
-    #navigation_container button {padding: 1em;background-color: #222222;color: #dbdbdb;border-radius: 0.5rem;border: none;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;cursor: pointer;transition: all 0.6s;white-space: nowrap;}
-    @media (hover: hover) {#navigation_container button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}}
-    #navigation_container button:active {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
-    
-    #sort_button {display: flex;align-items: center;justify-content: center;gap: 0.5rem;margin: 0 0.5rem 0 0;}
-    #sort_button .sort_arrow {min-width: 1em;text-align: center;}
-    #random_button {cursor: pointer;}
-    
-    #sort_overlay {display: none;position: fixed;inset: 0;z-index: 9999;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
-    #sort_overlay_content {width: min(90vw, 40rem);max-height: 80vh;padding: 1rem;background-color: #111111;border: 1px solid #444444;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
-    #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
-    .sort_option {min-width: 4rem;}
-
-    #search_container {width: 100%;text-align: center;margin: 0 0 1rem 0;}
-    #search_container input {width: 100%;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
-    #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
-    #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
-
-    .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));gap: 0.5em;}
-    .movieCard {color: #ffffff;width: auto;height: auto;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;background-color: #111111;border-radius: 0.5rem;border: 1px solid #444444;position: relative;top: 0;margin: 0;cursor: pointer;transition: top 0.6s;}
-    .movieCard:hover {border-color: #dddddd;top: -0.5rem;}
-    .moviePoster {grid-column: 1 / span 2;grid-row: 1;width: 100%;height: auto;aspect-ratio: 2/3;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
-    .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
-    .movieNumber {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-    .movieNumber svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
-    .movieYear {grid-column: 2;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-    .movieYear svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
-    .movieOverlay {grid-column: 1 / span 2;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
-    .movieOverlay:hover {opacity: 0;}
-
-    .overlayWindowLandscape {width: calc(100vw - 5vh);height: calc(100vh - 5vh);position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;place-items: center;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;}
-    .overlayImageLandscape {grid-column: 1;grid-row: 1;height: 90vh;}
-    .overlayImageLandscape img {width: auto;height: 100%;border-radius: 0.5rem;}
-    .overlayContainerLandscape {width: calc(90vw - ((90vh / 3) * 2));grid-column: 2;grid-row: 1;background: none;}
-    .overlayInfo1Landscape {width: calc(90vw - ((90vh / 3) * 2));height: 90vh;grid-column: 2;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content min-content auto min-content min-content min-content;grid-template-rows: 5rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
-    .overlayFSKLandscape {width: 5rem;height: 5rem;grid-column: 1;grid-row: 1;margin: 0 0 0 1rem;}.overlayFSKLandscape img {width: 100%;height: 100%;}
-    .overlayNumberLandscape {height: 3.2rem;grid-column: 2;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlayNumberLandscape svg {position: relative;left: -0.5rem}
-    .overlayYearLandscape {height: 3.2rem;grid-column: 3;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlayYearLandscape svg {position: relative;left: -0.5rem}
-    .overlaySeasonsLandscape {height: 3.2rem;grid-column: 4;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlaySeasonsLandscape svg {position: relative;left: -0.5rem}
-    .spacer1Landscape {grid-column: 5;grid-row: 1;}
-    .overlayDownloadImageLandscape {height: 3.2rem;grid-column: 6;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;color: #dbdbdb;transition: all 0.6s;}
-    .overlayDownloadImageLandscape svg {position: relative;left: -0.5rem}
-    .overlayDownloadImageLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .overlayDownloadImageLandscape:active {transform: scale(0.96);}
-    .overlayDownloadNFOLandscape {height: 3.2rem;grid-column: 7;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-    .overlayDownloadNFOLandscape svg {position: relative;left: -0.5rem}
-    .overlayDownloadNFOLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .overlayDownloadNFOLandscape:active {transform: scale(0.96);}
-    .exitButtonLandscape {width: 3.2rem;height: 3.2rem;margin: 0 1rem 0 0.5rem;grid-column: 8;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-    .exitButtonLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .exitButtonLandscape:active {transform: scale(0.96);}
-    .overlayTitleLandscape {grid-column: 1 / span 8;grid-row: 2;padding: 0.5rem 1rem;font-family: FuturaHand;font-size: 5rem;font-weight: bolder;text-align: center;line-height: 5rem;}
-    .overlayPlotLandscape {grid-column: 1 / span 8;grid-row: 3;text-align: justify;padding: 1rem;margin: 1rem;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;line-height: 1.5rem;font-size: 0.8rem;font-family: Verdana, Geneva, Tahoma, sans-serif;}
-
-    .overlayWindowPortrait {width: 100vw;height: 100vh;position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
-    .overlayImagePortrait {grid-column: 1;grid-row: 1;width: 100vw;}
-    .overlayImagePortrait img {width: 100%;height: auto;}
-    .overlayContainerPortrait {width: 100vw;height: 100vh;grid-column: 1;grid-row: 1;background: linear-gradient(180deg, #000000cc, #000000cc, #000000ff, #000000ff, #000000ff);display: grid;grid-template-columns: auto;grid-template-rows: min-content auto min-content;place-items: center;}
-    .overlayInfo1Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content auto min-content;grid-template-rows: 4rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
-    .overlayDownloadImagePortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;color: #dbdbdb;transition: all 0.6s;}
-    .overlayDownloadImagePortrait svg {position: relative;left: -0.5rem}
-    .overlayDownloadImagePortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .overlayDownloadImagePortrait:active {transform: scale(0.96);}
-    .overlayDownloadNFOPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-    .overlayDownloadNFOPortrait svg {position: relative;left: -0.5rem}
-    .overlayDownloadNFOPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .overlayDownloadNFOPortrait:active {transform: scale(0.96);}
-    .spacer1Portrait {grid-column: 3;grid-row: 1;}
-    .exitButtonPortrait {width: 3rem;height: 3rem;margin: 0 0.5rem 0 0;grid-column: 4;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-    .exitButtonPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-    .exitButtonPortrait:active {transform: scale(0.96);}
-    .overlayTitlePortrait {grid-column: 1;grid-row: 2;padding: 0.5rem 1rem;font-family: FuturaHand;font-size: 3rem;font-weight: bolder;text-align: center;line-height: normal;}
-    .overlayInfo2Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 3;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content auto min-content;grid-template-rows: 4rem min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
-    .overlayNumberPortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlayNumberPortrait svg {position: relative;left: -0.5rem}
-    .overlayYearPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlayYearPortrait svg {position: relative;left: -0.5rem}
-    .overlaySeasonsPortrait {height: 3rem;grid-column: 3;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-    .overlaySeasonsPortrait svg {position: relative;left: -0.5rem}
-    .spacer2Portrait {grid-column: 4;grid-row: 1;}
-    .overlayFSKPortrait {width: 4.8rem;height: 4.8rem;grid-column: 5;grid-row: 1;margin: 0 -0.4rem 0 0;}.overlayFSKPortrait img {width: 100%;height: 100%;}
-    .overlayPlotPortrait {grid-column: 1 / span 5;grid-row: 2;text-align: justify;padding: 0.5rem;margin: 0 0.5rem 0.5rem 0.5rem;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;line-height: normal;font-size: 0.7rem;font-family: Verdana, Geneva, Tahoma, sans-serif;}
-
-    #group_single_Zufall .cardContainer {grid-template-columns: minmax(15rem, min-content);justify-content: center;}
-    
-</style>
-</head>
-<body onload="">
-  <div id="menubar">
-    <div>
-      <img src="../homepage/assets/mb_icon0.svg"></img>
-      <a href="../homepage/index.html"><img src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
-      <a href="../homepage/tools/tools.html"><img src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
-      <a href="../homepage/games/games.html"><img src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
-      <a href="#cooking_corner"><img src="icons/icon0.png"></img><span>Cooking Corner</span></a>
+      #main {width: 90vw;height: 290vh;background-color: #00000000;}
+      
+    </style>
+  </head>
+  <body onload="init_menubar();init_header();load_moviebase();">
+    <div id="menubar"></div><div id="header"></div>
+    <div id="main">
+      <div id="output"></div>
     </div>
-  </div>
-  
-  <div id="main">
-    <header>MB Movie-Base</header>
-    <div id="output"></div>
-  </div>
-</body>
+  </body>
+</html>
 
 <script>
-let current_data = [];
+  function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);}
+  function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';console.log('menubar deactivated');}}
+  function init_header() {
+    const header = document.getElementById('header');
+    const header_div = document.createElement('div');
+    header_div.id = 'header_div';
+    header.appendChild(header_div);
+  }
+  
+  let current_data = [];
   let current_group = 'Name';
   let current_sort_direction = 'asc';
 
@@ -183,8 +96,8 @@ let current_data = [];
     navigation_container.appendChild(random_button);
 
     const output = document.querySelector('#output');
-    const menubar = document.querySelector('#menubar');
-    menubar.appendChild(navigation_container, menubar);
+    const header_div = document.querySelector('#header_div');
+    header_div.appendChild(navigation_container, header_div);
     //output.parentNode.insertBefore(navigation_container, output);
     document.body.appendChild(sort_overlay);
 
@@ -198,7 +111,7 @@ let current_data = [];
     search_input.placeholder = 'Titel-Suche...';
     search_input.addEventListener('input', () => {search_in_table_data(search_input.value);});
     search_container.appendChild(search_input);
-    menubar.appendChild(search_container, menubar);
+    header_div.appendChild(search_container, header_div);
     //output.parentNode.insertBefore(search_container, output);
   }
   

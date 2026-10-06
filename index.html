@@ -7,122 +7,453 @@
   <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
   <link rel="stylesheet" href="../homepage/assets/index.css"></link>
   <style>
-    #menubar {width: 100%;height: 6vh;position: fixed;z-index: 1000;}
-    #menubar a {display: flex;flex-direction: row;justify-content: center;align-content: space-around;width: 6vh;height: 6vh;}
-    #menubar img {width: 5vh;height: 5vh;}
+    
+    tbody {width: 100%;height: auto;}
+
+    .group_button {display: none;}
+    .group_button.aktiv {display: block;}
+
+    #navigation_container {width: 100%;display: flex;justify-content: center;align-items: center;gap: 0.5rem;margin: 1rem 0;}
+    #navigation_container button {padding: 1em;background-color: #222222;color: #dbdbdb;border-radius: 0.5rem;border: none;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;cursor: pointer;transition: all 0.6s;white-space: nowrap;}
+    @media (hover: hover) {#navigation_container button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}}
+    #navigation_container button:active {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+    
+    #sort_button {display: flex;align-items: center;justify-content: center;gap: 0.5rem;margin: 0 0.5rem 0 0;}
+    #sort_button .sort_arrow {min-width: 1em;text-align: center;}
+    #random_button {cursor: pointer;}
+    
+    #sort_overlay {display: none;position: fixed;inset: 0;z-index: 9999;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
+    #sort_overlay_content {width: min(90vw, 40rem);max-height: 80vh;padding: 1rem;background-color: #111111;border: 1px solid #444444;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
+    #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
+    .sort_option {min-width: 4rem;}
+
+    #search_container {width: 100%;text-align: center;margin: 0 0 1rem 0;}
+    #search_container input {width: 100%;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+    #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
+    #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
+
+    .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));gap: 0.5em;}
+    .movieCard {color: #ffffff;width: auto;height: auto;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;background-color: #111111;border-radius: 0.5rem;border: 1px solid #444444;position: relative;top: 0;margin: 0;cursor: pointer;transition: top 0.6s;}
+    .movieCard:hover {border-color: #dddddd;top: -0.5rem;}
+    .moviePoster {grid-column: 1 / span 2;grid-row: 1;width: 100%;height: auto;aspect-ratio: 2/3;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
+    .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
+    .movieNumber {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
+    .movieNumber svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
+    .movieYear {grid-column: 2;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
+    .movieYear svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
+    .movieOverlay {grid-column: 1 / span 2;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
+    .movieOverlay:hover {opacity: 0;}
+
+    .overlayWindowLandscape {width: calc(100vw - 5vh);height: calc(100vh - 5vh);position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;place-items: center;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;}
+    .overlayImageLandscape {grid-column: 1;grid-row: 1;height: 90vh;}
+    .overlayImageLandscape img {width: auto;height: 100%;border-radius: 0.5rem;}
+    .overlayContainerLandscape {width: calc(90vw - ((90vh / 3) * 2));grid-column: 2;grid-row: 1;background: none;}
+    .overlayInfo1Landscape {width: calc(90vw - ((90vh / 3) * 2));height: 90vh;grid-column: 2;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content min-content auto min-content min-content min-content;grid-template-rows: 5rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
+    .overlayFSKLandscape {width: 5rem;height: 5rem;grid-column: 1;grid-row: 1;margin: 0 0 0 1rem;}.overlayFSKLandscape img {width: 100%;height: 100%;}
+    .overlayNumberLandscape {height: 3.2rem;grid-column: 2;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlayNumberLandscape svg {position: relative;left: -0.5rem}
+    .overlayYearLandscape {height: 3.2rem;grid-column: 3;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlayYearLandscape svg {position: relative;left: -0.5rem}
+    .overlaySeasonsLandscape {height: 3.2rem;grid-column: 4;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlaySeasonsLandscape svg {position: relative;left: -0.5rem}
+    .spacer1Landscape {grid-column: 5;grid-row: 1;}
+    .overlayDownloadImageLandscape {height: 3.2rem;grid-column: 6;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;color: #dbdbdb;transition: all 0.6s;}
+    .overlayDownloadImageLandscape svg {position: relative;left: -0.5rem}
+    .overlayDownloadImageLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .overlayDownloadImageLandscape:active {transform: scale(0.96);}
+    .overlayDownloadNFOLandscape {height: 3.2rem;grid-column: 7;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+    .overlayDownloadNFOLandscape svg {position: relative;left: -0.5rem}
+    .overlayDownloadNFOLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .overlayDownloadNFOLandscape:active {transform: scale(0.96);}
+    .exitButtonLandscape {width: 3.2rem;height: 3.2rem;margin: 0 1rem 0 0.5rem;grid-column: 8;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+    .exitButtonLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .exitButtonLandscape:active {transform: scale(0.96);}
+    .overlayTitleLandscape {grid-column: 1 / span 8;grid-row: 2;padding: 0.5rem 1rem;font-family: FuturaHand;font-size: 5rem;font-weight: bolder;text-align: center;line-height: 5rem;}
+    .overlayPlotLandscape {grid-column: 1 / span 8;grid-row: 3;text-align: justify;padding: 1rem;margin: 1rem;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;line-height: 1.5rem;font-size: 0.8rem;font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+    .overlayWindowPortrait {width: 100vw;height: 100vh;position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
+    .overlayImagePortrait {grid-column: 1;grid-row: 1;width: 100vw;}
+    .overlayImagePortrait img {width: 100%;height: auto;}
+    .overlayContainerPortrait {width: 100vw;height: 100vh;grid-column: 1;grid-row: 1;background: linear-gradient(180deg, #000000cc, #000000cc, #000000ff, #000000ff, #000000ff);display: grid;grid-template-columns: auto;grid-template-rows: min-content auto min-content;place-items: center;}
+    .overlayInfo1Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content auto min-content;grid-template-rows: 4rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
+    .overlayDownloadImagePortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;color: #dbdbdb;transition: all 0.6s;}
+    .overlayDownloadImagePortrait svg {position: relative;left: -0.5rem}
+    .overlayDownloadImagePortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .overlayDownloadImagePortrait:active {transform: scale(0.96);}
+    .overlayDownloadNFOPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+    .overlayDownloadNFOPortrait svg {position: relative;left: -0.5rem}
+    .overlayDownloadNFOPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .overlayDownloadNFOPortrait:active {transform: scale(0.96);}
+    .spacer1Portrait {grid-column: 3;grid-row: 1;}
+    .exitButtonPortrait {width: 3rem;height: 3rem;margin: 0 0.5rem 0 0;grid-column: 4;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+    .exitButtonPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
+    .exitButtonPortrait:active {transform: scale(0.96);}
+    .overlayTitlePortrait {grid-column: 1;grid-row: 2;padding: 0.5rem 1rem;font-family: FuturaHand;font-size: 3rem;font-weight: bolder;text-align: center;line-height: normal;}
+    .overlayInfo2Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 3;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content auto min-content;grid-template-rows: 4rem min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
+    .overlayNumberPortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlayNumberPortrait svg {position: relative;left: -0.5rem}
+    .overlayYearPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlayYearPortrait svg {position: relative;left: -0.5rem}
+    .overlaySeasonsPortrait {height: 3rem;grid-column: 3;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
+    .overlaySeasonsPortrait svg {position: relative;left: -0.5rem}
+    .spacer2Portrait {grid-column: 4;grid-row: 1;}
+    .overlayFSKPortrait {width: 4.8rem;height: 4.8rem;grid-column: 5;grid-row: 1;margin: 0 -0.4rem 0 0;}.overlayFSKPortrait img {width: 100%;height: 100%;}
+    .overlayPlotPortrait {grid-column: 1 / span 5;grid-row: 2;text-align: justify;padding: 0.5rem;margin: 0 0.5rem 0.5rem 0.5rem;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;line-height: normal;font-size: 0.7rem;font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+    #group_single_Zufall .cardContainer {grid-template-columns: minmax(15rem, min-content);justify-content: center;}
+    
 </style>
 </head>
-<body onload="window.location.href = '#cooking_corner';" class="is-preload">
+<body onload="">
   <div id="menubar">
-    <a href="../homepage/index.html"><img src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
-    <a href="../homepage/tools/tools.html"><img src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
-    <a href="../homepage/games/games.html"><img src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
-    <a href="#cooking_corner"><img src="icons/icon0.png"></img><span>Cooking Corner</span></a>
+    <div>
+      <img src="../homepage/assets/mb_icon0.svg"></img>
+      <a href="../homepage/index.html"><img src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
+      <a href="../homepage/tools/tools.html"><img src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
+      <a href="../homepage/games/games.html"><img src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
+      <a href="#cooking_corner"><img src="icons/icon0.png"></img><span>Cooking Corner</span></a>
+    </div>
   </div>
   
-  <div id="wrapper">
-    
-    <nav id="nav">
-      
-    </nav>
-    
-    <div id="main">
-      <article id="cooking_corner" class="panel">
-        <header><h2>Cooking Corner</h2></header>
-        <select id="category_filter" class="category_filter" onchange="filter_recipes()"><option value="alle">Alle Rezepte</option></select>
-        
-        <input type="text" id="search_input" placeholder="Rezept-Suche..." oninput="filter_recipes()">
-
-        <div id="recipe_container"></div>
-      </article>
-    </div>
-
-    <div id="footer"><ul class="copyright"><li>&copy; Master B</li></ul></div>
-
+  <div id="main">
+    <header>MB Movie-Base</header>
+    <div id="output"></div>
   </div>
 </body>
 
 <script>
-let all_recipes = [];
+let current_data = [];
+  let current_group = 'Name';
+  let current_sort_direction = 'asc';
 
-async function load_recipes() {
-  try {
-    const response = await fetch('Rezepte.xlsx');
-    if (!response.ok) throw new Error('Excel-Datei konnte nicht geladen werden.');
-    const arrayBuffer = await response.arrayBuffer();
-    const data = new Uint8Array(arrayBuffer);
-    const workbook = XLSX.read(data, { type: 'array' });
-    const sheet = workbook.Sheets[workbook.SheetNames[0]];
-    const json = XLSX.utils.sheet_to_json(sheet);
-    const filtered = json.filter(r => r.ID && r.ID !== 'ID' && r.Name && r.Name !== 'Name');
-    json.forEach(r => {if (r.ID !== undefined) {r.ID = r.ID.toString().padStart(4, '0');}});
-    all_recipes = json;
-    populate_categories(json);console.log(json.map(r => r.ID));
-    display_recipes(json);
+  async function load_moviebase() {
+    try {const response = await fetch("rezepte.json");if (!response.ok) throw new Error("rezepte.json konnte nicht geladen werden.");current_data = await response.json();load_navigation();load_table_data(current_data);}
+    catch(err) {document.getElementById("output").innerHTML = "<h3>Fehler</h3><p>" + err.message + "</p>";console.error(err);}
   }
-  catch (err) {document.getElementById('recipe_container').textContent = 'Fehler: ' + err.message;}
-}
 
-function populate_categories(recipes) {
-  const select = document.getElementById('category_filter');
-  const categories = [...new Set(recipes.map(r => r.Kategorie))].sort();
-  categories.forEach(cat => {const option = document.createElement('option');option.value = cat;option.textContent = cat;select.appendChild(option);});
-}
+  function load_navigation() {
+    const navigation_container = document.createElement('nav');
+    navigation_container.id = 'navigation_container';
 
-function display_recipes(recipes) {
-  recipes.sort((a, b) => (a.Name || '').localeCompare(b.Name || '', 'de', { sensitivity: 'base' }));
-  const container = document.getElementById('recipe_container');
-  container.innerHTML = '';
-  if (recipes.length === 0) {container.innerHTML = '<p>Keine Rezepte gefunden.</p>';return;}
+    const sort_button = document.createElement('button');
+    sort_button.id = 'sort_button';
+    const sort_button_text = document.createElement('span');
+    sort_button_text.className = 'sort_button_text';
+    const sort_arrow = document.createElement('span');
+    sort_arrow.className = 'sort_arrow';
+    sort_button.appendChild(sort_button_text);
+    sort_button.appendChild(sort_arrow);
 
-  recipes.forEach(r => {
-    const card = document.createElement('div');
-    card.className = 'recipe_card';
+    const random_button = document.createElement('button');
+    random_button.id = 'random_button';
+    random_button.textContent = 'Zufall';
 
-    const img = document.createElement('img');
-    img.src = `pics/${r.ID}.jpg`;
-    img.alt = r.Name;
-    img.loading = 'lazy';
+    const sort_overlay = document.createElement('div');
+    sort_overlay.id = 'sort_overlay';
+    const sort_overlay_content = document.createElement('div');
+    sort_overlay_content.id = 'sort_overlay_content';
+    const sort_overlay_title = document.createElement('div');
+    sort_overlay_title.id = 'sort_overlay_title';
+    sort_overlay_title.textContent = 'Sortieren Nach';
+    sort_overlay_content.appendChild(sort_overlay_title);
+    sort_overlay.appendChild(sort_overlay_content);
 
-    const details = document.createElement('details');
-    const summary = document.createElement('summary');
-    summary.textContent = r.Name;
-    summary.className = 'recipe_name';
+    sort_button.onclick = () => {sort_overlay.style.display = 'flex';};
+    const sort_options = ['Nummer','Name','0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    sort_options.forEach(z => {
+      const option_button = document.createElement('button');
+      option_button.className = 'sort_option';
+      option_button.textContent = z;
+      option_button.onclick = () => {sort_group(z);sort_overlay.style.display = 'none';};
+      sort_overlay_content.appendChild(option_button);
+    });
 
-    const content = document.createElement('div');
-    content.className = 'recipe_details';
+    sort_overlay.onclick = (event) => {if (event.target === sort_overlay) {sort_overlay.style.display = 'none';}};
 
-    const cat = document.createElement('div');
-    cat.className = 'recipe_category';
-    cat.innerHTML = `<strong>Kategorie:</strong>&nbsp;&nbsp;&nbsp;${r.Kategorie}`;
+    random_button.onclick = () => {
+      if (current_data.length === 0) return;
+      const random_index = Math.floor(Math.random() * current_data.length);
+      const random_movie = current_data[random_index];
+      load_table_data([random_movie], 'Zufall');
+      const blurContainer = document.getElementById('output');
+      output.focus();
+    };
 
-    const ing = document.createElement('div');
-    ing.className = 'recipe_ingredients';
-    const zutatenText = (r.Zutaten ?? '').replace(/(\r\n|\n|\r)/g, '<br>');
-    ing.innerHTML = `<strong>Zutaten:</strong><br>${zutatenText}`;
+    navigation_container.appendChild(sort_button);
+    navigation_container.appendChild(random_button);
 
-    const prep = document.createElement('div');
-    prep.className = 'recipe_preparation';
-    const zubereitungText = (r.Zubereitung ?? '').replace(/(\r\n|\n|\r)/g, '<br>');
-    prep.innerHTML = `<strong>Zubereitung:</strong><br>${zubereitungText}`;
+    const output = document.querySelector('#output');
+    const menubar = document.querySelector('#menubar');
+    menubar.appendChild(navigation_container, menubar);
+    //output.parentNode.insertBefore(navigation_container, output);
+    document.body.appendChild(sort_overlay);
 
-    content.append(cat, ing, prep);
-    details.append(summary, content);
+    set_group_active();
 
-    card.append(img, details);
-    container.appendChild(card);
-    card.addEventListener('click', (e) => {if (!e.target.closest('summary')) {details.open = !details.open;}});
-  });
-}
+    const search_container = document.createElement('div');
+    search_container.id = 'search_container';
+    const search_input = document.createElement('input');
+    search_input.type = 'search';
+    search_input.id = 'search_input';
+    search_input.placeholder = 'Titel-Suche...';
+    search_input.addEventListener('input', () => {search_in_table_data(search_input.value);});
+    search_container.appendChild(search_input);
+    menubar.appendChild(search_container, menubar);
+    //output.parentNode.insertBefore(search_container, output);
+  }
+  
+  function sort_group(z) {
+    const same_group = current_group === z;
+    if (same_group) {current_data.reverse();current_sort_direction = current_sort_direction === 'asc' ? 'desc' : 'asc';}
+    else {
+      current_group = z;
+      current_sort_direction = 'asc';
+      current_data.sort((a, b) => {
+        if (z === 'Nummer') {
+          const numA = parseInt(a[Object.keys(a)[0]]) || 0;
+          const numB = parseInt(b[Object.keys(b)[0]]) || 0;
+          return numA - numB;
+        }
+        else {
+          const nameA = String(a[Object.keys(a)[1]] ?? '');
+          const nameB = String(b[Object.keys(b)[1]] ?? '');
+          return nameA.localeCompare(nameB, 'de');
+        }
+      });
+    }
+    load_table_data(current_data, z);
+    set_group_active();
+  }
 
-function filter_recipes() {
-  const catValue = document.getElementById('category_filter').value.toLowerCase();
-  const searchValue = document.getElementById('search_input').value.toLowerCase();
-  const filtered = all_recipes.filter(r => {
-    const matchesCat = catValue === 'alle' || (r.Kategorie ?? '').toLowerCase() === catValue;
-    const matchesSearch = (r.Name ?? '').toLowerCase().includes(searchValue);
-    return matchesCat && matchesSearch;
-  });
-  display_recipes(filtered);
-}
+  function load_table_data(data, group_extra = null) {
+    const container = document.getElementById('output');container.innerHTML = '';
+    const groups = {
+      'Nummer': [], 'Name': [], 'Zufall': [], '0-9': [],
+      ...Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(c => [c, []]))
+    };
+    for (const entry of data) {
+      const name = entry.title ?? "";
+      const letter_1 = name.charAt(0).toUpperCase();
+      groups['Name'].push(entry);
+      groups['Zufall'].push(entry);
+      groups['Nummer'].push(entry);
+      if (/[0-9]/.test(letter_1)) {groups['0-9'].push(entry);}
+      else if (groups[letter_1]) {groups[letter_1].push(entry);}
+    }
+
+    for (const group_single in groups) {
+      const groupDiv = document.createElement('div');
+      groupDiv.id = 'group_single_' + group_single;
+      groupDiv.className = 'group_button';
+      if (group_single === (group_extra || 'Name')) {groupDiv.classList.add('aktiv');}
+      let data = groups[group_single];
+      if (group_single === 'Nummer') {
+        data.sort((a, b) => {
+          const numA = parseInt(a.id) || 0;
+          const numB = parseInt(b.id) || 0;
+          return current_sort_direction === 'asc' ? numA - numB : numB - numA;
+        });
+      }
+      else if (group_single !== 'Zufall') {
+        data.sort((a, b) => {
+          const nameA = a.title ?? "";
+          const nameB = b.title ?? "";
+          return current_sort_direction === 'asc' ? nameA.localeCompare(nameB, 'de') : nameB.localeCompare(nameA, 'de');
+        });
+      }
+      if (data.length > 0) {const table = generate_table_data(data);groupDiv.appendChild(table);}
+      else {groupDiv.innerHTML = '<p>Keine Einträge gefunden...</p>';}
+      container.appendChild(groupDiv);
+    }
+  }
+
+  function set_group_active() {
+    const sort_button_text = document.querySelector('.sort_button_text');
+    const sort_button_arrow = document.querySelector('.sort_arrow');
+    if (!sort_button_text || !sort_button_arrow) return;
+    sort_button_text.textContent = 'Sortieren Nach:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + current_group;
+    if (current_group === 'Zufall') {sort_button_arrow.textContent = '';}
+    else {sort_button_arrow.textContent = current_sort_direction === 'asc' ? '▼' : '▲';}
+  }
+
+  function generate_table_data(data) {
+    const cardContainer = document.createElement("div");
+    cardContainer.className = "cardContainer";
+    data.forEach(row => {
+      const card = document.createElement("div");
+      card.className = "movieCard";
+      card.dataset.title = (row.title ?? "").toLowerCase();
+
+      const moviePoster = document.createElement("div");
+      moviePoster.className = "moviePoster";
+      moviePoster.innerHTML = '<img src="' + row.poster + '" loading="lazy">';
+      
+      const movieNumber = document.createElement("div");
+      movieNumber.className = "movieNumber";
+      movieNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + row.id ?? "";
+      
+      const movieYear = document.createElement("div");
+      movieYear.className = "movieYear";
+      movieYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + row.year ?? "";
+      
+      const overlay = document.createElement("div");
+      overlay.className = "movieOverlay";
+      overlay.onclick = () => createOverlay(row);
+      
+      card.appendChild(moviePoster);
+      card.appendChild(movieNumber);
+      card.appendChild(movieYear);
+      card.appendChild(overlay);
+      
+      cardContainer.appendChild(card);
+    });
+    return cardContainer;
+  }
+
+  function search_in_table_data(search_index) {
+    const group_div = document.getElementById("group_single_" + current_group);
+    if (!group_div) return;
+    const cards = group_div.querySelectorAll(".movieCard");
+    const search = search_index.trim().toLowerCase();
+    cards.forEach(card => {
+      const title = card.dataset.title;
+      card.style.display = (search === "" || title.includes(search)) ? "" : "none";
+    });
+  }
+
+  function createOverlay(movie) {
+    let windowMode = "";
+    if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";}
+    else {windowMode = "portrait";}
+
+    const overlayWindow = document.createElement("div");
+    const overlayImage = document.createElement("div");
+    const overlayContainer = document.createElement("div");
+    const overlayInfo1 = document.createElement("div");
+    const overlayInfo2 = document.createElement("div");
+    const overlayFSK = document.createElement("div");
+    const overlayNumber = document.createElement("div");
+    const overlayYear = document.createElement("div");
+    const overlaySeasons = document.createElement("div");
+    const overlayDownloadImage = document.createElement("div");
+    const overlayDownloadNFO = document.createElement("div");
+    const exitButton = document.createElement("div");
+    const overlayTitle = document.createElement("div");
+    const overlayPlot = document.createElement("div");
+    
+    if (windowMode === "landscape") {
+      overlayWindow.className = "overlayWindowLandscape";
+        overlayImage.className = "overlayImageLandscape";
+        overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
+        overlayWindow.appendChild(overlayImage);
+        overlayContainer.className = "overlayContainerLandscape";
+          overlayInfo1.className = "overlayInfo1Landscape";
+            overlayFSK.className = "overlayFSKLandscape";
+            overlayFSK.innerHTML = '<img src="icons/' + movie.mpaa + '.png" loading="lazy">';
+            overlayInfo1.appendChild(overlayFSK);
+            overlayNumber.className = "overlayNumberLandscape";
+            overlayNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + movie.id;
+            overlayInfo1.appendChild(overlayNumber);
+            overlayYear.className = "overlayYearLandscape";
+            overlayYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + movie.year;
+            overlayInfo1.appendChild(overlayYear);
+            overlaySeasons.className = "overlaySeasonsLandscape";
+            if (movie.seasons == 1) {overlaySeasons.innerHTML = movie.seasons + ' Staffel';}
+            else {overlaySeasons.innerHTML = movie.seasons + ' Staffeln';}
+            overlayInfo1.appendChild(overlaySeasons);
+            const spacer1 = document.createElement("div");
+            spacer1.className = "spacer1Landscape";
+            overlayInfo1.appendChild(spacer1);
+            overlayDownloadImage.className = "overlayDownloadImageLandscape";
+            overlayDownloadImage.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Cover';
+            overlayDownloadImage.onclick = () => downloadImage(movie);
+            overlayInfo1.appendChild(overlayDownloadImage);
+            overlayDownloadNFO.className = "overlayDownloadNFOLandscape";
+            overlayDownloadNFO.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Info-File';
+            overlayDownloadNFO.onclick = () => downloadNFO(movie);
+            overlayInfo1.appendChild(overlayDownloadNFO);
+            exitButton.className = "exitButtonLandscape";
+            exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+            exitButton.onclick = () => removeOverlay();
+            overlayInfo1.appendChild(exitButton);
+            overlayTitle.className = "overlayTitleLandscape";
+            overlayTitle.innerHTML = movie.title;
+            overlayInfo1.appendChild(overlayTitle);
+            overlayPlot.className = "overlayPlotLandscape";
+            overlayPlot.innerHTML = movie.plot;
+            overlayInfo1.appendChild(overlayPlot);
+          overlayContainer.appendChild(overlayInfo1);
+        overlayWindow.appendChild(overlayContainer);
+      document.body.appendChild(overlayWindow);
+    }
+
+    else {
+      overlayWindow.className = "overlayWindowPortrait";
+        overlayImage.className = "overlayImagePortrait";
+        overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
+        overlayWindow.appendChild(overlayImage);
+        overlayContainer.className = "overlayContainerPortrait";
+          overlayInfo1.className = "overlayInfo1Portrait";
+            overlayDownloadImage.className = "overlayDownloadImagePortrait";
+            overlayDownloadImage.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Cover';
+            overlayDownloadImage.onclick = () => downloadImage(movie);
+            overlayInfo1.appendChild(overlayDownloadImage);
+            overlayDownloadNFO.className = "overlayDownloadNFOPortrait";
+            overlayDownloadNFO.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Info-File';
+            overlayDownloadNFO.onclick = () => downloadNFO(movie);
+            overlayInfo1.appendChild(overlayDownloadNFO);
+            const spacer1 = document.createElement("div");
+            spacer1.className = "spacer1Portrait";
+            overlayInfo1.appendChild(spacer1);
+            exitButton.className = "exitButtonPortrait";
+            exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+            exitButton.onclick = () => removeOverlay();
+            overlayInfo1.appendChild(exitButton);
+          overlayContainer.appendChild(overlayInfo1);
+          
+          overlayTitle.className = "overlayTitlePortrait";
+          overlayTitle.innerHTML = movie.title;
+          overlayContainer.appendChild(overlayTitle);
+          
+          overlayInfo2.className = "overlayInfo2Portrait";
+            overlayNumber.className = "overlayNumberPortrait";
+            overlayNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + movie.id;
+            overlayInfo2.appendChild(overlayNumber);
+            overlayYear.className = "overlayYearPortrait";
+            overlayYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + movie.year;
+            overlayInfo2.appendChild(overlayYear);
+            overlaySeasons.className = "overlaySeasonsPortrait";
+            if (movie.seasons == 1) {overlaySeasons.innerHTML = movie.seasons + ' Staffel';}
+            else {overlaySeasons.innerHTML = movie.seasons + ' Staffeln';}
+            overlayInfo2.appendChild(overlaySeasons);
+            const spacer2 = document.createElement("div");
+            spacer2.className = "spacer2Portrait";
+            overlayInfo2.appendChild(spacer2);
+            overlayFSK.className = "overlayFSKPortrait";
+            overlayFSK.innerHTML = '<img src="icons/' + movie.mpaa + '.png" loading="lazy">';
+            overlayInfo2.appendChild(overlayFSK);
+            overlayPlot.className = "overlayPlotPortrait";
+            overlayPlot.innerHTML = movie.plot;
+            overlayInfo2.appendChild(overlayPlot);
+          overlayContainer.appendChild(overlayInfo2);
+
+        overlayWindow.appendChild(overlayContainer);
+      document.body.appendChild(overlayWindow);
+    }
+
+    document.body.style = "overflow: hidden;";
+  }
+  function removeOverlay() {document.querySelector(".overlayWindowLandscape")?.remove();document.querySelector(".overlayWindowPortrait")?.remove();document.body.style = "overflow: scroll;";}
+
+  function downloadImage(movie) {downloadFile(movie.poster, `${movie.filename}-poster.jpg`);}
+  function downloadNFO(movie) {downloadFile(`Movies/${movie.folder}/${movie.filename}.nfo`, `${movie.filename}.nfo`);}
+  function downloadFile(url, filename) {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 </script>

@@ -7,33 +7,23 @@
   <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
   <link rel="stylesheet" href="../homepage/assets/index.css"></link>
   <style>
-  header {text-align: center;margin-bottom: 1em;}
-  .category_filter {width: 100%;margin-bottom: 1em;outline: none;text-align: center;}
-  select, input {width: 100%;background: #222222;color: #dbdbdb;border: none;padding: 0.5em;border-radius: 1em;margin-bottom: 1.5em;cursor: pointer;outline: none;text-align: center;}
-  input::placeholder {color: #dbdbdb;}
-
-  #recipe_container {display: grid;grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));gap: 1em;}
-  .recipe_card {background: #222222;border-radius: 1em;padding: 1em;box-shadow: 0 0 10px rgba(0,0,0,0.4);transition: transform 0.2s;cursor: pointer;}
-  .recipe_card img {width: 100%;height: 200px;object-fit: cover;border-radius: 0.6em;margin-bottom: 0.5em;}
-  .recipe_name {font-size: 1.2em;color: #dbdbdb;margin-bottom: 0.3em;}
-  .recipe_ingredients, .recipe_preparation, .recipe_category {font-size: 0.9em;line-height: 1.4;color: #dbdbdb;margin-bottom: 0.5em;}
-  .recipe_ingredients strong, .recipe_preparation strong, .recipe_category strong {color: #ffcc66;}
-  
-  summary::-webkit-details-marker {display: none !important;}
-  summary::marker {content: "";display: none !important;}
-  summary {display: flex;align-items: center;cursor: pointer;list-style: none;position: relative;padding-left: 0.5em;color: #dbdbdb;font-size: 1.1em;}
-  summary::before {content: "+";color: #00ff00;margin-right: 0.5em;transition: transform 1s ease;}
-  details[open] summary::before {content: "–";color: #ff0000;}
+    #menubar {width: 100%;height: 6vh;position: fixed;z-index: 1000;}
+    #menubar a {display: flex;flex-direction: row;justify-content: center;align-content: space-around;width: 6vh;height: 6vh;}
+    #menubar img {width: 5vh;height: 5vh;}
 </style>
 </head>
 <body onload="window.location.href = '#cooking_corner';" class="is-preload">
+  <div id="menubar">
+    <a href="../homepage/index.html"><img src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
+    <a href="../homepage/tools/tools.html"><img src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
+    <a href="../homepage/games/games.html"><img src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
+    <a href="#cooking_corner"><img src="icons/icon0.png"></img><span>Cooking Corner</span></a>
+  </div>
+  
   <div id="wrapper">
     
     <nav id="nav">
-      <a href="../homepage/index.html"><img class="mb_icon" src="../homepage/assets/mb_icon0.svg"></img><span>Home</span></a>
-      <a href="../homepage/tools/tools.html"><img class="mb_icon" src="../homepage/assets/icon_tools_00.png"></img><span>Tools</span></a>
-	  <a href="../homepage/games/games.html"><img class="mb_icon" src="../homepage/assets/icon_controller_00.png"></img><span>Games</span></a>
-      <a href="#cooking_corner"><img class="mb_icon" src="icon_01.png"></img><span>Cooking Corner</span></a>
+      
     </nav>
     
     <div id="main">

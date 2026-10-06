@@ -21,27 +21,28 @@
       #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
       .sort_option {min-width: 4rem;}
       #search_container {width: auto;height: 4rem;grid-column: 2;grid-row: 1;text-align: center;}
-      #search_container input {width: auto;height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+      #search_container input {width: auto;height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}
       #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
       #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
 
       #main {width: 100vw;height: auto;background-color: #00000000;}
-      #output {margin: 5rem;}
-      .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));gap: 0.5em;}
+      #output {margin: 4.5rem 0.5rem 1rem 0.5rem;}
+
+      .group_button {display: none;}
+      .group_button.aktiv {display: block;}
+
+      .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(12rem, auto));gap: 1rem;}
       .movieCard {color: #ffffff;width: auto;height: auto;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;background-color: #111111;border-radius: 0.5rem;border: 1px solid #444444;position: relative;top: 0;margin: 0;cursor: pointer;transition: top 0.6s;}
       .movieCard:hover {border-color: #dddddd;top: -0.5rem;}
-      .moviePoster {grid-column: 1 / span 2;grid-row: 1;width: 100%;height: auto;aspect-ratio: 16/9;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
+      .moviePoster {grid-column: 1;grid-row: 1;width: 100%;height: auto;aspect-ratio: 16/9;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
       .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
-      .movieNumber {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-      .movieNumber svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
-      .movieYear {grid-column: 2;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-      .movieYear svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;}
-      .movieOverlay {grid-column: 1 / span 2;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
+      .movieTitle {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
+      .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
       .movieOverlay:hover {opacity: 0;}
       
-      .overlayWindowLandscape {width: calc(100vw - 5vh);height: calc(100vh - 5vh);position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;place-items: center;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;}
-      .overlayImageLandscape {grid-column: 1;grid-row: 1;height: 90vh;}
-      .overlayImageLandscape img {width: auto;height: 100%;border-radius: 0.5rem;}
+      .overlayWindowLandscape {width: calc(100vw - 5rem);height: calc(100vh - 5rem);position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;place-items: center;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;}
+      .overlayImageLandscape {grid-column: 1;grid-row: 1;width: 100%;}
+      .overlayImageLandscape img {width: 100%;height: auto;border-radius: 0.5rem;}
       .overlayContainerLandscape {width: calc(90vw - ((90vh / 3) * 2));grid-column: 2;grid-row: 1;background: none;}
       .overlayInfo1Landscape {width: calc(90vw - ((90vh / 3) * 2));height: 90vh;grid-column: 2;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content min-content auto min-content min-content min-content;grid-template-rows: 5rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
       .overlayFSKLandscape {width: 5rem;height: 5rem;grid-column: 1;grid-row: 1;margin: 0 0 0 1rem;}.overlayFSKLandscape img {width: 100%;height: 100%;}
@@ -276,21 +277,16 @@
       moviePoster.className = "moviePoster";
       moviePoster.innerHTML = '<img src="' + row.poster + '" loading="lazy">';
       
-      const movieNumber = document.createElement("div");
-      movieNumber.className = "movieNumber";
-      movieNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + row.id ?? "";
-      
-      const movieYear = document.createElement("div");
-      movieYear.className = "movieYear";
-      movieYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + row.year ?? "";
+      const movieTitle = document.createElement("div");
+      movieTitle.className = "movieTitle";
+      movieTitle.innerHTML = row.title ?? "";
       
       const overlay = document.createElement("div");
       overlay.className = "movieOverlay";
       overlay.onclick = () => createOverlay(row);
       
       card.appendChild(moviePoster);
-      card.appendChild(movieNumber);
-      card.appendChild(movieYear);
+      card.appendChild(movieTitle);
       card.appendChild(overlay);
       
       cardContainer.appendChild(card);

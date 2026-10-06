@@ -1,13 +1,12 @@
 [
     {
         "id": "0001",
-        "title": "Cybill",
-        "plot": "Mit der Karriere der Schauspielerin Cybill Sheridan geht es auf und ab. Sie bekommt keine guten Rollen mehr und verdient ihr Geld jetzt mit Werbespots und Minirollen. Aber auch privat hat Cybill einige Probleme: Sie ist zweimal geschieden, ihr Ex-Mann, der Buchautor Ira hofft immer noch, dass Cybill zu ihm zurückkommt, und ihr anderer Ex-Ehemann Jeff, der als Stuntman arbeitet, hat sich einen Platz in ihrem Wohnzimmer auf dem Sofa gesichert. Sie hat von jedem der beiden eine Tochter: Zoey, die noch zu Hause wohnt, und Rachel, die schon verheiratet ist und Cybill zur Großmutter macht. Mit ihrer besten Freundin Maryann, auch geschieden und steinreich, teilt sie die guten und schlechten Erfahrungen des Lebens, und meistert die Schwierigkeiten ihrer Karriere.",
-        "mpaa": "FSK-0",
-        "year": "1995",
-        "seasons": 4,
+        "title": "American Pancakes",
+        "ingredients": "400g Mehl\n500ml Milch\n100g Zucker\n4 Eier\n1 Pg. Backpulver",
+        "recipe": "'- Eier trennen\n- Eiweiß steif schlagen\n- Eigelb mit Zucker schaumig rühren\n- Mehl mit Backpulver mischen und sieben\n- Milch nach und nach zum Eigelb gießen\n- Trockene und nasse Zutaten mischen\n- Geschlagenes Eiweiß vorsichtig unterheben\n- Pfanne maximal erhitzen, dann auf mittlere Hitze runter regeln\n- Mit einer Kelle bis zu 4 Pfannkuchen in der Pfanne braten",
+        "category": "Süßspeisen",
         "folder": "0001",
-        "filename": "tvshow",
+        "filename": "recipe",
         "poster": "rezepte/0001/0001.jpg"
     },
     {
@@ -31,5 +30,49 @@
         "folder": "0003",
         "filename": "tvshow",
         "poster": "rezepte/0003/0003.jpg"
+    },
+    {
+        "id": "0004",
+        "title": "Ehe Ist",
+        "plot": "Eddie und Joy Stamm sind schon seit Menschengedenken miteinander verheiratet und haben es sich in ihrem Haus in einer klassischen Vorstadtsiedlung gemütlich gemacht. Ihre neuen Nachbarn Steph und Jeff Woodcock sind frisch vermählt und verliebt bis über beiden Ohren. Für Eddie schon mal klar, dass Jeff dringend seinen Rat in Sachen \"Gatte-sein\" nötig hat. Und für die Woodcocks ist der Blick über den Gartenzaun gleichzeitig eine überraschende sowie bestürzende Vorschau auf die Zukunft ihrer Ehe: Sie lernen, dass zu jeder guten Ehe auch pragmatische Spielchen gehören, wie z.B. \"Sex gegen Möbel\" zu verhandeln oder wie wichtig es ist, Mini-Steaks grillen zu können. \"Bis dass der Tod sie scheidet\" - \"til Death\" wird das nun so bleiben.",
+        "mpaa": "FSK-6",
+        "year": "2006",
+        "seasons": 4,
+        "folder": "0004",
+        "filename": "tvshow",
+        "poster": "rezepte/0004/0004.jpg"
+    },
+    {
+        "id": "0005",
+        "title": "Ehe Ist",
+        "plot": "Eddie und Joy Stamm sind schon seit Menschengedenken miteinander verheiratet und haben es sich in ihrem Haus in einer klassischen Vorstadtsiedlung gemütlich gemacht. Ihre neuen Nachbarn Steph und Jeff Woodcock sind frisch vermählt und verliebt bis über beiden Ohren. Für Eddie schon mal klar, dass Jeff dringend seinen Rat in Sachen \"Gatte-sein\" nötig hat. Und für die Woodcocks ist der Blick über den Gartenzaun gleichzeitig eine überraschende sowie bestürzende Vorschau auf die Zukunft ihrer Ehe: Sie lernen, dass zu jeder guten Ehe auch pragmatische Spielchen gehören, wie z.B. \"Sex gegen Möbel\" zu verhandeln oder wie wichtig es ist, Mini-Steaks grillen zu können. \"Bis dass der Tod sie scheidet\" - \"til Death\" wird das nun so bleiben.",
+        "mpaa": "FSK-6",
+        "year": "2006",
+        "seasons": 4,
+        "folder": "0005",
+        "filename": "tvshow",
+        "poster": "rezepte/0005/0005.jpg"
+    },
+    {
+        "id": "0006",
+        "title": "Ehe Ist",
+        "plot": "Eddie und Joy Stamm sind schon seit Menschengedenken miteinander verheiratet und haben es sich in ihrem Haus in einer klassischen Vorstadtsiedlung gemütlich gemacht. Ihre neuen Nachbarn Steph und Jeff Woodcock sind frisch vermählt und verliebt bis über beiden Ohren. Für Eddie schon mal klar, dass Jeff dringend seinen Rat in Sachen \"Gatte-sein\" nötig hat. Und für die Woodcocks ist der Blick über den Gartenzaun gleichzeitig eine überraschende sowie bestürzende Vorschau auf die Zukunft ihrer Ehe: Sie lernen, dass zu jeder guten Ehe auch pragmatische Spielchen gehören, wie z.B. \"Sex gegen Möbel\" zu verhandeln oder wie wichtig es ist, Mini-Steaks grillen zu können. \"Bis dass der Tod sie scheidet\" - \"til Death\" wird das nun so bleiben.",
+        "mpaa": "FSK-6",
+        "year": "2006",
+        "seasons": 4,
+        "folder": "0006",
+        "filename": "tvshow",
+        "poster": "rezepte/0006/0006.jpg"
+    },
+    {
+        "id": "0007",
+        "title": "Ehe Ist",
+        "plot": "Eddie und Joy Stamm sind schon seit Menschengedenken miteinander verheiratet und haben es sich in ihrem Haus in einer klassischen Vorstadtsiedlung gemütlich gemacht. Ihre neuen Nachbarn Steph und Jeff Woodcock sind frisch vermählt und verliebt bis über beiden Ohren. Für Eddie schon mal klar, dass Jeff dringend seinen Rat in Sachen \"Gatte-sein\" nötig hat. Und für die Woodcocks ist der Blick über den Gartenzaun gleichzeitig eine überraschende sowie bestürzende Vorschau auf die Zukunft ihrer Ehe: Sie lernen, dass zu jeder guten Ehe auch pragmatische Spielchen gehören, wie z.B. \"Sex gegen Möbel\" zu verhandeln oder wie wichtig es ist, Mini-Steaks grillen zu können. \"Bis dass der Tod sie scheidet\" - \"til Death\" wird das nun so bleiben.",
+        "mpaa": "FSK-6",
+        "year": "2006",
+        "seasons": 4,
+        "folder": "0007",
+        "filename": "tvshow",
+        "poster": "rezepte/0007/0007.jpg"
     }
 ]

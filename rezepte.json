@@ -2,9 +2,12 @@
     {
         "id": "0001",
         "title": "American Pancakes",
-        "ingredients": "400g Mehl\n500ml Milch\n100g Zucker\n4 Eier\n1 Pg. Backpulver",
-        "recipe": "'- Eier trennen\n- Eiweiß steif schlagen\n- Eigelb mit Zucker schaumig rühren\n- Mehl mit Backpulver mischen und sieben\n- Milch nach und nach zum Eigelb gießen\n- Trockene und nasse Zutaten mischen\n- Geschlagenes Eiweiß vorsichtig unterheben\n- Pfanne maximal erhitzen, dann auf mittlere Hitze runter regeln\n- Mit einer Kelle bis zu 4 Pfannkuchen in der Pfanne braten",
         "category": "Süßspeisen",
+        "ingredients_header_1": "Teig",
+        "ingredients_1": "400g Mehl<br>500ml Milch<br>100g Zucker<br>4 Eier<br>1 Pg. Backpulver",
+        "ingredients_header_2": "Füllung",
+        "ingredients_2": "400g Mehl<br>500ml Milch<br>100g Zucker<br>4 Eier<br>1 Pg. Backpulver",
+        "recipe": "'- Eier trennen<br>- Eiweiß steif schlagen<br>- Eigelb mit Zucker schaumig rühren<br>- Mehl mit Backpulver mischen und sieben<br>- Milch nach und nach zum Eigelb gießen<br>- Trockene und nasse Zutaten mischen<br>- Geschlagenes Eiweiß vorsichtig unterheben<br>- Pfanne maximal erhitzen, dann auf mittlere Hitze runter regeln<br>- Mit einer Kelle bis zu 4 Pfannkuchen in der Pfanne braten",
         "folder": "0001",
         "filename": "recipe",
         "poster": "rezepte/0001/0001.jpg"

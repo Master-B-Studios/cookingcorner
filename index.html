@@ -16,17 +16,20 @@
       #sort_button {display: flex;align-items: center;justify-content: center;gap: 0.5rem;}
       #sort_button .sort_arrow {min-width: 1em;text-align: center;}
       #random_button {cursor: pointer;}
-      #sort_overlay {display: none;position: fixed;inset: 0;z-index: 9999;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
+      #sort_overlay {display: none;position: fixed;inset: 0;z-index: 1100;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
       #sort_overlay_content {width: min(90vw, 40rem);max-height: 80vh;padding: 1rem;background-color: #111111;border: 1px solid #444444;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
       #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
       .sort_option {min-width: 4rem;}
-      #search_container {width: auto;height: 4rem;grid-column: 2;grid-row: 1;text-align: center;}
+
+      .searchContainerLandscape {width: auto;height: 4rem;grid-column: 2;grid-row: 1;text-align: center;}
+      .searchContainerPortrait {width: 100%;height: 4rem;grid-column: 1;grid-row: 2;text-align: center;margin: -0.25rem 0 0 0;}
       #search_container input {width: auto;height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}
       #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
       #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
 
       #main {width: auto;height: auto;background-color: #00000000;}
-      #output {margin: 4.5rem 0.5rem 1rem 0.5rem;}
+      .outputLandscape {margin: 4.5rem 0.5rem 1rem 0.5rem;}
+      .outputPortrait {margin: 8rem 0.5rem 1rem 0.5rem;}
 
       .group_button {display: none;}
       .group_button.aktiv {display: block;}
@@ -37,67 +40,63 @@
       .moviePoster {grid-column: 1;grid-row: 1;width: 100%;height: auto;aspect-ratio: 16/9;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
       .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
       .movieTitle {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-      .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
+      .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 800;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
       .movieOverlay:hover {opacity: 0;}
       
-      .overlayWindowLandscape {width: auto;height: calc(100vh - 5rem);aspect-ratio: 16/9;position: fixed;inset: 0;background-color: #000000cc;z-index: 2000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
+      .overlayWindowLandscape {width: auto;height: calc(100vh - 5rem);aspect-ratio: 16/9;position: fixed;inset: 0;background-color: #000000cc;z-index: 1100;overflow: hidden;border-radius: 0.5rem;border: 1px solid #dbdbdb;padding: 0;margin: auto;display: grid;grid-template-columns: 30% auto;grid-template-rows: auto;}
       .overlayImageLandscape {grid-column: 1 / span 2;grid-row: 1;filter: brightness(20%);}
       .overlayImageLandscape img {width: 100%;height: auto;border-radius: 0.5rem;}
 
-      .overlayIngredientsContainerLandscape {grid-column: 1;grid-row: 1;width: auto;height: 100%;z-index: 2000;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content min-content;grid-template-rows: min-content min-content min-content;place-items: center;}
-      .overlayIngredientsHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
-      .overlayIngredients1HeaderLandscape {grid-column: 1;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
-      .overlayIngredients1Landscape {grid-column: 1;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
-      .overlayIngredients2HeaderLandscape {grid-column: 2;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
-      .overlayIngredients2Landscape {grid-column: 2;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+      .overlayIngredientsContainerLandscape {grid-column: 1;grid-row: 1;width: auto;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;}
+      .overlayIngredientsHeaderLandscape {grid-column: 1;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayIngredients1HeaderLandscape {grid-column: 1;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients1Landscape {grid-column: 1;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayIngredients2HeaderLandscape {grid-column: 1;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients2Landscape {grid-column: 1;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
 
-      .overlayRecipeContainerLandscape {grid-column: 2;grid-row: 1;width: 100%;height: 100%;z-index: 2000;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content auto min-content auto min-content auto;}
-      .overlayRecipeHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
-      .overlayRecipe1HeaderLandscape {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
-      .overlayRecipe1Landscape {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
-      .overlayRecipe2HeaderLandscape {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
-      .overlayRecipe2Landscape {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
-      .overlayNotesHeaderLandscape {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
-      .overlayNotesLandscape {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+      .overlayRecipeContainerLandscape {grid-column: 2;grid-row: 1;width: 100%;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
+      .overlayRecipeHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: left;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayRecipe1HeaderLandscape {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe1Landscape {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayRecipe2HeaderLandscape {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe2Landscape {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayNotesHeaderLandscape {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayNotesLandscape {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
 
       .exitButtonLandscape {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
       .exitButtonLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
       .exitButtonLandscape:active {transform: scale(0.96);}
+
       
-      .overlayWindowPortrait {width: 100vw;height: 100vh;position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
-      .overlayImagePortrait {grid-column: 1;grid-row: 1;width: 100vw;}
+      .overlayWindowPortrait {width: 100vw;height: auto;position: fixed;inset: 0;background-color: #000000cc;z-index: 1100;overflow: auto;padding: 0;margin: auto;display: grid;grid-template-columns: auto;grid-template-rows: auto;background-color: #222222;}
+      .overlayImagePortrait {grid-column: 1;grid-row: 1;filter: brightness(20%);}
       .overlayImagePortrait img {width: 100%;height: auto;}
-      .overlayContainerPortrait {width: 100vw;height: 100vh;grid-column: 1;grid-row: 1;background: linear-gradient(180deg, #000000cc, #000000cc, #000000ff, #000000ff, #000000ff);display: grid;grid-template-columns: auto;grid-template-rows: min-content auto min-content;place-items: center;}
-      .overlayInfo1Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 1;background-color: #00000000;display: grid;grid-template-columns: min-content min-content auto min-content;grid-template-rows: 4rem auto min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
-      .overlayDownloadImagePortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;color: #dbdbdb;transition: all 0.6s;}
-      .overlayDownloadImagePortrait svg {position: relative;left: -0.5rem}
-      .overlayDownloadImagePortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-      .overlayDownloadImagePortrait:active {transform: scale(0.96);}
-      .overlayDownloadNFOPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0.5rem 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-      .overlayDownloadNFOPortrait svg {position: relative;left: -0.5rem}
-      .overlayDownloadNFOPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-      .overlayDownloadNFOPortrait:active {transform: scale(0.96);}
-      .spacer1Portrait {grid-column: 3;grid-row: 1;}
-      .exitButtonPortrait {width: 3rem;height: 3rem;margin: 0 0.5rem 0 0;grid-column: 4;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+
+      .exitButtonPortrait {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
       .exitButtonPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
       .exitButtonPortrait:active {transform: scale(0.96);}
-      .overlayTitlePortrait {grid-column: 1;grid-row: 2;padding: 0.5rem 1rem;font-family: FuturaHand;font-size: 3rem;font-weight: bolder;text-align: center;line-height: normal;}
-      .overlayInfo2Portrait {width: 100vw;height: min-content;grid-column: 1;grid-row: 3;background-color: #00000000;display: grid;grid-template-columns: min-content min-content min-content auto min-content;grid-template-rows: 4rem min-content;place-items: center;font-size: 1rem;color: #dbdbdb;}
-      .overlayNumberPortrait {height: 3rem;grid-column: 1;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-      .overlayNumberPortrait svg {position: relative;left: -0.5rem}
-      .overlayYearPortrait {height: 3rem;grid-column: 2;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-      .overlayYearPortrait svg {position: relative;left: -0.5rem}
-      .overlaySeasonsPortrait {height: 3rem;grid-column: 3;grid-row: 1;padding: 0 1rem;margin: 0 0.5rem 0 0;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;color: #dbdbdb;}
-      .overlaySeasonsPortrait svg {position: relative;left: -0.5rem}
-      .spacer2Portrait {grid-column: 4;grid-row: 1;}
-      .overlayFSKPortrait {width: 4.8rem;height: 4.8rem;grid-column: 5;grid-row: 1;margin: 0 -0.4rem 0 0;}.overlayFSKPortrait img {width: 100%;height: 100%;}
-      .overlayPlotPortrait {grid-column: 1 / span 5;grid-row: 2;text-align: justify;padding: 0.5rem;margin: 0 0.5rem 0.5rem 0.5rem;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;line-height: normal;font-size: 0.7rem;font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+      .overlayIngredientsContainerPortrait {grid-column: 1;grid-row: 2;width: auto;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;}
+      .overlayIngredientsHeaderPortrait {grid-column: 1;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayIngredients1HeaderPortrait {grid-column: 1;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients1Portrait {grid-column: 1;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayIngredients2HeaderPortrait {grid-column: 1;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients2Portrait {grid-column: 1;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+
+      .overlayRecipeContainerPortrait {grid-column: 1;grid-row: 3;width: 100%;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
+      .overlayRecipeHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: left;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayRecipe1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayRecipe2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe2Portrait {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayNotesHeaderPortrait {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayNotesPortrait {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
       
       #group_single_Zufall .cardContainer {grid-template-columns: minmax(15rem, min-content);justify-content: center;}
       
     </style>
   </head>
-  <body onload="init_menubar();init_header();load_moviebase();">
+  <body onload="init_menubar();init_header();check_window_mode();load_moviebase();">
     <div id="menubar"></div><div id="header"></div>
     <div id="main">
       <div id="output"></div>
@@ -109,6 +108,7 @@
   function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);}
   function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';console.log('menubar deactivated');}}
   function init_header() {const header = document.getElementById('header');const header_div = document.createElement('div');header_div.id = 'header_div';header.appendChild(header_div);}
+  let windowMode = "";function check_window_mode() {if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";} else {windowMode = "portrait";}}
   
   let current_data = [];
   let current_group = 'Name';
@@ -179,6 +179,8 @@
 
     const search_container = document.createElement('div');
     search_container.id = 'search_container';
+    if (windowMode === 'landscape') {search_container.className = 'searchContainerLandscape';output.className = 'outputLandscape';}
+    else {search_container.className = 'searchContainerPortrait';output.className = 'outputPortrait';}
     const search_input = document.createElement('input');
     search_input.type = 'search';
     search_input.id = 'search_input';
@@ -303,10 +305,7 @@
   }
 
   function createOverlay(movie) {
-    let windowMode = "";
-    if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";}
-    else {windowMode = "portrait";}
-
+    check_window_mode();
     const overlayWindow = document.createElement("div");
     const overlayImage = document.createElement("div");
     const exitButton = document.createElement("div");
@@ -353,7 +352,7 @@
 
         overlayRecipeContainer.className = "overlayRecipeContainerLandscape";
           overlayRecipeHeader.className = "overlayRecipeHeaderLandscape";
-          overlayRecipeHeader.innerHTML = 'Zubereitung';
+          overlayRecipeHeader.innerHTML = '&#9;Zubereitung';
           overlayRecipeContainer.appendChild(overlayRecipeHeader);
           overlayRecipe1Header.className = "overlayRecipe1HeaderLandscape";
           overlayRecipe1Header.innerHTML = movie.recipe_1_header;
@@ -368,7 +367,7 @@
           overlayRecipe2.innerHTML = movie.recipe_2;
           overlayRecipeContainer.appendChild(overlayRecipe2);
           overlayNotesHeader.className = "overlayNotesHeaderLandscape";
-          overlayNotesHeader.innerHTML = 'Notizen';
+          overlayNotesHeader.innerHTML = movie.notes_header;
           overlayRecipeContainer.appendChild(overlayNotesHeader);
           overlayNotes.className = "overlayNotesLandscape";
           overlayNotes.innerHTML = movie.notes;
@@ -389,52 +388,53 @@
         overlayImage.className = "overlayImagePortrait";
         overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
         overlayWindow.appendChild(overlayImage);
-        overlayContainer.className = "overlayContainerPortrait";
-          overlayInfo1.className = "overlayInfo1Portrait";
-            overlayDownloadImage.className = "overlayDownloadImagePortrait";
-            overlayDownloadImage.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Cover';
-            overlayDownloadImage.onclick = () => downloadImage(movie);
-            overlayInfo1.appendChild(overlayDownloadImage);
-            overlayDownloadNFO.className = "overlayDownloadNFOPortrait";
-            overlayDownloadNFO.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Info-File';
-            overlayDownloadNFO.onclick = () => downloadNFO(movie);
-            overlayInfo1.appendChild(overlayDownloadNFO);
-            const spacer1 = document.createElement("div");
-            spacer1.className = "spacer1Portrait";
-            overlayInfo1.appendChild(spacer1);
-            exitButton.className = "exitButtonPortrait";
-            exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-            exitButton.onclick = () => removeOverlay();
-            overlayInfo1.appendChild(exitButton);
-          overlayContainer.appendChild(overlayInfo1);
-          
-          overlayTitle.className = "overlayTitlePortrait";
-          overlayTitle.innerHTML = movie.title;
-          overlayContainer.appendChild(overlayTitle);
-          
-          overlayInfo2.className = "overlayInfo2Portrait";
-            overlayNumber.className = "overlayNumberPortrait";
-            overlayNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + movie.id;
-            overlayInfo2.appendChild(overlayNumber);
-            overlayYear.className = "overlayYearPortrait";
-            overlayYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + movie.year;
-            overlayInfo2.appendChild(overlayYear);
-            overlaySeasons.className = "overlaySeasonsPortrait";
-            if (movie.seasons == 1) {overlaySeasons.innerHTML = movie.seasons + ' Staffel';}
-            else {overlaySeasons.innerHTML = movie.seasons + ' Staffeln';}
-            overlayInfo2.appendChild(overlaySeasons);
-            const spacer2 = document.createElement("div");
-            spacer2.className = "spacer2Portrait";
-            overlayInfo2.appendChild(spacer2);
-            overlayFSK.className = "overlayFSKPortrait";
-            overlayFSK.innerHTML = '<img src="icons/' + movie.mpaa + '.png" loading="lazy">';
-            overlayInfo2.appendChild(overlayFSK);
-            overlayPlot.className = "overlayPlotPortrait";
-            overlayPlot.innerHTML = movie.plot;
-            overlayInfo2.appendChild(overlayPlot);
-          overlayContainer.appendChild(overlayInfo2);
+        exitButton.className = "exitButtonPortrait";
+        exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+        exitButton.onclick = () => removeOverlay();
+        overlayWindow.appendChild(exitButton);
 
-        overlayWindow.appendChild(overlayContainer);
+        overlayIngredientsContainer.className = "overlayIngredientsContainerPortrait";
+          overlayIngredientsHeader.className = "overlayIngredientsHeaderPortrait";
+          overlayIngredientsHeader.innerHTML = 'Zutaten';
+          overlayIngredientsContainer.appendChild(overlayIngredientsHeader);
+          overlayIngredients1Header.className = "overlayIngredients1HeaderPortrait";
+          overlayIngredients1Header.innerHTML = movie.ingredients_1_header;
+          overlayIngredientsContainer.appendChild(overlayIngredients1Header);
+          overlayIngredients1.className = "overlayIngredients1Portrait";
+          overlayIngredients1.innerHTML = movie.ingredients_1;
+          overlayIngredientsContainer.appendChild(overlayIngredients1);
+          overlayIngredients2Header.className = "overlayIngredients2HeaderPortrait";
+          overlayIngredients2Header.innerHTML = movie.ingredients_2_header;
+          overlayIngredientsContainer.appendChild(overlayIngredients2Header);
+          overlayIngredients2.className = "overlayIngredients2Portrait";
+          overlayIngredients2.innerHTML = movie.ingredients_2;
+          overlayIngredientsContainer.appendChild(overlayIngredients2);
+        overlayWindow.appendChild(overlayIngredientsContainer);
+
+        overlayRecipeContainer.className = "overlayRecipeContainerPortrait";
+          overlayRecipeHeader.className = "overlayRecipeHeaderPortrait";
+          overlayRecipeHeader.innerHTML = '&#9;Zubereitung';
+          overlayRecipeContainer.appendChild(overlayRecipeHeader);
+          overlayRecipe1Header.className = "overlayRecipe1HeaderPortrait";
+          overlayRecipe1Header.innerHTML = movie.recipe_1_header;
+          overlayRecipeContainer.appendChild(overlayRecipe1Header);
+          overlayRecipe1.className = "overlayRecipe1Portrait";
+          overlayRecipe1.innerHTML = movie.recipe_1;
+          overlayRecipeContainer.appendChild(overlayRecipe1);
+          overlayRecipe2Header.className = "overlayRecipe2HeaderPortrait";
+          overlayRecipe2Header.innerHTML = movie.recipe_2_header;
+          overlayRecipeContainer.appendChild(overlayRecipe2Header);
+          overlayRecipe2.className = "overlayRecipe2Portrait";
+          overlayRecipe2.innerHTML = movie.recipe_2;
+          overlayRecipeContainer.appendChild(overlayRecipe2);
+          overlayNotesHeader.className = "overlayNotesHeaderPortrait";
+          overlayNotesHeader.innerHTML = movie.notes_header;
+          overlayRecipeContainer.appendChild(overlayNotesHeader);
+          overlayNotes.className = "overlayNotesPortrait";
+          overlayNotes.innerHTML = movie.notes;
+          overlayRecipeContainer.appendChild(overlayNotes);
+        overlayWindow.appendChild(overlayRecipeContainer);
+
       document.body.appendChild(overlayWindow);
     }
 

@@ -25,7 +25,7 @@
       #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
       #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
 
-      #main {width: 100vw;height: auto;background-color: #00000000;}
+      #main {width: auto;height: auto;background-color: #00000000;}
       #output {margin: 4.5rem 0.5rem 1rem 0.5rem;}
 
       .group_button {display: none;}
@@ -40,17 +40,29 @@
       .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 1000;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
       .movieOverlay:hover {opacity: 0;}
       
-      .overlayWindowLandscape {width: calc(100vw - 5rem);height: calc(100vh - 5rem);position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content;}
-      .overlayImageLandscape {grid-column: 1 / span 2;grid-row: 1;width: 40%;}
+      .overlayWindowLandscape {width: auto;height: calc(100vh - 5rem);aspect-ratio: 16/9;position: fixed;inset: 0;background-color: #000000cc;z-index: 2000;overflow: hidden;border-radius: 0.5rem;border: 1px solid #444444;padding: 0;margin: auto;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
+      .overlayImageLandscape {grid-column: 1 / span 2;grid-row: 1;filter: brightness(20%);}
       .overlayImageLandscape img {width: 100%;height: auto;border-radius: 0.5rem;}
-      .exitButtonLandscape {width: 3rem;height: 3rem;margin: 0 0.5rem 0 0;grid-column: 3;grid-row: 1;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+
+      .overlayIngredientsContainerLandscape {grid-column: 1;grid-row: 1;width: auto;height: 100%;z-index: 2000;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content min-content;grid-template-rows: min-content min-content min-content;place-items: center;}
+      .overlayIngredientsHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
+      .overlayIngredients1HeaderLandscape {grid-column: 1;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
+      .overlayIngredients1Landscape {grid-column: 1;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+      .overlayIngredients2HeaderLandscape {grid-column: 2;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
+      .overlayIngredients2Landscape {grid-column: 2;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+
+      .overlayRecipeContainerLandscape {grid-column: 2;grid-row: 1;width: 100%;height: 100%;z-index: 2000;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content auto min-content auto min-content auto;}
+      .overlayRecipeHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
+      .overlayRecipe1HeaderLandscape {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
+      .overlayRecipe1Landscape {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+      .overlayRecipe2HeaderLandscape {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
+      .overlayRecipe2Landscape {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+      .overlayNotesHeaderLandscape {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: center;font-size: 1.1rem;margin: 0.5rem 1rem;}
+      .overlayNotesLandscape {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: normal;margin: 0.5rem 1rem;}
+
+      .exitButtonLandscape {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
       .exitButtonLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
       .exitButtonLandscape:active {transform: scale(0.96);}
-      .overlayIngredientsHeaderLandscape {grid-column: 1 / span 2;grid-row: 2;width: 40%;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
-      .overlayIngredientsHeader1Landscape {grid-column: 1;grid-row: 3;width: 20%;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
-      .overlayIngredientsHeader2Landscape {grid-column: 2;grid-row: 3;width: 20%;color: #ff6000;text-align: center;font-size: 1.3rem;font-weight: 600;margin: 1rem;}
-      .overlayIngredients1Landscape {grid-column: 1;grid-row: 4;width: 20%;text-align: left;line-height: normal;margin: 1rem;}
-      .overlayIngredients2Landscape {grid-column: 2;grid-row: 4;width: 20%;text-align: left;line-height: normal;margin: 1rem;}
       
       .overlayWindowPortrait {width: 100vw;height: 100vh;position: fixed;inset: 0;background-color: #000000cc;z-index: 1000;overflow: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
       .overlayImagePortrait {grid-column: 1;grid-row: 1;width: 100vw;}
@@ -298,11 +310,22 @@
     const overlayWindow = document.createElement("div");
     const overlayImage = document.createElement("div");
     const exitButton = document.createElement("div");
+
+    const overlayIngredientsContainer = document.createElement("div");
     const overlayIngredientsHeader = document.createElement("div");
-    const overlayIngredientsHeader1 = document.createElement("div");
+    const overlayIngredients1Header = document.createElement("div");
     const overlayIngredients1 = document.createElement("div");
-    const overlayIngredientsHeader2 = document.createElement("div");
+    const overlayIngredients2Header = document.createElement("div");
     const overlayIngredients2 = document.createElement("div");
+
+    const overlayRecipeContainer = document.createElement("div");
+    const overlayRecipeHeader = document.createElement("div");
+    const overlayRecipe1Header = document.createElement("div");
+    const overlayRecipe1 = document.createElement("div");
+    const overlayRecipe2Header = document.createElement("div");
+    const overlayRecipe2 = document.createElement("div");
+    const overlayNotesHeader = document.createElement("div");
+    const overlayNotes = document.createElement("div");
     
     if (windowMode === "landscape") {
       overlayWindow.className = "overlayWindowLandscape";
@@ -310,27 +333,53 @@
         overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
         overlayWindow.appendChild(overlayImage);
 
-        exitButton.className = "exitButtonLandscape";
-        exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-        exitButton.onclick = () => removeOverlay();
-        overlayWindow.appendChild(exitButton);
+        overlayIngredientsContainer.className = "overlayIngredientsContainerLandscape";
+          overlayIngredientsHeader.className = "overlayIngredientsHeaderLandscape";
+          overlayIngredientsHeader.innerHTML = 'Zutaten';
+          overlayIngredientsContainer.appendChild(overlayIngredientsHeader);
+          overlayIngredients1Header.className = "overlayIngredients1HeaderLandscape";
+          overlayIngredients1Header.innerHTML = movie.ingredients_1_header;
+          overlayIngredientsContainer.appendChild(overlayIngredients1Header);
+          overlayIngredients1.className = "overlayIngredients1Landscape";
+          overlayIngredients1.innerHTML = movie.ingredients_1;
+          overlayIngredientsContainer.appendChild(overlayIngredients1);
+          overlayIngredients2Header.className = "overlayIngredients2HeaderLandscape";
+          overlayIngredients2Header.innerHTML = movie.ingredients_2_header;
+          overlayIngredientsContainer.appendChild(overlayIngredients2Header);
+          overlayIngredients2.className = "overlayIngredients2Landscape";
+          overlayIngredients2.innerHTML = movie.ingredients_2;
+          overlayIngredientsContainer.appendChild(overlayIngredients2);
+        overlayWindow.appendChild(overlayIngredientsContainer);
 
-        overlayIngredientsHeader.className = "overlayIngredientsHeaderLandscape";
-        overlayIngredientsHeader.innerHTML = 'Zutaten';
-        overlayWindow.appendChild(overlayIngredientsHeader);
-        overlayIngredientsHeader1.className = "overlayIngredientsHeader1Landscape";
-        overlayIngredientsHeader1.innerHTML = movie.ingredients_header_1;
-        overlayWindow.appendChild(overlayIngredientsHeader1);
-        overlayIngredientsHeader2.className = "overlayIngredientsHeader2Landscape";
-        overlayIngredientsHeader2.innerHTML = movie.ingredients_header_2;
-        overlayWindow.appendChild(overlayIngredientsHeader2);
+        overlayRecipeContainer.className = "overlayRecipeContainerLandscape";
+          overlayRecipeHeader.className = "overlayRecipeHeaderLandscape";
+          overlayRecipeHeader.innerHTML = 'Zubereitung';
+          overlayRecipeContainer.appendChild(overlayRecipeHeader);
+          overlayRecipe1Header.className = "overlayRecipe1HeaderLandscape";
+          overlayRecipe1Header.innerHTML = movie.recipe_1_header;
+          overlayRecipeContainer.appendChild(overlayRecipe1Header);
+          overlayRecipe1.className = "overlayRecipe1Landscape";
+          overlayRecipe1.innerHTML = movie.recipe_1;
+          overlayRecipeContainer.appendChild(overlayRecipe1);
+          overlayRecipe2Header.className = "overlayRecipe2HeaderLandscape";
+          overlayRecipe2Header.innerHTML = movie.recipe_2_header;
+          overlayRecipeContainer.appendChild(overlayRecipe2Header);
+          overlayRecipe2.className = "overlayRecipe2Landscape";
+          overlayRecipe2.innerHTML = movie.recipe_2;
+          overlayRecipeContainer.appendChild(overlayRecipe2);
+          overlayNotesHeader.className = "overlayNotesHeaderLandscape";
+          overlayNotesHeader.innerHTML = 'Notizen';
+          overlayRecipeContainer.appendChild(overlayNotesHeader);
+          overlayNotes.className = "overlayNotesLandscape";
+          overlayNotes.innerHTML = movie.notes;
+          overlayRecipeContainer.appendChild(overlayNotes);
 
-        overlayIngredients1.className = "overlayIngredients1Landscape";
-        overlayIngredients1.innerHTML = movie.ingredients_1;
-        overlayWindow.appendChild(overlayIngredients1);
-        overlayIngredients2.className = "overlayIngredients2Landscape";
-        overlayIngredients2.innerHTML = movie.ingredients_2;
-        overlayWindow.appendChild(overlayIngredients2);
+          exitButton.className = "exitButtonLandscape";
+          exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+          exitButton.onclick = () => removeOverlay();
+          overlayRecipeContainer.appendChild(exitButton);
+
+        overlayWindow.appendChild(overlayRecipeContainer);
 
       document.body.appendChild(overlayWindow);
     }

@@ -63,7 +63,7 @@ def read_movie(folder: Path):
 movies = []
 
 folders = sorted(
-    [folder for folder in REZEPTE.iterdir() if folder.is_dir()],
+    [folder for folder in REZEPT.iterdir() if folder.is_dir()],
     key=lambda folder: int(folder.name)
 )
 

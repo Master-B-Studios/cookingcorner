@@ -12,7 +12,7 @@ def xml_text(root, tag):
         return ""
     return element.text.strip()
 
-def read_recipe(folder: Path):
+def read_movie(folder: Path):
     nfo_files = list(folder.glob("*.nfo"))
     if len(nfo_files) == 0:
         print(f"❌ {folder.name}: keine NFO gefunden")
@@ -63,7 +63,7 @@ def read_recipe(folder: Path):
 movies = []
 
 folders = sorted(
-    [folder for folder in MOVIES.iterdir() if folder.is_dir()],
+    [folder for folder in REZEPTE.iterdir() if folder.is_dir()],
     key=lambda folder: int(folder.name)
 )
 

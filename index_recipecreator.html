@@ -98,8 +98,9 @@
     let ingredients_1_text = '';
     let ingredients_1 = document.getElementsByClassName('ingredients_1');
     for (let i = 0; i < ingredients_1.length; i++) {
-      let adder = '&#9;';
-      ingredients_1_text += ingredients_1[i].innerHTML + adder;
+      ingredients_1_text += ingredients_1[i].innerHTML;
+      if ((i + 1) % 3 === 0) {ingredients_1_text += '<br>';}
+      else {ingredients_1_text += '&#9;';}
     }
     console.log(ingredients_1_text);
     //ingredients_1_text = ingredients_1_text.replace(/-tabsign-/gi, '&#9;');

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cooking Corner</title>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
+    <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
+    <style>
+      body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;} #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {border-color: #dbdbdb;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(100%);}
+      #header {width: 100%;height: 4rem;position: fixed;top: 0;z-index: 900;display: flex;margin: 0;padding: 0;font-size: 0.7rem;} #header div {width: 100%;height: 4rem;display: grid;grid-template-columns: min-content auto;grid-template-rows: min-content;place-items: center;}
+
+      #main {width: calc(100% - 3rem);height: auto;background-color: #000000;border-radius: 0.5rem;padding: 1rem;margin: 5rem 0.5rem;}
+      #stuffContainer {width: 100%;}
+      .descriptionTD {width: 20%;text-align: right;margin: 0.5rem;padding: 0.5rem;}
+      .recipeTD {background-color: #444444;border-radius: 0.5rem;margin: 0.5rem;padding: 0.5rem;}
+
+    </style>
+  </head>
+  <body onload="init_menubar();init_header();check_window_mode();">
+    <div id="menubar"></div><div id="header"></div>
+    <div id="main">
+      <table id="stuffContainer">
+        <tr><td class="descriptionTD">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="3">0001</td></tr>
+        <tr><td class="descriptionTD">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="3">American Pancakes</td></tr>
+        <tr><td class="descriptionTD">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="3">Süßspeisen</td></tr>
+        <tr><td></td></tr>
+        <tr><td class="descriptionTD">Zutaten-Überschrift 1</td><td id="ingredients_1_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr>
+          <td class="descriptionTD">Zutaten-Liste 1</td>
+          <td id="ingredients_1_1a" class="recipeTD ingredients_1" contenteditable="true">400</td>
+          <td id="ingredients_1_1b" class="recipeTD ingredients_1" contenteditable="true">g</td>
+          <td id="ingredients_1_1c" class="recipeTD ingredients_1" contenteditable="true">Mehl</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="ingredients_1_2a" class="recipeTD ingredients_1" contenteditable="true">500</td>
+          <td id="ingredients_1_2b" class="recipeTD ingredients_1" contenteditable="true">ml</td>
+          <td id="ingredients_1_2c" class="recipeTD ingredients_1" contenteditable="true">Milch</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="ingredients_1_3a" class="recipeTD ingredients_1" contenteditable="true">100</td>
+          <td id="ingredients_1_3b" class="recipeTD ingredients_1" contenteditable="true">g</td>
+          <td id="ingredients_1_3c" class="recipeTD ingredients_1" contenteditable="true">Zucker</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="ingredients_1_4a" class="recipeTD ingredients_1" contenteditable="true">4</td>
+          <td id="ingredients_1_4b" class="recipeTD ingredients_1" contenteditable="true"></td>
+          <td id="ingredients_1_4c" class="recipeTD ingredients_1" contenteditable="true">Eier</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="ingredients_1_5a" class="recipeTD ingredients_1" contenteditable="true">1</td>
+          <td id="ingredients_1_5b" class="recipeTD ingredients_1" contenteditable="true">Pkg</td>
+          <td id="ingredients_1_5c" class="recipeTD ingredients_1" contenteditable="true">Backpulver</td>
+        </tr>
+        <tr><td class="descriptionTD">Zutaten-Überschrift 2</td><td id="ingredients_2_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr>
+          <td class="descriptionTD">Zutaten-Liste 2</td>
+          <td id="ingredients_2_1a" class="recipeTD ingredients_2" contenteditable="true">400</td>
+          <td id="ingredients_2_1b" class="recipeTD ingredients_2" contenteditable="true">g</td>
+          <td id="ingredients_2_1c" class="recipeTD ingredients_2" contenteditable="true">Mehl</td>
+        </tr>
+        <tr><td></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Überschrift 1</td><td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Überschrift 2</td><td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Liste 2</td><td id="recipe_2" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td></td></tr>
+        <tr><td class="descriptionTD">Notizen</td><td id="notes" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+      </table>
+      <button onclick="createRecipe();">Rezept Speichern</button>
+      <button onclick="downloadRecipe();">Herunterladen</button>
+    </div>
+    <div id="preview"></div>
+  </body>
+</html>
+
+<script>
+  function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);}
+  function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';console.log('menubar deactivated');}}
+  function init_header() {const header = document.getElementById('header');const header_div = document.createElement('div');header_div.id = 'header_div';header.appendChild(header_div);}
+  let windowMode = "";function check_window_mode() {if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";} else {windowMode = "portrait";}}
+
+  let saveContent = '';
+
+  function createRecipe() {
+    const preview = document.getElementById('preview');
+    let id = document.getElementById('id').innerHTML;
+    id = parseFloat(id);
+    if (id <= 9) {id = '000'+id;} else if (id >= 10 && id <= 99) {id = '00'+id;} else if (id >= 100 && id <= 999) {id = '0'+id;}
+    const title = document.getElementById('title').innerHTML;
+    const category = document.getElementById('category').innerHTML;
+
+    const ingredients_1_header = document.getElementById('ingredients_1_header').innerHTML;
+
+    let ingredients_1_text = '';
+    let ingredients_1 = document.getElementsByClassName('ingredients_1');
+    for (let i = 0; i < ingredients_1.length; i++) {
+      let adder = '&#9;';
+      ingredients_1_text += ingredients_1[i].innerHTML + adder;
+    }
+    console.log(ingredients_1_text);
+    //ingredients_1_text = ingredients_1_text.replace(/-tabsign-/gi, '&#9;');
+
+    const ingredients_2_header = document.getElementById('ingredients_2_header').innerHTML;
+    //const ingredients_2 = document.getElementById('ingredients_2').innerHTML;
+    const recipe_1_header = document.getElementById('recipe_1_header').innerHTML;
+    const recipe_1 = document.getElementById('recipe_1').innerHTML;
+    const recipe_2_header = document.getElementById('recipe_2_header').innerHTML;
+    const recipe_2 = document.getElementById('recipe_2').innerHTML;
+    const notes = document.getElementById('notes').innerHTML;
+
+    saveContent = 
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n'+
+      '<recipe>\n'+
+      '   <id>'+id+'</id>\n'+
+      '   <title>'+title+'</title>\n'+
+      '   <category>'+category+'</category>\n'+
+      '   <ingredients_1_header>'+ingredients_1_header+'</ingredients_1_header>\n'+
+      '   <ingredients_1>'+ingredients_1_text+'</ingredients_1>\n'+
+      '   <ingredients_2_header>'+ingredients_2_header+'</ingredients_2_header>\n'+
+      //'   <ingredients_2>'+ingredients_2+'</ingredients_2>\n'+
+      '   <recipe_1_header>'+recipe_1_header+'</recipe_1_header>\n'+
+      '   <recipe_1>'+recipe_1+'</recipe_1>\n'+
+      '   <recipe_2_header>'+recipe_2_header+'</recipe_2_header>\n'+
+      '   <recipe_2>'+recipe_2+'</recipe_2>\n'+
+      '   <notes>'+notes+'</notes>\n'+
+      '</recipe>\n';
+      console.log(saveContent);
+  }
+
+  function downloadRecipe() {
+    createRecipe();
+
+    const blob = new Blob(
+        [saveContent],
+        { type: "application/xml;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "recipe.nfo";
+    link.style.display = "none";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+}
+
+</script>

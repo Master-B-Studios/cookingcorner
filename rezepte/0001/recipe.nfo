@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<tvshow>
+   <id>0001</id>
+   <title>American Pancakes</title>
+   <category>Süßspeisen</category>
+   <ingredients_1_header></ingredients_1_header>
+   <ingredients_1>400&#9;g&#9;Mehl<br>500&#9;ml&#9;Milch<br>100&#9;g&#9;Zucker<br>4&#9;&#9;Eier<br>1&#9;Pkg&#9;Backpulver</ingredients_1>
+   <ingredients_2_header></ingredients_2_header>
+   <ingredients_2></ingredients_2>
+   <recipe_1_header></recipe_1_header>
+   <recipe_1>-&#9;Eier trennen<br>-&#9;Eiweiß steif schlagen<br>-&#9;Eigelb mit Zucker schaumig rühren<br>-&#9;Mehl mit Backpulver mischen und sieben<br>-&#9;Milch nach und nach zum Eigelb gießen<br>-&#9;Trockene und nasse Zutaten mischen<br>-&#9;Geschlagenes Eiweiß vorsichtig unterheben<br>-&#9;Pfanne maximal erhitzen, dann auf mittlere Hitze runter regeln<br>-&#9;Mit einer Kelle bis zu 4 Pfannkuchen in der Pfanne braten</recipe_1>
+   <recipe_2_header></recipe_2_header>
+   <recipe_2></recipe_2>
+   <notes_header></notes_header>
+   <notes></notes>
+</tvshow>

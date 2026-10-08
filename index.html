@@ -68,28 +68,29 @@
       .exitButtonLandscape:active {transform: scale(0.96);}
 
       
-      .overlayWindowPortrait {width: 100vw;height: auto;position: fixed;inset: 0;background-color: #000000cc;z-index: 1100;overflow: auto;padding: 0;margin: auto;display: grid;grid-template-columns: auto;grid-template-rows: auto;background-color: #222222;}
-      .overlayImagePortrait {grid-column: 1;grid-row: 1;filter: brightness(20%);}
-      .overlayImagePortrait img {width: 100%;height: auto;}
+      .overlayWindowPortrait {width: 100vw;height: auto;position: fixed;inset: 0;background-color: #111111;z-index: 1100;overflow-y: scroll;overflow-x: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content;}
+      .overlayImagePortrait {grid-column: 1 / span 2;grid-row: 1;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
+      .overlayImagePortrait img {width: 100%;height: auto;grid-column: 1;grid-row: 1;}
+      .overlayImagePortrait div {width: 100%;height: 100%;grid-column: 1;grid-row: 1;background: linear-gradient(180deg, #11111100, #11111100, #11111100, #11111100, #111111ff);position: relative;top: 0;}
 
-      .exitButtonPortrait {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
+      .exitButtonPortrait {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;z-index: 1101;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
       .exitButtonPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
       .exitButtonPortrait:active {transform: scale(0.96);}
 
-      .overlayIngredientsContainerPortrait {grid-column: 1;grid-row: 2;width: auto;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;}
-      .overlayIngredientsHeaderPortrait {grid-column: 1;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayIngredients1HeaderPortrait {grid-column: 1;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayIngredients1Portrait {grid-column: 1;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
-      .overlayIngredients2HeaderPortrait {grid-column: 1;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayIngredients2Portrait {grid-column: 1;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayIngredientsContainerPortrait {grid-column: 1 / span 2;grid-row: 2;width: auto;height: auto;z-index: 1100;overflow-y: scroll;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content min-content min-content;}
+      .overlayIngredientsHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayIngredients1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
+      .overlayIngredients1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem;white-space: pre;}
+      .overlayIngredients2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
+      .overlayIngredients2Portrait {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem;white-space: pre;}
 
-      .overlayRecipeContainerPortrait {grid-column: 1;grid-row: 3;width: 100%;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
-      .overlayRecipeHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: left;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayRecipe1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayRecipe1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
-      .overlayRecipe2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipeContainerPortrait {grid-column: 1 / span 2;grid-row: 3;width: auto;height: auto;z-index: 1100;overflow-y: scroll;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
+      .overlayRecipeHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #ff6000;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayRecipe1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
+      .overlayRecipe1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;}
+      .overlayRecipe2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
       .overlayRecipe2Portrait {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
-      .overlayNotesHeaderPortrait {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayNotesHeaderPortrait {grid-column: 1 / span 2;grid-row: 6;color: #ff6000;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
       .overlayNotesPortrait {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
       
       #group_single_Zufall .cardContainer {grid-template-columns: minmax(15rem, min-content);justify-content: center;}
@@ -386,7 +387,7 @@
     else {
       overlayWindow.className = "overlayWindowPortrait";
         overlayImage.className = "overlayImagePortrait";
-        overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
+        overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">' + '<div></div>';
         overlayWindow.appendChild(overlayImage);
         exitButton.className = "exitButtonPortrait";
         exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
@@ -413,7 +414,7 @@
 
         overlayRecipeContainer.className = "overlayRecipeContainerPortrait";
           overlayRecipeHeader.className = "overlayRecipeHeaderPortrait";
-          overlayRecipeHeader.innerHTML = '&#9;Zubereitung';
+          overlayRecipeHeader.innerHTML = 'Zubereitung';
           overlayRecipeContainer.appendChild(overlayRecipeHeader);
           overlayRecipe1Header.className = "overlayRecipe1HeaderPortrait";
           overlayRecipe1Header.innerHTML = movie.recipe_1_header;

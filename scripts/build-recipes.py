@@ -3,8 +3,8 @@ import json
 import xml.etree.ElementTree as ET
 
 BASE = Path(__file__).resolve().parent.parent
-MOVIES = BASE / "movies"
-OUTPUT = BASE / "movies.json"
+REZEPT = BASE / "rezepte"
+OUTPUT = BASE / "rezepte.json"
 
 def xml_text(root, tag):
     element = root.find(tag)
@@ -12,7 +12,7 @@ def xml_text(root, tag):
         return ""
     return element.text.strip()
 
-def read_movie(folder: Path):
+def read_recipe(folder: Path):
     nfo_files = list(folder.glob("*.nfo"))
     if len(nfo_files) == 0:
         print(f"❌ {folder.name}: keine NFO gefunden")
@@ -21,7 +21,7 @@ def read_movie(folder: Path):
         print(f"❌ {folder.name}: mehrere NFO-Dateien gefunden")
         return None
     nfo = nfo_files[0]
-    poster_files = list(folder.glob("*-poster.jpg"))
+    poster_files = list(folder.glob("poster.jpg"))
 
     if len(poster_files) > 1:
         print(f"⚠ {folder.name}: mehrere Poster gefunden")
@@ -40,14 +40,21 @@ def read_movie(folder: Path):
     movie = {
         "id": xml_text(root, "id"),
         "title": xml_text(root, "title"),
-        "plot": xml_text(root, "plot"),
-        "runtime": xml_text(root, "runtime"),
-        "mpaa": xml_text(root, "mpaa"),
-        "year": xml_text(root, "year"),
+        "category": xml_text(root, "category"),
+        "ingredients_1_header": xml_text(root, "ingredients_1_header"),
+        "ingredients_1": xml_text(root, "ingredients_1"),
+        "ingredients_2_header": xml_text(root, "ingredients_2_header"),
+        "ingredients_2": xml_text(root, "ingredients_2"),
+        "recipe_1_header": xml_text(root, "recipe_1_header"),
+        "recipe_1": xml_text(root, "recipe_1"),
+        "recipe_2_header": xml_text(root, "recipe_2_header"),
+        "recipe_2": xml_text(root, "recipe_2"),
+        "notes_header": xml_text(root, "notes_header"),
+        "notes": xml_text(root, "notes"),
         "folder": folder.name,
         "filename": nfo.stem,
         "poster": (
-            f"movies/{folder.name}/{poster.name}"
+            f"rezepte/{folder.name}/{poster.name}"
             if poster else ""
         ),
     }

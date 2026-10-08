@@ -14,61 +14,45 @@
       .descriptionTD {width: 20%;text-align: right;margin: 0.5rem;padding: 0.5rem;}
       .recipeTD {background-color: #444444;border-radius: 0.5rem;margin: 0.5rem;padding: 0.5rem;}
 
+      #addIngredient1 {width: min-content;height: auto;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;}
+      #addIngredient1:hover {border: 1px solid #dddddd;}
+      #addIngredient2 {width: min-content;height: auto;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;}
+      #addIngredient2:hover {border: 1px solid #dddddd;}
+
     </style>
   </head>
   <body onload="init_menubar();init_header();check_window_mode();">
     <div id="menubar"></div><div id="header"></div>
     <div id="main">
       <table id="stuffContainer">
-        <tr><td class="descriptionTD">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="3">0001</td></tr>
-        <tr><td class="descriptionTD">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="3">American Pancakes</td></tr>
-        <tr><td class="descriptionTD">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="3">Süßspeisen</td></tr>
+        <tr><td class="descriptionTD">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="4">0001</td></tr>
+        <tr><td class="descriptionTD">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="4">American Pancakes</td></tr>
+        <tr><td class="descriptionTD">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="4">Süßspeisen</td></tr>
         <tr><td></td></tr>
-        <tr><td class="descriptionTD">Zutaten-Überschrift 1</td><td id="ingredients_1_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td class="descriptionTD">Zutaten-Überschrift 1</td><td id="ingredients_1_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
         <tr>
           <td class="descriptionTD">Zutaten-Liste 1</td>
-          <td id="ingredients_1_1a" class="recipeTD ingredients_1" contenteditable="true">400</td>
-          <td id="ingredients_1_1b" class="recipeTD ingredients_1" contenteditable="true">g</td>
-          <td id="ingredients_1_1c" class="recipeTD ingredients_1" contenteditable="true">Mehl</td>
+          <td class="recipeTD ingredients_1" contenteditable="true"></td>
+          <td class="recipeTD ingredients_1" contenteditable="true"></td>
+          <td class="recipeTD ingredients_1" contenteditable="true"></td>
+          <td id="addIngredient1" onclick="addIngredient1();">+</td>
         </tr>
-        <tr>
-          <td></td>
-          <td id="ingredients_1_2a" class="recipeTD ingredients_1" contenteditable="true">500</td>
-          <td id="ingredients_1_2b" class="recipeTD ingredients_1" contenteditable="true">ml</td>
-          <td id="ingredients_1_2c" class="recipeTD ingredients_1" contenteditable="true">Milch</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td id="ingredients_1_3a" class="recipeTD ingredients_1" contenteditable="true">100</td>
-          <td id="ingredients_1_3b" class="recipeTD ingredients_1" contenteditable="true">g</td>
-          <td id="ingredients_1_3c" class="recipeTD ingredients_1" contenteditable="true">Zucker</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td id="ingredients_1_4a" class="recipeTD ingredients_1" contenteditable="true">4</td>
-          <td id="ingredients_1_4b" class="recipeTD ingredients_1" contenteditable="true"></td>
-          <td id="ingredients_1_4c" class="recipeTD ingredients_1" contenteditable="true">Eier</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td id="ingredients_1_5a" class="recipeTD ingredients_1" contenteditable="true">1</td>
-          <td id="ingredients_1_5b" class="recipeTD ingredients_1" contenteditable="true">Pkg</td>
-          <td id="ingredients_1_5c" class="recipeTD ingredients_1" contenteditable="true">Backpulver</td>
-        </tr>
-        <tr><td class="descriptionTD">Zutaten-Überschrift 2</td><td id="ingredients_2_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr id="ingredients_1_list"><td></td></tr>
+        <tr><td class="descriptionTD">Zutaten-Überschrift 2</td><td id="ingredients_2_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
         <tr>
           <td class="descriptionTD">Zutaten-Liste 2</td>
-          <td id="ingredients_2_1a" class="recipeTD ingredients_2" contenteditable="true">400</td>
-          <td id="ingredients_2_1b" class="recipeTD ingredients_2" contenteditable="true">g</td>
-          <td id="ingredients_2_1c" class="recipeTD ingredients_2" contenteditable="true">Mehl</td>
+          <td class="recipeTD ingredients_2" contenteditable="true"></td>
+          <td class="recipeTD ingredients_2" contenteditable="true"></td>
+          <td class="recipeTD ingredients_2" contenteditable="true"></td>
+          <td id="addIngredient2" onclick="addIngredient2();">+</td>
         </tr>
+        <tr id="ingredients_2_list"><td></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Überschrift 1</td><td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Überschrift 2</td><td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr><td class="descriptionTD">Zubereitung-Liste 2</td><td id="recipe_2" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
         <tr><td></td></tr>
-        <tr><td class="descriptionTD">Zubereitung-Überschrift 1</td><td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
-        <tr><td class="descriptionTD">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
-        <tr><td class="descriptionTD">Zubereitung-Überschrift 2</td><td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
-        <tr><td class="descriptionTD">Zubereitung-Liste 2</td><td id="recipe_2" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
-        <tr><td></td></tr>
-        <tr><td class="descriptionTD">Notizen</td><td id="notes" class="recipeTD" contenteditable="true" colspan="3"></td></tr>
+        <tr><td class="descriptionTD">Notizen</td><td id="notes" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
       </table>
       <button onclick="createRecipe();">Rezept Speichern</button>
       <button onclick="downloadRecipe();">Herunterladen</button>
@@ -85,6 +69,24 @@
 
   let saveContent = '';
 
+  let ingredients_1_counter = 1;
+  function addIngredient1() {
+    const list = document.getElementById('ingredients_1_list');
+    const adder = document.createElement('tr');
+    ingredients_1_counter ++;
+    adder.innerHTML = '<td class="descriptionTD"></td><td class="recipeTD ingredients_1" contenteditable="true"></td><td class="recipeTD ingredients_1" contenteditable="true"></td><td class="recipeTD ingredients_1" contenteditable="true"></td>'
+    list.parentNode.insertBefore(adder,list);
+  }
+
+  let ingredients_2_counter = 1;
+  function addIngredient2() {
+    const list = document.getElementById('ingredients_2_list');
+    const adder = document.createElement('tr');
+    ingredients_2_counter ++;
+    adder.innerHTML = '<td class="descriptionTD"></td><td class="recipeTD ingredients_2" contenteditable="true"></td><td class="recipeTD ingredients_2" contenteditable="true"></td><td class="recipeTD ingredients_2" contenteditable="true"></td>'
+    list.parentNode.insertBefore(adder,list);
+  }
+
   function createRecipe() {
     const preview = document.getElementById('preview');
     let id = document.getElementById('id').innerHTML;
@@ -93,20 +95,23 @@
     const title = document.getElementById('title').innerHTML;
     const category = document.getElementById('category').innerHTML;
 
-    const ingredients_1_header = document.getElementById('ingredients_1_header').innerHTML;
-
     let ingredients_1_text = '';
+    const ingredients_1_header = document.getElementById('ingredients_1_header').innerHTML;
     let ingredients_1 = document.getElementsByClassName('ingredients_1');
     for (let i = 0; i < ingredients_1.length; i++) {
       ingredients_1_text += ingredients_1[i].innerHTML;
       if ((i + 1) % 3 === 0) {ingredients_1_text += '<br>';}
       else {ingredients_1_text += '&#9;';}
     }
-    console.log(ingredients_1_text);
-    //ingredients_1_text = ingredients_1_text.replace(/-tabsign-/gi, '&#9;');
-
+    let ingredients_2_text = '';
     const ingredients_2_header = document.getElementById('ingredients_2_header').innerHTML;
-    //const ingredients_2 = document.getElementById('ingredients_2').innerHTML;
+    let ingredients_2 = document.getElementsByClassName('ingredients_2');
+    for (let i = 0; i < ingredients_2.length; i++) {
+      ingredients_2_text += ingredients_2[i].innerHTML;
+      if ((i + 1) % 3 === 0) {ingredients_2_text += '<br>';}
+      else {ingredients_2_text += '&#9;';}
+    }
+
     const recipe_1_header = document.getElementById('recipe_1_header').innerHTML;
     const recipe_1 = document.getElementById('recipe_1').innerHTML;
     const recipe_2_header = document.getElementById('recipe_2_header').innerHTML;
@@ -122,7 +127,7 @@
       '   <ingredients_1_header>'+ingredients_1_header+'</ingredients_1_header>\n'+
       '   <ingredients_1>'+ingredients_1_text+'</ingredients_1>\n'+
       '   <ingredients_2_header>'+ingredients_2_header+'</ingredients_2_header>\n'+
-      //'   <ingredients_2>'+ingredients_2+'</ingredients_2>\n'+
+      '   <ingredients_2>'+ingredients_2_text+'</ingredients_2>\n'+
       '   <recipe_1_header>'+recipe_1_header+'</recipe_1_header>\n'+
       '   <recipe_1>'+recipe_1+'</recipe_1>\n'+
       '   <recipe_2_header>'+recipe_2_header+'</recipe_2_header>\n'+
@@ -134,24 +139,17 @@
 
   function downloadRecipe() {
     createRecipe();
-
-    const blob = new Blob(
-        [saveContent],
-        { type: "application/xml;charset=utf-8" }
-    );
-
+    const title = document.getElementById('title').innerHTML;
+    const blob = new Blob([saveContent], { type: "application/xml;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
     link.href = url;
-    link.download = "recipe.nfo";
-    link.style.display = "none";
-
+    link.download = title+'recipe.txt';
+    link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
     URL.revokeObjectURL(url);
-}
+  }
 
 </script>

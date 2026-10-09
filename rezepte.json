@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "id": "0001",
+        "title": "American Pancakes",
+        "category": "Süßspeisen",
+        "ingredients_1_header": "",
+        "ingredients_1": "400\tg\tMehl\n500\tml\tMilch\n100\tg\tZucker\n4\t\tEier\n1\tPkg\tBackpulver",
+        "ingredients_2_header": "",
+        "ingredients_2": "",
+        "recipe_1_header": "",
+        "recipe_1": "-\tEier trennen\n-\tEiweiß steif schlagen\n-\tEigelb mit Zucker schaumig rühren\n-\tMehl mit Backpulver mischen und sieben\n-\tMilch nach und nach zum Eigelb gießen\n-\tTrockene und nasse Zutaten mischen\n-\tGeschlagenes Eiweiß vorsichtig unterheben\n-\tPfanne maximal erhitzen, dann auf mittlere Hitze runter regeln\n-\tMit einer Kelle bis zu 4 Pfannkuchen in der Pfanne braten",
+        "recipe_2_header": "",
+        "recipe_2": "",
+        "notes_header": "",
+        "notes": "",
+        "folder": "0001",
+        "filename": "recipe",
+        "poster": ""
+    },
+    {
+        "id": "0002",
+        "title": "Pizza-Teig",
+        "category": "Food",
+        "ingredients_1_header": "",
+        "ingredients_1": "1\tkg\tMehl Typ 00\n620\tml\tWasser lauwarm\n2\tg\tTrockenhefe\n20\tg\tSalz",
+        "ingredients_2_header": "",
+        "ingredients_2": "",
+        "recipe_1_header": "",
+        "recipe_1": "2g Hefe in 100ml Wasser auflösen.30g Salz in 520ml Wasser auflösen.Pizzamehl mit dem Hefewasser vermischen.Salzwasser dazurühren und für etwa 15 min. kneten.Teig für 1-2 Stunden an einem warmen Ort gehen lassen. Danach in 6 Teile teilen und im Kühlschrank für 2-3 Tage gehen lassen.Teig einfrieren oder nochmal 1 Stunde an einem warmen Ort gehen lassen.",
+        "recipe_2_header": "",
+        "recipe_2": "",
+        "notes_header": "",
+        "notes": "",
+        "folder": "0002",
+        "filename": "recipe",
+        "poster": ""
+    }
+]

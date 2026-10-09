@@ -21,6 +21,9 @@
 
       .checkNecessary {width: 2rem;height: 2rem;}
 
+      .ingredients_a {width: 5rem;text-align: right;}
+      .ingredients_b {width: 3rem;text-align: center;}
+
     </style>
   </head>
   <body onload="init_menubar();init_header();check_window_mode();">
@@ -29,9 +32,10 @@
       <table id="stuffContainer">
         <tr><td class="descriptionTD" colspan="2">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
         <tr><td class="descriptionTD" colspan="2">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <!-- Kategorie -->
         <tr>
-          <td class="descriptionTD" colspan="2">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="3">Food</td>
-          <td>
+          <td class="descriptionTD" colspan="2">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="2">Food</td>
+          <td colspan="2">
             <select name="categorys" id="categorySelector" onchange="selectCategory(this);">
               <option value="Finger Food">Finger Food</option>
               <option value="Food" selected>Food</option>
@@ -45,9 +49,10 @@
           </td>
         </tr>
         <tr><td></td></tr>
+        <!-- Zutaten 1 -->
         <tr>
           <td class="descriptionTD">Zutaten-Überschrift 1</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="checkIngredients1Header();"></td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
           <td id="ingredients_1_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="4"></td>
         </tr>
         <tr>
@@ -58,21 +63,44 @@
           <td id="addIngredient1" onclick="addIngredient1();">+</td>
         </tr>
         <tr id="ingredients_1_list" colspan="2"><td></td></tr>
-        <tr><td class="descriptionTD" colspan="2">Zutaten-Überschrift 2</td><td id="ingredients_2_header" class="recipeTD" contenteditable="true" colspan="4">Belag</td></tr>
+        <!-- Zutaten 2 -->
         <tr>
-          <td class="descriptionTD" colspan="2">Zutaten-Liste 2</td>
-          <td class="recipeTD ingredients_2" contenteditable="true"></td>
-          <td class="recipeTD ingredients_2" contenteditable="true"></td>
-          <td class="recipeTD ingredients_2" contenteditable="true"></td>
-          <td id="addIngredient2" onclick="addIngredient2();">+</td>
+          <td class="descriptionTD">Zutaten-Überschrift 2</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td id="ingredients_2_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="4"></td>
+        </tr>
+        <tr>
+          <td class="descriptionTD">Zutaten-Liste 2</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleIngredients(this);"></td>
+          <td class="recipeTD ingredients_2 ingredients_a" contenteditable="true" style="opacity: 0;"></td>
+          <td class="recipeTD ingredients_2 ingredients_b" contenteditable="true" style="opacity: 0;"></td>
+          <td class="recipeTD ingredients_2 ingredients_c" contenteditable="true" style="opacity: 0;"></td>
+          <td id="addIngredient2" onclick="addIngredient2();" style="opacity: 0;">+</td>
         </tr>
         <tr id="ingredients_2_list"><td></td></tr>
-        <tr><td class="descriptionTD" colspan="2">Zubereitung-Überschrift 1</td><td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+
+        <tr>
+          <td class="descriptionTD">Zubereitung-Überschrift 1</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+        </tr>
         <tr><td class="descriptionTD" colspan="2">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
-        <tr><td class="descriptionTD" colspan="2">Zubereitung-Überschrift 2</td><td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
-        <tr><td class="descriptionTD" colspan="2">Zubereitung-Liste 2</td><td id="recipe_2" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr>
+          <td class="descriptionTD">Zubereitung-Überschrift 2</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+        </tr>
+        <tr>
+          <td class="descriptionTD">Zubereitung-Liste 2</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td id="recipe_2" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+        </tr>
         <tr><td></td></tr>
-        <tr><td id="notes_header" class="descriptionTD" colspan="2">Notizen</td><td id="notes" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr>
+          <td id="notes_header" class="descriptionTD">Notizen</td>
+          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td id="notes" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+        </tr>
       </table>
       <button onclick="createRecipe();">Rezept Speichern</button>
       <button onclick="downloadRecipe();">Herunterladen</button>
@@ -89,10 +117,28 @@
 
   function selectCategory(obj) {let categoryView = document.getElementById('category');categoryView.innerHTML = obj.value;}
 
-  function checkIngredients1Header() {
-    const ingredients_1_header = document.getElementById('ingredients_1_header');
-    const opacity = getComputedStyle(ingredients_1_header).opacity;
-    ingredients_1_header.style.opacity = opacity === '0' ? '1' : '0';
+  function makeVisibleHeader(obj) {
+    let invisible = obj.parentNode.parentNode;
+    let number = invisible.children.length;
+    invisible = invisible.children[number - 1];
+    console.log(invisible)
+    const opacity = getComputedStyle(invisible).opacity;
+    invisible.style.opacity = opacity === '0' ? '1' : '0';
+  }
+  function makeVisibleIngredients(obj) {
+    let invisible = obj.parentNode.parentNode;
+    const children = invisible.children;
+    let number = invisible.children.length;
+    for (let i = Math.max(0, number - 4); i < number; i++) {
+        const child = children[i];
+        const opacity = getComputedStyle(child).opacity;
+        child.style.opacity = opacity === '0' ? '1' : '0';
+    }
+  }
+  function checkIngredients2Header() {
+    const ingredients_2_header = document.getElementById('ingredients_2_header');
+    const opacity = getComputedStyle(ingredients_2_header).opacity;
+    ingredients_2_header.style.opacity = opacity === '0' ? '1' : '0';
   }
 
   let saveContent = '';

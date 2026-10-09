@@ -15,7 +15,7 @@
         "notes": "",
         "folder": "0001",
         "filename": "recipe",
-        "poster": ""
+        "poster": "rezepte/0001/poster.jpg"
     },
     {
         "id": "0002",
@@ -33,6 +33,6 @@
         "notes": "",
         "folder": "0002",
         "filename": "recipe",
-        "poster": ""
+        "poster": "rezepte/0002/poster.jpg"
     }
 ]

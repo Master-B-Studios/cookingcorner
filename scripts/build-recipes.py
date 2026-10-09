@@ -37,17 +37,20 @@ def read_movie(folder: Path):
     if len(poster_files) > 1:
         print(f"⚠ {folder.name}: mehrere Poster gefunden")
     poster = poster_files[0] if poster_files else None
+    
     try:
         root = ET.parse(nfo).getroot()
     except ET.ParseError:
         text = nfo.read_text(encoding="utf-8", errors="ignore")
-        #text = text.replace("&", "&amp;")
-        try:
-            root = ET.fromstring(text)
-            print(f"⚠ {folder.name}: '&' automatisch repariert")
-        except Exception as e:
-            print(f"❌ {folder.name}: XML-Fehler ({e})")
-            return None
+    # HTML-Zeilenumbrüche in gültiges XML umwandeln
+    text = text.replace("<br>", "<br />")
+    try:
+        root = ET.fromstring(text)
+        print(f"⚠ {folder.name}: XML automatisch korrigiert")
+    except ET.ParseError as e:
+        print(f"❌ {folder.name}: XML-Fehler ({e})")
+        return None
+        
     movie = {
         "id": xml_text(root, "id"),
         "title": xml_text(root, "title"),

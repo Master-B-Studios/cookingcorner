@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<recipe>
+   <id>0004</id>
+   <title>Blechpfannkuchen</title>
+   <category>Süßspeisen</category>
+   <ingredients_1_header><br></ingredients_1_header>
+   <ingredients_1>600&#9;ml&#9;Milch<br>250&#9;g&#9;Mehl<br>2&#9;&#9;Eier<br>&#9;&#9;Salz<br>1&#9;EL&#9;weiche Butter<br>1&#9;EL&#9;Zucker<br></ingredients_1>
+   <ingredients_2_header><br></ingredients_2_header>
+   <ingredients_2></ingredients_2>
+   <recipe_1_header></recipe_1_header>
+   <recipe_1>-&#9;Ofen vorheizen (Ober- und Unterhitze 200-220°C).<br>-&#9;Aus allen Zutaten einen glatten Teig rühren.<br>-&#9;Auf ein gut gefettetes Blech mit hohem Rand gießen.<br>-&#9;25 - 30 Minuten backen.<br></recipe_1>
+   <recipe_2_header></recipe_2_header>
+   <recipe_2></recipe_2>
+   <notes_header></notes_header>
+   <notes></notes>
+</recipe>

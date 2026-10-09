@@ -6,11 +6,22 @@ BASE = Path(__file__).resolve().parent.parent
 REZEPT = BASE / "rezepte"
 OUTPUT = BASE / "rezepte.json"
 
+
 def xml_text(root, tag):
     element = root.find(tag)
-    if element is None or element.text is None:
+    if element is None:
         return ""
-    return element.text.strip()
+    parts = []
+    if element.text:
+        parts.append(element.text)
+    for child in element:
+        if child.tag.lower() == "br":
+            parts.append("\n")
+        else:
+            parts.append("".join(child.itertext()))
+        if child.tail:
+            parts.append(child.tail)
+    return "".join(parts).strip()
 
 def read_movie(folder: Path):
     nfo_files = list(folder.glob("*.nfo"))

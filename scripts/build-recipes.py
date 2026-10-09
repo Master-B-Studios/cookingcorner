@@ -23,6 +23,10 @@ def xml_text(root, tag):
             parts.append(child.tail)
     return "".join(parts).strip()
 
+
+def format_html(text):
+    return text.replace("\t", "&#9;").replace("\n", "<br>")
+
 def read_movie(folder: Path):
     nfo_files = list(folder.glob("*.nfo"))
     if len(nfo_files) == 0:
@@ -50,21 +54,21 @@ def read_movie(folder: Path):
     except ET.ParseError as e:
         print(f"❌ {folder.name}: XML-Fehler ({e})")
         return None
-        
+
     movie = {
         "id": xml_text(root, "id"),
         "title": xml_text(root, "title"),
         "category": xml_text(root, "category"),
         "ingredients_1_header": xml_text(root, "ingredients_1_header"),
-        "ingredients_1": xml_text(root, "ingredients_1"),
+        "ingredients_1": format_html(xml_text(root, "ingredients_1")),
         "ingredients_2_header": xml_text(root, "ingredients_2_header"),
-        "ingredients_2": xml_text(root, "ingredients_2"),
+        "ingredients_2": format_html(xml_text(root, "ingredients_2")),
         "recipe_1_header": xml_text(root, "recipe_1_header"),
-        "recipe_1": xml_text(root, "recipe_1"),
+        "recipe_1": format_html(xml_text(root, "recipe_1")),
         "recipe_2_header": xml_text(root, "recipe_2_header"),
-        "recipe_2": xml_text(root, "recipe_2"),
+        "recipe_2": format_html(xml_text(root, "recipe_2")),
         "notes_header": xml_text(root, "notes_header"),
-        "notes": xml_text(root, "notes"),
+        "notes": format_html(xml_text(root, "notes")),
         "folder": folder.name,
         "filename": nfo.stem,
         "poster": (

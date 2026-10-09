@@ -28,6 +28,7 @@ def format_html(text):
     return text.replace("\t", "&#9;").replace("\n", "<br>")
 
 def read_movie(folder: Path):
+    
     nfo_files = list(folder.glob("*.nfo"))
     if len(nfo_files) == 0:
         print(f"❌ {folder.name}: keine NFO gefunden")
@@ -36,8 +37,8 @@ def read_movie(folder: Path):
         print(f"❌ {folder.name}: mehrere NFO-Dateien gefunden")
         return None
     nfo = nfo_files[0]
-    poster_files = list(folder.glob("poster.jpg"))
 
+    poster_files = list(folder.glob("poster.jpg"))
     if len(poster_files) > 1:
         print(f"⚠ {folder.name}: mehrere Poster gefunden")
     poster = poster_files[0] if poster_files else None

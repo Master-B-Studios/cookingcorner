@@ -81,8 +81,7 @@
         <tr><td></td></tr>
         <!-- Zutaten 1 -->
         <tr>
-          <td class="descriptionTD">Zutaten-Überschrift 1</td>
-           
+          <td class="descriptionTD">Zutaten-Überschrift 1</td> 
           <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="ingredients_1_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="6"></td>
         </tr>
@@ -131,12 +130,12 @@
         <!-- Zutaten 2 -->
         <tr>
           <td class="descriptionTD">Zutaten-Überschrift 2</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="ingredients_2_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="6"></td>
         </tr>
         <tr>
           <td class="descriptionTD">Zutaten-Liste 2</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleIngredients(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleIngredients(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td class="recipeTD ingredients_2 ingredients_a" contenteditable="true" style="opacity: 0;"></td>
           <td class="recipeTD ingredients_2 ingredients_b" contenteditable="true" style="opacity: 0;">g</td>
           <td class="recipeTDSelect ingredients_c" style="opacity: 0;">
@@ -180,24 +179,24 @@
 
         <tr>
           <td class="descriptionTD">Zubereitung-Überschrift 1</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
         <tr><td class="descriptionTD" colspan="2">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="6"></td></tr>
         <tr>
           <td class="descriptionTD">Zubereitung-Überschrift 2</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
         <tr>
           <td class="descriptionTD">Zubereitung-Liste 2</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="recipe_2" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
         <tr><td></td></tr>
         <tr>
           <td id="notes_header" class="descriptionTD">Notizen</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
           <td id="notes" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
       </table>
@@ -227,7 +226,7 @@
     if (boxShadow.includes('0.7')) {header.style.boxShadow = 'rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset';}
     else {header.style.boxShadow = 'rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset';}
   }
-  
+
   function makeVisibleIngredients(obj) {
     let invisible = obj.parentNode.parentNode.parentNode;
     const children = invisible.children;
@@ -237,6 +236,10 @@
         const opacity = getComputedStyle(child).opacity;
         child.style.opacity = opacity === '0' ? '1' : '0';
     }
+    const header = obj.parentNode.parentNode;
+    const boxShadow = getComputedStyle(header).boxShadow;
+    if (boxShadow.includes('0.7')) {header.style.boxShadow = 'rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset';}
+    else {header.style.boxShadow = 'rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset';}
   }
   function checkIngredients2Header() {
     const ingredients_2_header = document.getElementById('ingredients_2_header');

@@ -6,23 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
     <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
     <style>
-      body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;} #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {border-color: #dbdbdb;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(100%);}
+      body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;font-family: Arial, Helvetica, sans-serif;} #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {border-color: #dbdbdb;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000cc;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(100%);}
       #header {width: 100%;height: 4rem;position: fixed;top: 0;z-index: 900;display: flex;margin: 0;padding: 0;font-size: 0.7rem;} #header div {width: 100%;height: 4rem;display: grid;grid-template-columns: min-content auto;grid-template-rows: min-content;place-items: center;}
 
-      #main {width: calc(100% - 3rem);height: auto;background-color: #000000;border-radius: 0.5rem;padding: 1rem;margin: 5rem 0.5rem;}
+      #main {width: calc(100% - 3rem);height: auto;background-color: #00000000;border-radius: 0.5rem;padding: 1rem;margin: 4.25rem 0.5rem;}
       #stuffContainer {width: 100%;}
       .descriptionTD {width: 20%;text-align: right;margin: 0.5rem;padding: 0.5rem;}
-      .recipeTD {background-color: #444444;border-radius: 0.5rem;margin: 0.5rem;padding: 0.5rem;}
+      .recipeTD {background-color: #00000066;padding: 0.5rem;margin: 0.5rem;cursor: text;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000000;transition: all 0.6s;}
+      .recipeTD:focus {border: 1px solid #dddddd;outline: none;}
+      .recipeTDInput {background-color: #00000066;padding: 0.5rem;margin: 0.5rem 0 0.5rem 0.5rem;cursor: text;border-radius: 0.5rem 0 0 0.5rem;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000000;transition: all 0.6s;}
+      .recipeTDInput:focus {border: 1px solid #dddddd;outline: none;}
+      .recipeTDSelect {background-color: #00000066;padding: 0.5rem;margin: 0.5rem 0.5rem 0.5rem 0;cursor: pointer;border-radius: 0 0.5rem 0.5rem 0;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border: 1px solid #00000000;transition: all 0.6s;}
+      .recipeTDSelect:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+      .recipeTDSelect select {width: 5rem;background-color: #00000000;padding: 0;margin: 0;cursor: pointer;outline: none;border: none;color: #dbdbdb;font-size: 1rem;appearance: auto;}
 
-      #addIngredient1 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;}
-      #addIngredient1:hover {border: 1px solid #dddddd;}
-      #addIngredient2 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;}
-      #addIngredient2:hover {border: 1px solid #dddddd;}
-
-      .checkNecessary {width: 2rem;height: 2rem;}
+      .addIngredient1 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;color: #00ff00;}
+      .addIngredient1:hover {border: 1px solid #dddddd;}
+      .removeIngredient1 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;color: #ff0000;}
+      .removeIngredient1:hover {border: 1px solid #dddddd;}
+      .addIngredient2 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;color: #00ff00;}
+      .addIngredient2:hover {border: 1px solid #dddddd;}
+      .removeIngredient2 {width: 2rem;height: 2rem;aspect-ratio: 1/1;border-radius: 0.5rem;border: 1px solid #444444;background-color: #111111;cursor: pointer;text-align: center;color: #ff0000;}
+      .removeIngredient2:hover {border: 1px solid #dddddd;}
 
       .ingredients_a {width: 5rem;text-align: right;}
       .ingredients_b {width: 3rem;text-align: center;}
+      .ingredients_c {width: 3rem;text-align: left;}
+      .ingredients_d {width: auto;text-align: left;}
+      .ingredients_e {width: 3rem;text-align: center;}
+
+      .mb_button {width: 100%;height: auto;display: flex;align-items: center;justify-content: center;cursor: pointer;margin: 0rem;background-color: #222222;border-radius: 0.5rem;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;font-size: 1.2rem;box-sizing: border-box;}
+      .mb_button:hover {font-size: 1.17rem;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;transition: all 0.2s;}
+      
+
+      .checkNecessary {width: 2.2rem;height: 2rem;background-color: #222222;border-radius: 0.5rem;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;cursor: pointer;transition: all 0.6s;}
+      .checkNecessary:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+
+      .checkbox-wrapper-31:hover .check {stroke-dashoffset: 0;}
+      .checkbox-wrapper-31 {position: relative;display: inline-block;width: 2rem;height: 2rem;left: 0.1rem;top: 0.1rem;}
+      .checkbox-wrapper-31 .background {fill: #dbdbdb00;transition: ease all 0.6s;-webkit-transition: ease all 0.6s;}
+      .checkbox-wrapper-31 .stroke {fill: none;stroke: #00ff00;stroke-miterlimit: 10;stroke-width: 2px;stroke-dashoffset: 100;stroke-dasharray: 100;transition: ease all 0.6s;-webkit-transition: ease all 0.6s;}
+      .checkbox-wrapper-31 .check {fill: none;stroke: #00ff00;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2px;stroke-dashoffset: 22;stroke-dasharray: 22;transition: ease all 0.6s;-webkit-transition: ease all 0.6s;}
+      .checkbox-wrapper-31 input[type=checkbox] {position: absolute;width: 100%;height: 100%;left: 0;top: 0;margin: 0;opacity: 0;-appearance: none;-webkit-appearance: none;}
+      .checkbox-wrapper-31 input[type=checkbox]:hover {cursor: pointer;}
+      .checkbox-wrapper-31 input[type=checkbox]:checked + svg .background {fill: #6cbe4500;}
+      .checkbox-wrapper-31 input[type=checkbox]:checked + svg .stroke {stroke-dashoffset: 0;}
+      .checkbox-wrapper-31 input[type=checkbox]:checked + svg .check {stroke-dashoffset: 0;}
+</style>
 
     </style>
   </head>
@@ -30,12 +60,13 @@
     <div id="menubar"></div><div id="header"></div>
     <div id="main">
       <table id="stuffContainer">
-        <tr><td class="descriptionTD" colspan="2">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
-        <tr><td class="descriptionTD" colspan="2">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr><td class="descriptionTD" colspan="2">Rezept-Nummer</td><td id="id" class="recipeTD" contenteditable="true" colspan="6"></td></tr>
+        <tr><td class="descriptionTD" colspan="2">Titel</td><td id="title" class="recipeTD" contenteditable="true" colspan="6"></td></tr>
         <!-- Kategorie -->
         <tr>
-          <td class="descriptionTD" colspan="2">Kategorie</td><td id="category" class="recipeTD" contenteditable="true" colspan="2">Food</td>
-          <td colspan="2">
+          <td class="descriptionTD" colspan="2">Kategorie</td>
+          <td id="category" class="recipeTDInput" contenteditable="true" colspan="2">Food</td>
+          <td class="recipeTDSelect">
             <select name="categorys" id="categorySelector" onchange="selectCategory(this);">
               <option value="Finger Food">Finger Food</option>
               <option value="Food" selected>Food</option>
@@ -44,7 +75,6 @@
               <option value="Salate">Salate</option>
               <option value="Suppen">Suppen</option>
               <option value="Süßspeisen">Süßspeisen</option>
-              <option value="Sonstiges">Sonstiges</option>
             </select>
           </td>
         </tr>
@@ -52,54 +82,123 @@
         <!-- Zutaten 1 -->
         <tr>
           <td class="descriptionTD">Zutaten-Überschrift 1</td>
-          <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="ingredients_1_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="4"></td>
+           
+          <td class="checkNecessary"><div class="checkbox-wrapper-31"><input type="checkbox" onchange="makeVisibleHeader(this);"/><svg viewBox="0 0 35.6 35.6"><circle class="background" cx="17.8" cy="17.8" r="17.8"></circle><circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle><polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline></svg></div></td>
+          <td id="ingredients_1_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="6"></td>
         </tr>
         <tr>
           <td class="descriptionTD" colspan="2">Zutaten-Liste 1</td>
-          <td class="recipeTD ingredients_1" contenteditable="true"></td>
-          <td class="recipeTD ingredients_1" contenteditable="true"></td>
-          <td class="recipeTD ingredients_1" contenteditable="true"></td>
-          <td id="addIngredient1" onclick="addIngredient1();">+</td>
+          <td class="recipeTD ingredients_1 ingredients_a" contenteditable="true"></td>
+          <td class="recipeTDInput ingredients_1 ingredients_b" contenteditable="true">g</td>
+          <td class="recipeTDSelect ingredients_c">
+            <select onchange="selectUnity(this);">
+              <option value="mg">Milligramm</option>
+              <option value="g" selected>Gramm</option>
+              <option value="kg">Kilogramm</option>
+              <option value="ml">Milliliter</option>
+              <option value="l">Liter</option>
+              <option value="TL">Teelöffel</option>
+              <option value="EL">Esslöffel</option>
+              <option value="Pkg">Packung</option>
+              <option value="Stk">Stück</option>
+              <option value="Glas">Glas</option>
+              <option value="Becher">Becher</option>
+              <option value="Tasse">Tasse</option>
+            </select>
+          </td>
+          <td class="recipeTDInput ingredients_1 ingredients_d" contenteditable="true"></td>
+          <td class="recipeTDSelect ingredients_e">
+            <select onchange="selectProduct(this);">
+              <option value="Butter">Butter</option>
+              <option value="Eier">Eier</option>
+              <option value="Hackfleisch">Stück</option>
+              <option value="Knoblauch">Knoblauch</option>
+              <option value="Mais">Mais</option>
+              <option value="Mehl" selected>Mehl</option>
+              <option value="Milch">Milch</option>
+              <option value="Petersilie">Petersilie</option>
+              <option value="Pfeffer">Pfeffer</option>
+              <option value="Sahne">Sahne</option>
+              <option value="Salz">Salz</option>
+              <option value="Schmand">Schmand</option>
+              <option value="Wasser">Wasser</option>
+              <option value="Zwiebeln">Zwiebeln</option>
+            </select>
+          </td>
+          <td class="mb_button addIngredient1" onclick="addIngredient1();">+</td>
         </tr>
-        <tr id="ingredients_1_list" colspan="2"><td></td></tr>
+        <tr id="ingredients_1_list"><td></td></tr>
         <!-- Zutaten 2 -->
         <tr>
           <td class="descriptionTD">Zutaten-Überschrift 2</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="ingredients_2_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="4"></td>
+          <td id="ingredients_2_header" class="recipeTD" contenteditable="true" style="opacity: 0;" colspan="6"></td>
         </tr>
         <tr>
           <td class="descriptionTD">Zutaten-Liste 2</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleIngredients(this);"></td>
           <td class="recipeTD ingredients_2 ingredients_a" contenteditable="true" style="opacity: 0;"></td>
-          <td class="recipeTD ingredients_2 ingredients_b" contenteditable="true" style="opacity: 0;"></td>
-          <td class="recipeTD ingredients_2 ingredients_c" contenteditable="true" style="opacity: 0;"></td>
-          <td id="addIngredient2" onclick="addIngredient2();" style="opacity: 0;">+</td>
+          <td class="recipeTD ingredients_2 ingredients_b" contenteditable="true" style="opacity: 0;">g</td>
+          <td class="recipeTDSelect ingredients_c" style="opacity: 0;">
+            <select onchange="selectUnity(this);">
+              <option value="mg">Milligramm</option>
+              <option value="g" selected>Gramm</option>
+              <option value="kg">Kilogramm</option>
+              <option value="ml">Milliliter</option>
+              <option value="l">Liter</option>
+              <option value="TL">Teelöffel</option>
+              <option value="EL">Esslöffel</option>
+              <option value="Pkg">Packung</option>
+              <option value="Stk">Stück</option>
+              <option value="Glas">Glas</option>
+              <option value="Becher">Becher</option>
+              <option value="Tasse">Tasse</option>
+            </select>
+          </td>
+          <td class="recipeTD ingredients_2 ingredients_d" contenteditable="true" style="opacity: 0;"></td>
+          <td class="recipeTDSelect ingredients_e" style="opacity: 0;">
+            <select onchange="selectProduct(this);">
+              <option value="Butter">Butter</option>
+              <option value="Eier">Eier</option>
+              <option value="Hackfleisch">Stück</option>
+              <option value="Knoblauch">Knoblauch</option>
+              <option value="Mais">Mais</option>
+              <option value="Mehl" selected>Mehl</option>
+              <option value="Milch">Milch</option>
+              <option value="Petersilie">Petersilie</option>
+              <option value="Pfeffer">Pfeffer</option>
+              <option value="Sahne">Sahne</option>
+              <option value="Salz">Salz</option>
+              <option value="Schmand">Schmand</option>
+              <option value="Wasser">Wasser</option>
+              <option value="Zwiebeln">Zwiebeln</option>
+            </select>
+          </td>
+          <td class="addIngredient2" onclick="addIngredient2();" style="opacity: 0;">+</td>
         </tr>
         <tr id="ingredients_2_list"><td></td></tr>
 
         <tr>
           <td class="descriptionTD">Zubereitung-Überschrift 1</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+          <td id="recipe_1_header" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
-        <tr><td class="descriptionTD" colspan="2">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="4"></td></tr>
+        <tr><td class="descriptionTD" colspan="2">Zubereitung-Liste 1</td><td id="recipe_1" class="recipeTD" contenteditable="true" colspan="6"></td></tr>
         <tr>
           <td class="descriptionTD">Zubereitung-Überschrift 2</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+          <td id="recipe_2_header" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
         <tr>
           <td class="descriptionTD">Zubereitung-Liste 2</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="recipe_2" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+          <td id="recipe_2" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
         <tr><td></td></tr>
         <tr>
           <td id="notes_header" class="descriptionTD">Notizen</td>
           <td class="checkNecessary"><input type="checkbox" onchange="makeVisibleHeader(this);"></td>
-          <td id="notes" class="recipeTD" contenteditable="true" colspan="4" style="opacity: 0;"></td>
+          <td id="notes" class="recipeTD" contenteditable="true" colspan="6" style="opacity: 0;"></td>
         </tr>
       </table>
       <button onclick="createRecipe();">Rezept Speichern</button>
@@ -118,18 +217,22 @@
   function selectCategory(obj) {let categoryView = document.getElementById('category');categoryView.innerHTML = obj.value;}
 
   function makeVisibleHeader(obj) {
-    let invisible = obj.parentNode.parentNode;
+    let invisible = obj.parentNode.parentNode.parentNode;
     let number = invisible.children.length;
     invisible = invisible.children[number - 1];
-    console.log(invisible)
     const opacity = getComputedStyle(invisible).opacity;
     invisible.style.opacity = opacity === '0' ? '1' : '0';
+    const header = obj.parentNode.parentNode;
+    const boxShadow = getComputedStyle(header).boxShadow;
+    if (boxShadow.includes('0.7')) {header.style.boxShadow = 'rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset';}
+    else {header.style.boxShadow = 'rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset';}
   }
+  
   function makeVisibleIngredients(obj) {
-    let invisible = obj.parentNode.parentNode;
+    let invisible = obj.parentNode.parentNode.parentNode;
     const children = invisible.children;
     let number = invisible.children.length;
-    for (let i = Math.max(0, number - 4); i < number; i++) {
+    for (let i = Math.max(0, number - 6); i < number; i++) {
         const child = children[i];
         const opacity = getComputedStyle(child).opacity;
         child.style.opacity = opacity === '0' ? '1' : '0';
@@ -141,6 +244,20 @@
     ingredients_2_header.style.opacity = opacity === '0' ? '1' : '0';
   }
 
+  function selectUnity(obj) {
+    let unityInput = obj.parentNode.parentNode;
+    let number = unityInput.children.length;
+    selectorInput = unityInput.children[number - 5];
+    selectorInput.innerHTML = obj.value;
+  }
+
+  function selectProduct(obj) {
+    let unityInput = obj.parentNode.parentNode;
+    let number = unityInput.children.length;
+    selectorInput = unityInput.children[number - 3];
+    selectorInput.innerHTML = obj.value;
+  }
+
   let saveContent = '';
 
   let ingredients_1_counter = 1;
@@ -148,18 +265,102 @@
     const list = document.getElementById('ingredients_1_list');
     const adder = document.createElement('tr');
     ingredients_1_counter ++;
-    adder.innerHTML = '<td class="descriptionTD"></td><td class="recipeTD ingredients_1" contenteditable="true"></td><td class="recipeTD ingredients_1" contenteditable="true"></td><td class="recipeTD ingredients_1" contenteditable="true"></td>'
+    adder.innerHTML = 
+    '<tr>' +
+      '<td class="descriptionTD" colspan="2"></td>' +
+      '<td class="recipeTD ingredients_1 ingredients_a" contenteditable="true"></td>' +
+      '<td class="recipeTD ingredients_1 ingredients_b" contenteditable="true">g</td>' +
+      '<td class="recipeTDSelect ingredients_c">' +
+        '<select onchange="selectUnity(this);">' +
+          '<option value="mg">Milligramm</option>' +
+          '<option value="g" selected>Gramm</option>' +
+          '<option value="kg">Kilogramm</option>' +
+          '<option value="ml">Milliliter</option>' +
+          '<option value="l">Liter</option>' +
+          '<option value="TL">Teelöffel</option>' +
+          '<option value="EL">Esslöffel</option>' +
+          '<option value="Pkg">Packung</option>' +
+          '<option value="Stk">Stück</option>' +
+          '<option value="Glas">Glas</option>' +
+          '<option value="Becher">Becher</option>' +
+          '<option value="Tasse">Tasse</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="recipeTD ingredients_1 ingredients_d" contenteditable="true"></td>' +
+      '<td class="recipeTDSelect ingredients_e">' +
+        '<select onchange="selectProduct(this);">' +
+          '<option value="Butter">Butter</option>' +
+          '<option value="Eier">Eier</option>' +
+          '<option value="Hackfleisch">Stück</option>' +
+          '<option value="Knoblauch">Knoblauch</option>' +
+          '<option value="Mais">Mais</option>' +
+          '<option value="Mehl" selected>Mehl</option>' +
+          '<option value="Milch">Milch</option>' +
+          '<option value="Petersilie">Petersilie</option>' +
+          '<option value="Pfeffer">Pfeffer</option>' +
+          '<option value="Sahne">Sahne</option>' +
+          '<option value="Salz">Salz</option>' +
+          '<option value="Schmand">Schmand</option>' +
+          '<option value="Wasser">Wasser</option>' +
+          '<option value="Zwiebeln">Zwiebeln</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="mb_button removeIngredient1" onclick="removeIngredient1(this);">-</td>' +
+    '</tr>';
     list.parentNode.insertBefore(adder,list);
   }
+  function removeIngredient1(obj) {obj.parentNode.parentNode.removeChild(obj.parentNode);}
 
   let ingredients_2_counter = 1;
   function addIngredient2() {
     const list = document.getElementById('ingredients_2_list');
     const adder = document.createElement('tr');
     ingredients_2_counter ++;
-    adder.innerHTML = '<td class="descriptionTD"></td><td class="recipeTD ingredients_2" contenteditable="true"></td><td class="recipeTD ingredients_2" contenteditable="true"></td><td class="recipeTD ingredients_2" contenteditable="true"></td>'
+    adder.innerHTML = 
+    '<tr>' +
+      '<td class="descriptionTD" colspan="2"></td>' +
+      '<td class="recipeTD ingredients_2 ingredients_a" contenteditable="true"></td>' +
+      '<td class="recipeTD ingredients_2 ingredients_b" contenteditable="true">g</td>' +
+      '<td class="recipeTDSelect ingredients_c">' +
+        '<select onchange="selectUnity(this);">' +
+          '<option value="mg">Milligramm</option>' +
+          '<option value="g" selected>Gramm</option>' +
+          '<option value="kg">Kilogramm</option>' +
+          '<option value="ml">Milliliter</option>' +
+          '<option value="l">Liter</option>' +
+          '<option value="TL">Teelöffel</option>' +
+          '<option value="EL">Esslöffel</option>' +
+          '<option value="Pkg">Packung</option>' +
+          '<option value="Stk">Stück</option>' +
+          '<option value="Glas">Glas</option>' +
+          '<option value="Becher">Becher</option>' +
+          '<option value="Tasse">Tasse</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="recipeTD ingredients_2 ingredients_d" contenteditable="true"></td>' +
+      '<td class="recipeTDSelect ingredients_e">' +
+        '<select onchange="selectProduct(this);">' +
+          '<option value="Butter">Butter</option>' +
+          '<option value="Eier">Eier</option>' +
+          '<option value="Hackfleisch">Stück</option>' +
+          '<option value="Knoblauch">Knoblauch</option>' +
+          '<option value="Mais">Mais</option>' +
+          '<option value="Mehl" selected>Mehl</option>' +
+          '<option value="Milch">Milch</option>' +
+          '<option value="Petersilie">Petersilie</option>' +
+          '<option value="Pfeffer">Pfeffer</option>' +
+          '<option value="Sahne">Sahne</option>' +
+          '<option value="Salz">Salz</option>' +
+          '<option value="Schmand">Schmand</option>' +
+          '<option value="Wasser">Wasser</option>' +
+          '<option value="Zwiebeln">Zwiebeln</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="mb_button removeIngredient2" onclick="removeIngredient2(this);">-</td>' +
+    '</tr>';
     list.parentNode.insertBefore(adder,list);
   }
+  function removeIngredient2(obj) {obj.parentNode.parentNode.removeChild(obj.parentNode);}
 
   function createRecipe() {
     const preview = document.getElementById('preview');

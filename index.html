@@ -7,27 +7,28 @@
     <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
     <style>
       body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;font-family: Arial, Helvetica, sans-serif;}
-      #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #dbdbdb;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #444444;background-color: #000000;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(100%);}
+      #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #000000;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #dbdbdb;background-color: #000000;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(200%);}
       #header {width: 100%;height: 4rem;position: fixed;top: 0;z-index: 900;display: flex;margin: 0;padding: 0;font-size: 0.7rem;} #header div {width: 100%;height: 4rem;display: grid;grid-template-columns: min-content auto;grid-template-rows: min-content min-content;place-items: center;}
 
       #navigation_container {width: 100%;height: 4rem;grid-column: 1;grid-row: 1;display: flex;justify-content: center;align-items: center;gap: 0.5rem;margin: 0 0 0 4.5rem;}
-      #navigation_container button {height: 2.8rem;margin: 0.25rem 0.25rem 0 0;padding: 0 1rem;background-color: #000000cc;color: #dbdbdb;border-radius: 0.5rem;border: none;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;cursor: pointer;transition: all 0.6s;white-space: nowrap;}
-      @media (hover: hover) {#navigation_container button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}}
       #navigation_container button:active {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
-      #sort_button {display: flex;align-items: center;justify-content: center;gap: 0.5rem;}
-      #sort_button .sort_arrow {min-width: 1em;text-align: center;}
-      #random_button {cursor: pointer;}
+
+      #sort_button {width: 20rem;height: 3.25rem;margin: 0.25rem 0 0 0;display: flex;align-items: center;justify-content: center;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #00000066;color: #dbdbdb;gap: 0.5rem;transition: all 0.6s;}
+      #sort_button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000066;background-color: #000000cc;color: #999999;transition: all 0.6s;}
+      #sort_button .sort_arrow {min-width: 1rem;text-align: center;}
+      #random_button {width: 7rem;height: 3.25rem;margin: 0.25rem 0 0 0;display: flex;align-items: center;justify-content: center;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #00000066;color: #dbdbdb;gap: 0.5rem;transition: all 0.6s;}
+      #random_button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000066;background-color: #000000cc;color: #999999;transition: all 0.6s;}
+
       #sort_overlay {display: none;position: fixed;inset: 0;z-index: 1100;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
       #sort_overlay_content {width: min(90vw, 40rem);max-height: 80vh;padding: 1rem;background-color: #111111;border: 1px solid #444444;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
       #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
-      .sort_option {min-width: 4rem;}
+      .sort_option {width: 15rem;min-height: 3rem;border-radius: 0.5rem;border: 1px solid #000000;background-color: #00000066;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;color: #dbdbdb;cursor: pointer;transition: all 0.6s;}
+      .sort_option:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #999999;}
 
       .searchContainerLandscape {width: auto;height: 4rem;grid-column: 2;grid-row: 1;text-align: center;}
       .searchContainerLandscape input {width: auto;height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}
-
       .searchContainerPortrait {width: 100vw;height: 4rem;grid-column: 1 / span 2;grid-row: 2;text-align: center;margin: -0.5rem;}
-      .searchContainerPortrait input {width: calc(100vw - 1rem);height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}
-    
+      .searchContainerPortrait input {width: calc(100vw - 1rem);height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}    
       #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
       #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
 
@@ -46,7 +47,10 @@
       .movieTitle {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
       .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 800;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
       .movieOverlay:hover {opacity: 0;}
-      
+
+      .randomLandscape .cardContainer {grid-template-columns: repeat(auto-fill, minmax(12rem, 12.5rem));gap: 1rem;}
+      .randomPortrait .cardContainer {grid-template-columns: minmax(12rem, auto);justify-content: center;}
+
       .overlayWindowLandscape {width: auto;height: calc(100vh - 5rem);aspect-ratio: 16/9;position: fixed;inset: 0;background-color: #000000cc;z-index: 1100;overflow: hidden;border-radius: 0.5rem;border: 1px solid #dbdbdb;padding: 0;margin: auto;display: grid;grid-template-columns: 30% auto;grid-template-rows: auto;}
       .overlayImageLandscape {grid-column: 1 / span 2;grid-row: 1;filter: brightness(20%);}
       .overlayImageLandscape img {width: 100%;height: auto;border-radius: 0.5rem;}
@@ -100,9 +104,6 @@
       .overlayRecipe2Portrait span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
       .overlayNotesHeaderPortrait {grid-column: 1 / span 2;grid-row: 6;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
       .overlayNotesPortrait {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      
-      #group_single_Zufall .cardContainer {grid-template-columns: minmax(15rem, min-content);justify-content: center;}
-      
     </style>
   </head>
   <body onload="init_menubar();init_header();check_window_mode();load_moviebase();">
@@ -114,8 +115,8 @@
 </html>
 
 <script>
-  function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);}
-  function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';console.log('menubar deactivated');}}
+  function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);document.addEventListener('click', (event) => {const menubar = document.getElementById('menubar');const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');if (!menubar.contains(event.target)) {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';}});}
+  function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';}}
   function init_header() {const header = document.getElementById('header');const header_div = document.createElement('div');header_div.id = 'header_div';header.appendChild(header_div);}
   let windowMode = "";function check_window_mode() {if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";} else {windowMode = "portrait";}}
   
@@ -156,7 +157,7 @@
     sort_overlay.appendChild(sort_overlay_content);
 
     sort_button.onclick = () => {sort_overlay.style.display = 'flex';};
-    const sort_options = ['Nummer','Name','0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    const sort_options = ['Name','Nummer','Food','Suppen','Salate','Finger Food','Süßspeisen','Kekse & Gebäck','Kuchen & Torten','Sonstiges'];
     sort_options.forEach(z => {
       const option_button = document.createElement('button');
       option_button.className = 'sort_option';
@@ -200,65 +201,48 @@
   }
   
   function sort_group(z) {
-    const same_group = current_group === z;
-    if (same_group) {current_data.reverse();current_sort_direction = current_sort_direction === 'asc' ? 'desc' : 'asc';}
-    else {
-      current_group = z;
-      current_sort_direction = 'asc';
-      current_data.sort((a, b) => {
-        if (z === 'Nummer') {
-          const numA = parseInt(a[Object.keys(a)[0]]) || 0;
-          const numB = parseInt(b[Object.keys(b)[0]]) || 0;
-          return numA - numB;
-        }
-        else {
-          const nameA = String(a[Object.keys(a)[1]] ?? '');
-          const nameB = String(b[Object.keys(b)[1]] ?? '');
-          return nameA.localeCompare(nameB, 'de');
-        }
-      });
-    }
+    if (current_group === z) {current_sort_direction = current_sort_direction === 'asc' ? 'desc' : 'asc';}
+    else {current_group = z;current_sort_direction = 'asc';}
     load_table_data(current_data, z);
     set_group_active();
   }
 
   function load_table_data(data, group_extra = null) {
-    const container = document.getElementById('output');container.innerHTML = '';
-    const groups = {
-      'Nummer': [], 'Name': [], 'Zufall': [], '0-9': [],
-      ...Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(c => [c, []]))
-    };
+    const container = document.getElementById('output');
+    container.innerHTML = '';
+    const groups = {'Nummer': [],'Name': [],'Zufall': [],'Food': [],'Suppen': [],'Salate': [],'Finger Food': [],'Süßspeisen': [],'Kekse & Gebäck': [],'Kuchen & Torten': [],'Sonstiges': []};
+    
     for (const entry of data) {
-      const name = entry.title ?? "";
-      const letter_1 = name.charAt(0).toUpperCase();
       groups['Name'].push(entry);
       groups['Zufall'].push(entry);
       groups['Nummer'].push(entry);
-      if (/[0-9]/.test(letter_1)) {groups['0-9'].push(entry);}
-      else if (groups[letter_1]) {groups[letter_1].push(entry);}
+      const category = entry.category ?? '';
+      if (groups[category]) {groups[category].push(entry);}
     }
-
     for (const group_single in groups) {
       const groupDiv = document.createElement('div');
       groupDiv.id = 'group_single_' + group_single;
-      groupDiv.className = 'group_button';
+      if (group_single === 'Zufall' && windowMode === 'landscape') {groupDiv.className = 'group_button randomLandscape';}
+      else if (group_single === 'Zufall' && windowMode === 'portrait') {groupDiv.className = 'group_button randomPortrait';}
+      else {groupDiv.className = 'group_button';}
       if (group_single === (group_extra || 'Name')) {groupDiv.classList.add('aktiv');}
-      let data = groups[group_single];
+      let group_data = groups[group_single];
+      
       if (group_single === 'Nummer') {
-        data.sort((a, b) => {
-          const numA = parseInt(a.id) || 0;
-          const numB = parseInt(b.id) || 0;
+        group_data.sort((a, b) => {
+          const numA = parseInt(a.id, 10) || 0;
+          const numB = parseInt(b.id, 10) || 0;
           return current_sort_direction === 'asc' ? numA - numB : numB - numA;
         });
       }
       else if (group_single !== 'Zufall') {
-        data.sort((a, b) => {
-          const nameA = a.title ?? "";
-          const nameB = b.title ?? "";
+        group_data.sort((a, b) => {
+          const nameA = a.title ?? '';
+          const nameB = b.title ?? '';
           return current_sort_direction === 'asc' ? nameA.localeCompare(nameB, 'de') : nameB.localeCompare(nameA, 'de');
         });
       }
-      if (data.length > 0) {const table = generate_table_data(data);groupDiv.appendChild(table);}
+      if (group_data.length > 0) {const table = generate_table_data(group_data);groupDiv.appendChild(table);}
       else {groupDiv.innerHTML = '<p>Keine Einträge gefunden...</p>';}
       container.appendChild(groupDiv);
     }

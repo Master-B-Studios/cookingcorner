@@ -4,302 +4,358 @@
     <title>Cooking Corner</title>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
-    <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
+    <link rel="icon" type="image/x-icon" href="../homepage/images/MB_Icon_02.svg"></link>
     <style>
-      body {background-color: #000000;margin: 0;padding: 0;background-image: url("../homepage/assets/wallpaper_00.jpg");background-repeat: repeat, no-repeat;background-size: auto, 100% 100%;background-attachment: fixed;overflow-y: scroll;color: #dbdbdb;font-size: 1rem;font-family: Arial, Helvetica, sans-serif;}
-      #menubar {width: auto;height: 4rem;position: fixed;top: 0;z-index: 1000;display: block;margin: 0;padding: 0;font-size: 0.7rem;} #menubar div {width: auto;height: auto;display: grid;grid-template-columns: min-content auto auto;grid-template-rows: min-content;margin: 0.25rem;} #menubar_logo {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #000000cc;transition: all 0.6s;} #menubar_logo:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #000000;} #menubar_logo img {width: 2.8rem;height: 2.8rem;filter: brightness(60%);border-radius: 0.5rem;margin: 0.2rem;transition: all 0.6s;} #menubar_logo:hover img {filter: brightness(100%);border-color: #dbdbdb;} #menubar_items {width: auto;height: 4rem;grid-column: 1; grid-row: 1;cursor: pointer;border-radius: 0.5rem;border: 1px solid #dbdbdb;background-color: #000000;} #menubar_items:hover {border-color: #dbdbdb;} #menubar_items a {width: 2.8rem;height: 2.8rem;text-align: center;color: #dbdbdb;text-decoration: none;filter: brightness(60%);margin: 0.2rem 0.5rem;transition: all 0.6s;} #menubar_items a img {width: 2.8rem;height: 2.8rem;} #menubar_items a:hover {filter: brightness(200%);}
-      #header {width: 100%;height: 4rem;position: fixed;top: 0;z-index: 900;display: flex;margin: 0;padding: 0;font-size: 0.7rem;} #header div {width: 100%;height: 4rem;display: grid;grid-template-columns: min-content auto;grid-template-rows: min-content min-content;place-items: center;}
+      body {width: 100vw;height: 100vh;display: grid;grid-template-columns: min-content auto;grid-template-rows: 100vh;background-color: #000000;margin: 0;padding: 0;overflow: hidden;color: #dbdbdb;font-size: 1rem;font-family: Arial, Helvetica, sans-serif;-webkit-tap-highlight-color: transparent;}
+      body {background: radial-gradient(circle at 80% 10%,#111111, transparent 40%), radial-gradient(circle at 30% 90%, #111111, transparent 30%), linear-gradient(50deg,#000000,#111111 55%,#000000);}
 
-      #navigation_container {width: 100%;height: 4rem;grid-column: 1;grid-row: 1;display: flex;justify-content: center;align-items: center;gap: 0.5rem;margin: 0 0 0 4.5rem;}
-      #navigation_container button:active {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;}
+      .sidebar {grid-column: 1;grid-row: 1;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content;border-right: 0.01rem solid #999999;overflow-y: auto;}
+      .sidebar {background: radial-gradient(circle at 80% 10%,#111111, transparent 40%), radial-gradient(circle at 30% 90%, #111111, transparent 30%), linear-gradient(50deg,#000000,#111111 55%,#000000);}
+      .sidebar a {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;}
+      .sidebar a svg {margin: 0 0.5rem 0 0;}
+      .sidebarSpacer {height: 3rem;}
+      .sidebarToggle {display: none;}
+      .sidebarButton {background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem;border: 0.01rem solid #444444;outline: none;text-decoration: none;color: #999999;white-space: pre;cursor: pointer;transition: all 0.6s;}
+      .sidebarButton:hover, .sidebarButton:active, .sidebarButton:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+      .sidebarButtonActive {background: linear-gradient(125deg, #111111, #222222);border-radius: 1rem;border: 0.01rem solid #00bb66;text-decoration: none;color: #00bb66;white-space: pre;cursor: default;transition: all 0.6s;}
+      .sidebarButtonNoClick {background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem;border: 0.01rem solid #444444;text-decoration: none;color: #999999;white-space: pre;cursor: default;transition: all 0.6s;}
 
-      #sort_button {width: 20rem;height: 3.25rem;margin: 0.25rem 0 0 0;display: flex;align-items: center;justify-content: center;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #00000066;color: #dbdbdb;gap: 0.5rem;transition: all 0.6s;}
-      #sort_button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000066;background-color: #000000cc;color: #999999;transition: all 0.6s;}
-      #sort_button .sort_arrow {min-width: 1rem;text-align: center;}
-      #random_button {width: 7rem;height: 3.25rem;margin: 0.25rem 0 0 0;display: flex;align-items: center;justify-content: center;cursor: pointer;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;border-radius: 0.5rem;border: 1px solid #00000000;background-color: #00000066;color: #dbdbdb;gap: 0.5rem;transition: all 0.6s;}
-      #random_button:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;border: 1px solid #00000066;background-color: #000000cc;color: #999999;transition: all 0.6s;}
+      .sortHeader {height: 3rem;display: flex;align-items: center;justify-content: center;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;color: #999999;white-space: pre;cursor: default;}
+      .sortButton {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;}
+      .sortButtonArrow {margin: 0 0.5rem 0 0;}
+      .sortButtonArrow:hover {color: #00aaaa;}
+      .sortButtonText {margin: 0;}
 
-      #sort_overlay {display: none;position: fixed;inset: 0;z-index: 1100;background-color: #000000cc;align-items: center;justify-content: center;padding: 1rem;box-sizing: border-box;}
-      #sort_overlay_content {width: min(90vw, 40rem);max-height: 80vh;padding: 1rem;background-color: #111111;border: 1px solid #444444;border-radius: 0.5rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
-      #sort_overlay_title {width: 100%;text-align: center;font-size: 1.5rem;margin-bottom: 0.5rem;color: #dbdbdb;}
-      .sort_option {width: 15rem;min-height: 3rem;border-radius: 0.5rem;border: 1px solid #000000;background-color: #00000066;box-shadow: rgba(255, 255, 255, 0.3) 2px 2px 6px 1px inset;color: #dbdbdb;cursor: pointer;transition: all 0.6s;}
-      .sort_option:hover {box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #999999;}
-
-      .searchContainerLandscape {width: auto;height: 4rem;grid-column: 2;grid-row: 1;text-align: center;}
-      .searchContainerLandscape input {width: auto;height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}
-      .searchContainerPortrait {width: 100vw;height: 4rem;grid-column: 1 / span 2;grid-row: 2;text-align: center;margin: -0.5rem;}
-      .searchContainerPortrait input {width: calc(100vw - 1rem);height: 2.8rem;margin: 0.75rem 0 0 0.5rem;background-color: #222222;padding: 0.5rem;cursor: text;border-radius: 0.5rem;border: 1px solid #444444;box-shadow: rgba(0, 0, 0, 0.7) 2px 2px 6px 1px inset;color: #dbdbdb;}    
-      #search_container input:focus {background-color: #222222;outline: none;border: 1px solid #dddddd;}
-      #search_container input::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
-
-      #main {width: auto;height: auto;background-color: #00000000;}
-      .outputLandscape {margin: 4.5rem 0.5rem 1rem 0.5rem;}
-      .outputPortrait {margin: 8rem 0.5rem 1rem 0.5rem;}
-
-      .group_button {display: none;}
-      .group_button.aktiv {display: block;}
-
-      .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(12rem, auto));gap: 1rem;}
-      .movieCard {color: #ffffff;width: auto;height: auto;display: grid;grid-template-columns: auto auto;grid-template-rows: auto;background-color: #111111;border-radius: 0.5rem;border: 1px solid #444444;position: relative;top: 0;margin: 0;cursor: pointer;transition: top 0.6s;}
-      .movieCard:hover {border-color: #dddddd;top: -0.5rem;}
-      .moviePoster {grid-column: 1;grid-row: 1;width: 100%;height: auto;aspect-ratio: 16/9;display: flex;justify-content: center;align-items: center;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
-      .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
-      .movieTitle {grid-column: 1;grid-row: 2;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;}
-      .movieOverlay {grid-column: 1;grid-row: 1 / span 3;z-index: 800;border-radius: 0.5rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
-      .movieOverlay:hover {opacity: 0;}
-
-      .randomLandscape .cardContainer {grid-template-columns: repeat(auto-fill, minmax(12rem, 12.5rem));gap: 1rem;}
-      .randomPortrait .cardContainer {grid-template-columns: minmax(12rem, auto);justify-content: center;}
-
-      .overlayWindowLandscape {width: auto;height: calc(100vh - 5rem);aspect-ratio: 16/9;position: fixed;inset: 0;background-color: #000000cc;z-index: 1100;overflow: hidden;border-radius: 0.5rem;border: 1px solid #dbdbdb;padding: 0;margin: auto;display: grid;grid-template-columns: 30% auto;grid-template-rows: auto;}
-      .overlayImageLandscape {grid-column: 1 / span 2;grid-row: 1;filter: brightness(20%);}
-      .overlayImageLandscape img {width: 100%;height: auto;border-radius: 0.5rem;}
-
-      .overlayIngredientsContainerLandscape {grid-column: 1;grid-row: 1;width: auto;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;}
-      .overlayIngredientsHeaderLandscape {grid-column: 1;grid-row: 1;height: 1.5rem;color: #975cef;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayIngredients1HeaderLandscape {grid-column: 1;grid-row: 2;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayIngredients1Landscape {grid-column: 1;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
-      .overlayIngredients2HeaderLandscape {grid-column: 1;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayIngredients2Landscape {grid-column: 1;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
-
-      .overlayRecipeContainerLandscape {grid-column: 2;grid-row: 1;width: 100%;height: 100%;z-index: 1100;overflow: hidden;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
-      .overlayRecipeHeaderLandscape {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #975cef;text-align: left;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayRecipe1HeaderLandscape {grid-column: 1 / span 2;grid-row: 2;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayRecipe1Landscape {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem 5rem 0.5rem 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe1Landscape span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe2HeaderLandscape {grid-column: 1 / span 2;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayRecipe2Landscape {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe2Landscape span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayNotesHeaderLandscape {grid-column: 1 / span 2;grid-row: 6;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
-      .overlayNotesLandscape {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-
-      .exitButtonLandscape {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-      .exitButtonLandscape:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-      .exitButtonLandscape:active {transform: scale(0.96);}
-
+      .sortOverlay {display: none;grid-column: 2;grid-row: 1;inset: 0;z-index: 9100;background-color: #000000cc;align-items: center;justify-content: center;padding: 10rem;box-sizing: border-box;}
+      .sortOverlayContent {padding: 1rem;background: radial-gradient(circle at 80% 10%,#111111, transparent 40%), radial-gradient(circle at 30% 90%, #111111, transparent 30%), linear-gradient(50deg,#000000,#111111 55%,#000000);border: 0.01rem solid #444444;border-radius: 1rem;box-shadow: rgba(0, 0, 0, 0.8) 0 0 2rem;display: flex;flex-wrap: wrap;justify-content: center;gap: 0.5rem;overflow-y: auto;}
+      .sortOverlayTitle {width: 100%;text-align: center;font-size: 1.2rem;margin-bottom: 1rem;color: #999999;}
+      .sortOverlayOptionButton {min-width: 1rem;height: 3rem;display: flex;align-items: center;justify-content: center;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem;}
       
-      .overlayWindowPortrait {width: 100vw;height: auto;position: fixed;inset: 0;background-color: #111111;z-index: 1100;overflow-y: scroll;overflow-x: hidden;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content;}
-      .overlayImagePortrait {grid-column: 1 / span 2;grid-row: 1;display: grid;grid-template-columns: auto;grid-template-rows: auto;}
-      .overlayImagePortrait img {width: 100%;height: auto;grid-column: 1;grid-row: 1;}
-      .overlayImagePortrait div {width: 100%;height: 100%;grid-column: 1;grid-row: 1;background: linear-gradient(180deg, #11111100, #11111100, #11111100, #11111100, #111111ff);position: relative;top: 0;}
+      .randomButton {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;}
+      .randomButton svg {margin: 0 0.5rem 0 0;}
 
-      .exitButtonPortrait {grid-column: 2;grid-row: 1;width: 3rem;height: 3rem;margin: 0.5rem;white-space: nowrap;z-index: 1101;display: flex;align-items: center;justify-content: center;border-radius: 0.5rem;background-color: #111111;border: 1px solid #444444;cursor: pointer;transition: all 0.6s;}
-      .exitButtonPortrait:hover {transform: scale(0.95);background-color: #cccccc;color: #000000;}
-      .exitButtonPortrait:active {transform: scale(0.96);}
+      .searchContainer {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;}
+      .searchContainerInput {width: 100%;height: 100%;margin: 0;padding: 0 1rem;background: none;border-radius: 1rem;border: none;outline: none;font-size: 1rem;color: #dbdbdb;cursor: text;}
+      .searchContainerInput:focus {outline: none;}
+      .searchContainerInput::-webkit-search-cancel-button {filter: invert(50%) brightness(150%);cursor: pointer;}
 
-      .overlayIngredientsContainerPortrait {grid-column: 1 / span 2;grid-row: 2;width: auto;height: auto;z-index: 1100;overflow-y: scroll;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content min-content min-content;}
-      .overlayIngredientsHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #975cef;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayIngredients1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #8c00ff;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
-      .overlayIngredients1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem;white-space: pre;}
-      .overlayIngredients2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
-      .overlayIngredients2Portrait {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem;white-space: pre;}
+      .main {grid-column: 2;grid-row: 1;overflow-y: auto;position: relative;}
+      .output {display: grid;grid-template-columns: auto;grid-template-rows: auto;overflow-y: scroll;}
+      
+      .groupLayout {display: none;}
+      .groupLayout.show {display: block;}
 
-      .overlayRecipeContainerPortrait {grid-column: 1 / span 2;grid-row: 3;width: auto;height: auto;z-index: 1100;overflow-y: scroll;padding: 0;margin: 0;display: grid;grid-template-columns: auto;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;}
-      .overlayRecipeHeaderPortrait {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #975cef;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
-      .overlayRecipe1HeaderPortrait {grid-column: 1 / span 2;grid-row: 2;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
-      .overlayRecipe1Portrait {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe1Portrait span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe2HeaderPortrait {grid-column: 1 / span 2;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
-      .overlayRecipe2Portrait {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayRecipe2Portrait span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
-      .overlayNotesHeaderPortrait {grid-column: 1 / span 2;grid-row: 6;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 1rem 0 1rem;white-space: pre;}
-      .overlayNotesPortrait {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+      .cardContainer {display: grid;grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));gap: 1rem;margin: 1rem;}
+      .movieCard {color: #dbdbdb;width: auto;height: auto;display: grid;grid-template-columns: auto auto;grid-template-rows: min-content auto min-content;background-color: #222222;border-radius: 1rem;border: 0.01rem solid #444444;color: #999999;position: relative;top: 0;margin: 0;cursor: pointer;transition: all 0.6s;}
+      .movieCard:hover {border-color: #999999;top: -0.5rem;}
+      .movieCard:hover .movieTitle {color: #999999;}
+      .movieCard:hover .movieNumber {color: #999999;}
+      .movieCard:hover .movieNumber svg {color: #999999;}
+      .movieCard:hover .movieYear {color: #999999;}
+      .movieCard:hover .movieYear svg {color: #999999;}
+      .movieCard:hover .movieOverlay1 {box-shadow: #000000b3 2px 2px 6px 1px inset;}
+      .movieCard:hover .movieOverlay2 {opacity: 0;}
+      .moviePoster {grid-column: 1 / span 2;grid-row: 1;width: calc(100%);height: auto;aspect-ratio: 16/9;display: flex;justify-content: center;align-items: center;border-top-left-radius: 1rem;border-top-right-radius: 1rem;}
+      .moviePoster img {width: 100%;height: auto;object-fit: contain;border-top-left-radius: 1rem;border-top-right-radius: 1rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);}
+      .moviePosterOverlay {grid-column: 1 / span 2;grid-row: 2;height: 1rem;position: relative;top: -1rem;background: linear-gradient(180deg, #22222200, #22222222, #22222244, #22222299, #222222ff);}
+      .movieTitle {grid-column: 1 / span 2;grid-row: 2;font-size: 0.7rem;margin: 0.5rem 0.5rem 0 0.5rem;line-height: 1rem;display: flex;align-items: center;justify-content: center;text-align: center;color: #dbdbdb;transition: all 0.6s;}
+      .movieNumber {grid-column: 1;grid-row: 3;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;color: #dbdbdb;transition: all 0.6s;}
+      .movieNumber svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;color: #dbdbdb;transition: all 0.6s;}
+      .movieYear {grid-column: 2;grid-row: 3;font-size: 0.7rem;margin: 0.5rem;line-height: 1rem;white-space: nowrap;display: flex;align-items: center;justify-content: center;color: #dbdbdb;transition: all 0.6s;}
+      .movieYear svg {position: relative;left: -0.25rem;width: 0.7rem;height: 0.7rem;color: #dbdbdb;transition: all 0.6s;}
+      .movieOverlay1 {grid-column: 1 / span 2;grid-row: 1 / span 3;z-index: 1000;border-radius: 1rem;box-shadow: #ffffff4d 2px 2px 6px 1px inset;transition: all 0.8s;}
+      .movieOverlay2 {grid-column: 1 / span 2;grid-row: 1 / span 3;z-index: 1000;border-radius: 1rem;background: linear-gradient(50deg, #00000000, #00000000, #00000066, #00000000, #00000000, #00000000, #00000099, #00000000);transition: all 0.8s;}
+      
+      
+      .movieOverlay {height: 100vh;grid-column: 2;grid-row: 1;inset: 0;padding: 1rem;background-color: #000000bb;z-index: 9099;display: flex;align-items: center;justify-content: center;box-sizing: border-box;}
+      .movieOverlayContent {width: 100%;height: auto;aspect-ratio: 16/9;z-index: 9100;inset: 0;margin: auto;background-color: #000000bb;border: 0.01rem solid #444444;border-radius: 1rem;display: grid;grid-template-columns: 30% auto;grid-template-rows: auto;}
+      .overlayImage {grid-column: 1 / span 2;grid-row: 1;filter: brightness(20%);margin: 0;padding: 0;}
+      .overlayImage img {width: 100%;height: 100%;aspect-ratio: 16/9;border-radius: 1rem;}
+
+      .overlayIngredientsContainer {grid-column: 1;grid-row: 1;width: auto;height: 100%;z-index: 1100;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;overflow-y: scroll;}
+      .overlayIngredientsHeader {grid-column: 1;grid-row: 1;height: 1.5rem;color: #975cef;text-align: center;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 0;white-space: pre;}
+      .overlayIngredients1Header {grid-column: 1;grid-row: 2;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients1 {grid-column: 1;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+      .overlayIngredients2Header {grid-column: 1;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayIngredients2 {grid-column: 1;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre;}
+
+      .overlayRecipeContainer {grid-column: 2;grid-row: 1;width: 100%;height: 100%;z-index: 1100;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;overflow-y: scroll;}
+      .overlayRecipeHeader {grid-column: 1 / span 2;grid-row: 1;height: 1.5rem;color: #975cef;text-align: left;font-size: 1.5rem;font-weight: 600;margin: 1.5rem 0 1rem 2.5rem;white-space: pre;}
+      .overlayRecipe1Header {grid-column: 1 / span 2;grid-row: 2;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe1 {grid-column: 1 / span 2;grid-row: 3;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem 0.5rem 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+      .overlayRecipe1 span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+      .overlayRecipe2Header {grid-column: 1 / span 2;grid-row: 4;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayRecipe2 {grid-column: 1 / span 2;grid-row: 5;text-align: left;line-height: 1.3rem;margin: 0.5rem 1rem 0.5rem 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+      .overlayRecipe2 span {display: block;padding-left: 2rem;text-indent: -2rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+      .overlayNotesHeader {grid-column: 1 / span 2;grid-row: 6;color: #975cef;text-align: left;font-size: 1.1rem;margin: 0.5rem 0.5rem 0 0.5rem;white-space: pre;}
+      .overlayNotes {grid-column: 1 / span 2;grid-row: 7;text-align: left;line-height: 1.3rem;margin: 0.5rem;white-space: pre-wrap;overflow-wrap: anywhere;}
+
+      .exitButton {width: 3rem;height: 3rem;grid-column: 2;grid-row: 1;z-index: 9200;position: relative;left: calc(100% - 5rem);padding: 0;margin: 1rem;display: flex;align-items: center;justify-content: center;}
+
+      @media (max-width: 600px) {
+        body {grid-template-columns: 1fr;}
+        .main {grid-column: 1;}
+        .sidebar {position: fixed;top: 0;left: 0;height: 100vh;max-width: 60vw;z-index: 2000;transform: translateX(-100%);transition: transform 0.6s ease;background-color: #000000ee;box-shadow: 0 0 1rem #00000099;}
+        .sidebar.open {transform: translateX(0);}
+        .sidebarToggle {display: flex;position: fixed;top: 0.5rem;right: 0.5rem;z-index: 1001;width: 3rem;height: 3rem;align-items: center;justify-content: center;color: #dbdbdb;background-color: #000000cc;border: 0.01rem solid #999999;border-radius: 1rem;font-size: 1.5rem;cursor: pointer;}
+
+        .sortOverlay {grid-column: 1;grid-row: 1;padding: 0.5rem;}
+        .cardContainer {grid-template-columns: repeat(auto-fill, minmax(40vw, 1fr));gap: 1rem;margin: 0.5rem;}
+        .cardContainer.open {width: calc(50vw - 1rem); margin: 0.5rem 0.5rem 0 calc(50vw + 0.5rem);}
+        #groupContainerZufall .cardContainer {width: calc(50vw - 1rem); margin: 4rem 0.5rem 0 calc(50vw + 0.5rem);}
+
+        .movieOverlay {width: 100vw;grid-column: 1;padding: 0.5rem;align-items: baseline;overflow-y: scroll;}
+        .movieOverlayContent {margin: 0;grid-template-columns: auto min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content min-content;}
+        
+        .overlayImage {grid-column: 1 / span 2;grid-row: 1;filter: brightness(100%);margin: 0;padding: 0;}
+        .overlayImage img {width: 100%;height: auto;aspect-ratio: 16/9;border-radius: 1rem 1rem 0 0;}
+
+        .overlayIngredientsContainer {grid-column: 1 / span 2;grid-row: 2;width: 100%;height: 100%;z-index: 1100;border-radius: 0.5rem;padding: 0;margin: auto;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content;overflow-y: scroll;}
+        .overlayIngredientsHeader {grid-column: 1 / span 2;text-align: center;}
+        .overlayIngredients1Header {grid-column: 1 / span 2;text-align: center;}
+        .overlayIngredients2Header {grid-column: 1 / span 2;text-align: center;}
+
+        .overlayRecipeContainer {grid-column: 1 / span 2;grid-row: 3;width: 100%;height: 100%;z-index: 1100;border-radius: 0.5rem;padding: 0;margin: 0;display: grid;grid-template-columns: 100%;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content;overflow-y: scroll;}
+        .overlayRecipeHeader {grid-column: 1;grid-row: 1;text-align: center;margin: 1rem 0.5rem 0 0.5rem;padding: 0;}
+        .overlayRecipe1Header {grid-column: 1;text-align: center;margin: 0;padding: 0.5rem;}
+        .overlayRecipe1 {grid-column: 1;margin: 0.5rem;padding: 0;}
+        .overlayRecipe2Header {grid-column: 1;text-align: center;margin: 0.5rem;padding: 0;}
+        .overlayRecipe2 {grid-column: 1;margin: 0.5rem;padding: 0;}
+        .overlayNotesHeader {grid-column: 1;text-align: center;margin: 0.5rem;padding: 0;}
+        .overlayNotes {grid-column: 1;margin: 0.5rem;padding: 0;}
+
+        .exitButton {width: 3rem;height: 3rem;grid-column: 2;grid-row: 1;z-index: 9200;position: relative;left: calc(100% - 3rem);padding: 0;margin: 0;display: flex;align-items: center;justify-content: center;}
+      }
+
+      @media (orientation: landscape) and (max-height: 500px) {
+        .sortOverlay {padding: 0.5rem;align-items: baseline;overflow-y: scroll;}
+        .cardContainer {grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));gap: 1rem;margin: 0.5rem;}
+      }
     </style>
   </head>
-  <body onload="init_menubar();init_header();check_window_mode();load_moviebase();">
-    <div id="menubar"></div><div id="header"></div>
-    <div id="main">
-      <div id="output"></div>
+  <body onload="loadMovieBase();">
+    <button id="sidebarToggle" class="sidebarToggle" onclick="toggleSidebar()" aria-label="Menü öffnen oder schließen" aria-controls="sidebar" aria-expanded="false">☰</button>
+    <div id="sidebar" class="sidebar">
+      <a href="../homepage/index.html" id="homepage" class="sidebarButton"><svg width="2rem" height="2rem" viewBox="0 0 2440 2440" fill="currentColor"><path d="M 0 1240 L 160 1240 L 680 1760 L 680 800 L 860 800 L 1070 1190 L 1280 800 L 1640 800 A 230 230 0 0 1 1833 1153 A 240 240 0 0 1 1680 1560 L 1180 1560 L 1276 1380 L 1680 1380 A 60 60 0 0 0 1640 1260 L 1344 1260 L 1440 1080 L 1640 1080 A 50 50 0 0 0 1640 980 L 1363 980 L 1160 1360 L 980 1360 L 860 1136 L 860 1660 L 770 1840 L 1200 2280 L 1200 2440 L 0 1240 M 0 1200 L 1200 0 L 1200 160 L 160 1200 L 0 1200 M 1240 0 L 2440 1200 L 2280 1200 L 1240 160 L 1240 0 M 1240 2280 L 2280 1240 L 2440 1240 L 1240 2440 L 1240 2280 Z"></path></svg>Home</a>
+      <a href="index.html" id="cookingcorner" class="sidebarButtonActive"><svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 125.00,323.00 C 114.11,322.76 103.36,319.70 93.00,316.66 68.55,309.51 42.21,297.76 25.30,278.00 -7.71,239.44 -8.62,172.74 26.44,135.17 53.04,106.66 93.88,103.57 130.00,110.17 130.00,110.17 155.00,116.63 155.00,116.63 157.17,117.21 163.12,119.19 164.96,118.89 168.62,118.28 170.98,112.89 172.86,110.00 176.63,104.22 182.48,97.87 188.00,93.76 200.76,84.26 218.18,77.23 234.00,75.06 234.00,75.06 242.00,75.06 242.00,75.06 242.00,75.06 254.00,74.00 254.00,74.00 254.00,74.00 263.00,74.83 263.00,74.83 263.00,74.83 272.00,75.43 272.00,75.43 302.65,79.84 330.65,96.26 344.11,125.00 353.53,145.11 354.25,161.44 354.00,183.00 353.93,188.86 353.05,198.02 350.00,203.00 350.00,177.26 351.17,156.86 338.51,133.00 334.76,125.92 326.94,114.61 320.96,109.46 292.88,85.29 245.51,83.29 213.00,99.11 200.17,105.35 191.93,113.39 185.32,126.00 182.73,130.93 182.21,133.63 181.27,139.00 180.92,140.98 180.85,143.46 178.69,144.36 176.48,145.28 173.11,143.79 171.00,143.05 171.00,143.05 154.00,137.88 154.00,137.88 127.97,131.01 122.00,129.96 95.00,130.00 86.82,130.01 76.64,131.48 69.00,134.46 48.00,142.67 32.26,162.33 26.90,184.00 24.58,193.37 24.89,201.47 25.00,211.00 25.16,224.29 30.09,240.81 37.23,252.00 52.89,276.54 84.43,290.49 112.00,296.58 112.00,296.58 149.00,303.00 149.00,303.00 149.00,303.00 149.00,319.00 149.00,319.00 149.00,319.00 148.00,335.00 148.00,335.00 148.00,335.00 148.00,360.00 148.00,360.00 148.00,360.00 147.00,375.00 147.00,375.00 147.00,375.00 147.00,391.00 147.00,391.00 172.41,380.90 209.20,375.60 236.00,382.04 267.95,389.72 296.14,407.94 327.00,418.66 338.94,422.80 355.38,427.14 368.00,427.00 377.88,426.88 379.98,425.81 380.00,416.00 380.00,416.00 380.00,393.00 380.00,393.00 380.00,393.00 381.00,379.00 381.00,379.00 381.00,379.00 381.00,350.00 381.00,350.00 381.00,344.59 380.22,332.49 382.00,328.00 382.00,328.00 385.17,361.00 385.17,361.00 385.17,361.00 386.91,373.00 386.91,373.00 386.91,373.00 388.17,398.00 388.17,398.00 388.17,398.00 390.00,420.00 390.00,420.00 390.00,420.00 390.00,427.00 390.00,427.00 389.84,435.31 384.29,435.41 377.00,436.56 364.71,438.50 349.19,438.24 337.00,435.72 317.05,431.59 297.83,423.30 279.00,415.73 279.00,415.73 265.00,410.69 265.00,410.69 252.01,405.53 226.72,397.21 213.00,398.18 199.93,399.11 186.80,401.60 174.00,404.42 174.00,404.42 161.00,407.79 161.00,407.79 149.15,409.48 136.95,409.00 125.00,409.00 125.00,409.00 125.00,323.00 125.00,323.00 Z M 368.00,178.00 C 373.18,170.76 379.85,165.96 387.00,160.86 406.26,147.13 430.01,141.55 453.00,148.44 464.82,151.98 474.43,159.43 483.00,168.00 483.00,168.00 492.68,178.00 492.68,178.00 504.26,191.85 511.66,210.91 511.66,229.00 511.66,260.61 492.47,283.87 466.00,299.00 420.39,325.08 366.36,314.92 319.00,299.74 319.00,299.74 299.00,293.59 299.00,293.59 284.23,288.28 262.33,281.86 247.00,278.81 247.00,278.81 219.00,275.34 219.00,275.34 219.00,275.34 202.00,277.16 202.00,277.16 196.07,277.80 181.69,281.77 178.00,281.00 193.65,272.09 206.39,268.89 224.00,266.72 228.22,266.20 236.14,264.87 240.00,265.09 254.14,265.89 268.13,268.29 282.00,270.91 282.00,270.91 305.00,275.33 305.00,275.33 305.00,275.33 353.00,286.58 353.00,286.58 353.00,286.58 374.00,289.17 374.00,289.17 381.23,289.93 381.02,290.99 390.00,291.00 390.00,291.00 402.00,291.00 402.00,291.00 409.63,290.99 409.03,290.56 416.00,289.44 416.00,289.44 431.00,286.84 431.00,286.84 451.85,281.13 478.13,265.09 485.91,244.00 487.57,239.49 489.66,230.76 489.66,226.00 489.67,205.92 474.31,182.01 459.00,170.01 449.39,162.49 435.48,156.30 423.00,157.18 409.39,158.15 398.10,162.05 386.00,168.26 386.00,168.26 368.00,178.00 368.00,178.00 Z M 175.00,282.00 C 175.00,282.00 176.00,282.00 176.00,282.00 176.00,282.00 175.00,283.00 175.00,283.00 175.00,283.00 175.00,282.00 175.00,282.00 Z"></path></svg>CookingCorner</a>
+      <div class="sidebarSpacer"></div>
     </div>
+    <div id="main" class="main"><div id="output" class="output"></div></div>
   </body>
 </html>
-
 <script>
-  function init_menubar() {const menubar = document.getElementById('menubar');const menubar_div = document.createElement('div');menubar_div.id = 'menubar_div';const menubar_logo = document.createElement('div');menubar_logo.id = 'menubar_logo';menubar_logo.style = 'display: flex;';menubar_logo.onclick = () => {toggle_menubar(menubar_logo);};const menubar_logo_img = document.createElement('img');menubar_logo_img.src = '../homepage/assets/mb_icon0.svg';menubar_logo.appendChild(menubar_logo_img);menubar_div.appendChild(menubar_logo);const menubar_items = document.createElement('div');menubar_items.id = 'menubar_items';menubar_items.style = 'display: none;';const menubar_close = document.createElement('a');menubar_close.id = 'menubar_close';menubar_close.onclick = () => {toggle_menubar(menubar_close);};const menubar_close_img = document.createElement('img');menubar_close_img.src = '../homepage/assets/icon_close_00.png';menubar_close.appendChild(menubar_close_img);menubar_items.appendChild(menubar_close);const menubar_home = document.createElement('a');menubar_home.id = 'menubar_home';menubar_home.href = '../homepage/index.html';const menubar_home_img = document.createElement('img');menubar_home_img.src = '../homepage/assets/mb_icon0.svg';menubar_home.appendChild(menubar_home_img);menubar_items.appendChild(menubar_home);const menubar_tools = document.createElement('a');menubar_tools.id = 'menubar_tools';menubar_tools.href = '../homepage/index.html';const menubar_tools_img = document.createElement('img');menubar_tools_img.src = '../homepage/assets/icon_tools_00.png';menubar_tools.appendChild(menubar_tools_img);menubar_items.appendChild(menubar_tools);const menubar_games = document.createElement('a');menubar_games.id = 'menubar_games';menubar_games.href = '../homepage/index.html';const menubar_games_img = document.createElement('img');menubar_games_img.src = '../homepage/assets/icon_controller_00.png';menubar_games.appendChild(menubar_games_img);menubar_items.appendChild(menubar_games);const menubar_cooking = document.createElement('a');menubar_cooking.id = 'menubar_cooking';menubar_cooking.href = '../homepage/index.html';const menubar_cooking_img = document.createElement('img');menubar_cooking_img.src = '../cookingcorner/icons/icon0.png';menubar_cooking.appendChild(menubar_cooking_img);menubar_items.appendChild(menubar_cooking);menubar_div.appendChild(menubar_items);menubar.appendChild(menubar_div);document.addEventListener('click', (event) => {const menubar = document.getElementById('menubar');const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');if (!menubar.contains(event.target)) {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';}});}
-  function toggle_menubar(obj) {const menubar_logo = document.getElementById('menubar_logo');const menubar_items = document.getElementById('menubar_items');let visible = '';if (menubar_logo.style.display === 'flex' && obj.id == menubar_logo.id) {menubar_logo.style.display = 'none';menubar_items.style.display = 'flex';} else {menubar_logo.style.display = 'flex';menubar_items.style.display = 'none';}}
-  function init_header() {const header = document.getElementById('header');const header_div = document.createElement('div');header_div.id = 'header_div';header.appendChild(header_div);}
-  let windowMode = "";function check_window_mode() {if (window.innerWidth >= window.innerHeight) {windowMode = "landscape";} else {windowMode = "portrait";}}
-  
-  let current_data = [];
-  let current_group = 'Name';
-  let current_sort_direction = 'asc';
+  const sidebar = document.getElementById('sidebar');
 
-  async function load_moviebase() {
-    try {const response = await fetch("rezepte.json");if (!response.ok) throw new Error("rezepte.json konnte nicht geladen werden.");current_data = await response.json();load_navigation();load_table_data(current_data);}
-    catch(err) {document.getElementById("output").innerHTML = "<h3>Fehler</h3><p>" + err.message + "</p>";console.error(err);}
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const button = document.getElementById("sidebarToggle");
+    const cardContainers = document.querySelectorAll(".cardContainer");
+    const isOpen = sidebar.classList.toggle("open");
+    cardContainers.forEach(cardContainer => {cardContainer.classList.toggle("open", isOpen);});
+    button.setAttribute("aria-expanded", isOpen);
+    button.setAttribute("aria-label", isOpen ? "Menü Schließen" : "Menü Öffnen");
   }
 
-  function load_navigation() {
-    const navigation_container = document.createElement('nav');
-    navigation_container.id = 'navigation_container';
+  const main = document.getElementById('main');
+  let currentData = [];let currentGroup = 'Name';let currentSortDirection = 'asc';
 
-    const sort_button = document.createElement('button');
-    sort_button.id = 'sort_button';
-    const sort_button_text = document.createElement('span');
-    sort_button_text.className = 'sort_button_text';
-    const sort_arrow = document.createElement('span');
-    sort_arrow.className = 'sort_arrow';
-    sort_button.appendChild(sort_button_text);
-    sort_button.appendChild(sort_arrow);
+  async function loadMovieBase() {
+    try {
+      const response = await fetch('rezepte.json');
+      if (!response.ok) throw new Error('movies.json konnte nicht geladen werden.');
+      currentData = await response.json();
+      loadNavigation();
+      loadTableData(currentData);
+    }
+    catch(err) {document.getElementById('main').innerHTML = '<h3>Fehler</h3><p>' + err.message + '</p>';console.error(err);}
+  }
 
-    const random_button = document.createElement('button');
-    random_button.id = 'random_button';
-    random_button.textContent = 'Zufall';
+  function loadNavigation() {
+    const sortHeader = document.createElement('div');
+    sortHeader.className = 'sortHeader';
+    sortHeader.innerHTML = 'Sortieren Nach:';
+    sidebar.appendChild(sortHeader);
 
-    const sort_overlay = document.createElement('div');
-    sort_overlay.id = 'sort_overlay';
-    const sort_overlay_content = document.createElement('div');
-    sort_overlay_content.id = 'sort_overlay_content';
-    const sort_overlay_title = document.createElement('div');
-    sort_overlay_title.id = 'sort_overlay_title';
-    sort_overlay_title.textContent = 'Sortieren Nach';
-    sort_overlay_content.appendChild(sort_overlay_title);
-    sort_overlay.appendChild(sort_overlay_content);
+    const sortButton = document.createElement('div');
+    sortButton.id = 'sortButton';
+    sortButton.className = 'sortButton sidebarButton';
+    sortButton.onclick = () => {sortOverlay.style.display = 'flex';};
+    const sortButtonText = document.createElement('div');
+    sortButtonText.id = 'sortButtonText';
+    sortButtonText.className = 'sortButtonText';
+    const sortButtonArrow = document.createElement('div');
+    sortButtonArrow.className = 'sortButtonArrow';
+    sortButtonArrow.innerHTML = '<svg width="2rem" height="2rem" viewBox="0 -1000 960 960" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>';
+    sortButtonArrow.onclick = () => {sortOverlayDirection(sortButtonText.textContent);}
+    sortButton.appendChild(sortButtonArrow);
+    sortButton.appendChild(sortButtonText);
+    sidebar.appendChild(sortButton);
 
-    sort_button.onclick = () => {sort_overlay.style.display = 'flex';};
-    const sort_options = ['Name','Nummer','Food','Suppen','Salate','Finger Food','Süßspeisen','Kekse & Gebäck','Kuchen & Torten','Sonstiges'];
-    sort_options.forEach(z => {
-      const option_button = document.createElement('button');
-      option_button.className = 'sort_option';
-      option_button.textContent = z;
-      option_button.onclick = () => {sort_group(z);sort_overlay.style.display = 'none';};
-      sort_overlay_content.appendChild(option_button);
+    const sortOverlay = document.createElement('div');
+    sortOverlay.id = 'sortOverlay';
+    sortOverlay.className = 'sortOverlay';
+    const sortOverlayContent = document.createElement('div');
+    sortOverlayContent.id = 'sortOverlayContent';
+    const sortOverlayTitle = document.createElement('div');
+    sortOverlayTitle.id = 'sortOverlayTitle';
+    sortOverlayTitle.className = 'sortOverlayTitle';
+    sortOverlayTitle.textContent = 'Sortieren Nach:';
+    sortOverlayContent.appendChild(sortOverlayTitle);
+    sortOverlayContent.className = 'sortOverlayContent';
+    sortOverlay.appendChild(sortOverlayContent);
+    const sortOverlayOptions = ['Name','Nummer','Food','Suppen','Salate','Finger Food','Süßspeisen','Kekse & Gebäck','Kuchen & Torten','Sonstiges'];
+    sortOverlayOptions.forEach(z => {
+      const sortOverlayOptionButton = document.createElement('div');
+      sortOverlayOptionButton.className = 'sortOverlayOptionButton sidebarButton';
+      sortOverlayOptionButton.textContent = z;
+      sortOverlayOptionButton.onclick = () => {sortGroup(z);sortOverlay.style.display = 'none';};
+      sortOverlayContent.appendChild(sortOverlayOptionButton);
     });
+    sortOverlay.onclick = (event) => {if (event.target === sortOverlay) {sortOverlay.style.display = 'none';}};
+    document.body.appendChild(sortOverlay);
 
-    sort_overlay.onclick = (event) => {if (event.target === sort_overlay) {sort_overlay.style.display = 'none';}};
-
-    random_button.onclick = () => {
-      if (current_data.length === 0) return;
-      const random_index = Math.floor(Math.random() * current_data.length);
-      const random_movie = current_data[random_index];
-      load_table_data([random_movie], 'Zufall');
-      const blurContainer = document.getElementById('output');
-      output.focus();
+    const randomButton = document.createElement('div');
+    randomButton.id = 'randomButton';
+    randomButton.className = 'randomButton sidebarButton';
+    randomButton.innerHTML = '<svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 253.09,31.55 C 260.46,30.61 271.60,38.55 278.00,42.40 278.00,42.40 333.00,74.37 333.00,74.37 333.00,74.37 422.00,125.92 422.00,125.92 422.00,125.92 441.00,136.78 441.00,136.78 444.15,138.73 448.03,140.65 449.83,144.04 451.21,146.65 451.00,150.11 451.00,153.00 451.00,153.00 451.00,359.00 451.00,359.00 451.00,361.89 451.21,365.35 449.83,367.96 447.76,371.87 442.72,374.07 439.00,376.14 439.00,376.14 425.00,384.52 425.00,384.52 425.00,384.52 343.00,431.94 343.00,431.94 343.00,431.94 280.00,468.34 280.00,468.34 274.39,471.63 260.13,481.49 254.04,480.63 250.48,480.13 243.43,475.48 240.00,473.60 240.00,473.60 207.00,454.42 207.00,454.42 207.00,454.42 102.00,393.71 102.00,393.71 102.00,393.71 72.83,376.68 72.83,376.68 69.28,374.53 64.10,372.36 61.74,368.90 59.73,365.95 60.01,362.40 60.00,359.00 60.00,359.00 60.00,153.00 60.00,153.00 60.01,149.60 59.73,146.05 61.74,143.10 64.16,139.55 70.02,137.07 73.72,134.76 73.72,134.76 104.00,117.15 104.00,117.15 104.00,117.15 165.00,81.70 165.00,81.70 165.00,81.70 199.00,62.35 199.00,62.35 199.00,62.35 231.00,43.60 231.00,43.60 235.72,40.77 248.50,33.15 253.09,31.55 Z M 256.00,53.00 C 256.00,53.00 180.00,96.42 180.00,96.42 180.00,96.42 91.00,148.00 91.00,148.00 91.00,148.00 91.00,150.00 91.00,150.00 91.00,150.00 102.00,156.30 102.00,156.30 102.00,156.30 132.01,173.53 132.01,173.53 132.01,173.53 208.00,217.20 208.00,217.20 208.00,217.20 241.01,236.37 241.01,236.37 244.74,238.49 251.83,243.34 256.00,243.16 259.72,242.99 268.37,237.26 271.91,235.15 271.91,235.15 304.00,216.60 304.00,216.60 304.00,216.60 378.99,173.53 378.99,173.53 378.99,173.53 420.00,150.00 420.00,150.00 420.00,150.00 420.00,148.00 420.00,148.00 420.00,148.00 366.00,116.81 366.00,116.81 366.00,116.81 300.00,78.17 300.00,78.17 300.00,78.17 256.00,53.00 256.00,53.00 Z M 283.00,158.00 C 283.00,158.00 269.00,165.65 269.00,165.65 266.97,166.67 265.37,167.62 263.00,167.29 257.03,166.48 246.80,157.66 246.11,151.00 245.36,143.84 248.56,138.40 247.98,135.00 247.36,131.40 244.18,128.12 241.00,126.57 233.80,123.08 215.44,124.70 212.92,134.02 211.71,138.95 218.54,141.53 212.92,146.04 210.71,147.74 199.35,154.33 197.00,154.30 191.26,154.22 184.47,145.40 184.06,140.00 183.23,129.18 192.30,122.25 200.58,117.10 217.89,106.31 252.40,102.50 268.98,116.34 275.24,121.56 277.05,127.18 275.10,135.00 274.38,137.88 272.19,142.19 272.61,144.83 273.31,149.18 280.12,154.51 283.00,158.00 Z M 293.00,164.46 C 298.85,164.16 307.94,165.50 311.42,170.85 316.45,178.59 303.95,184.20 298.00,184.87 292.88,185.45 285.12,183.82 281.15,180.49 275.13,175.46 278.81,168.78 285.00,166.14 287.49,165.09 290.34,164.83 293.00,164.46 Z M 246.00,453.00 C 246.00,453.00 246.00,270.00 246.00,270.00 246.00,270.00 244.98,262.22 244.98,262.22 244.98,262.22 233.00,254.37 233.00,254.37 233.00,254.37 209.00,240.28 209.00,240.28 209.00,240.28 190.00,229.58 190.00,229.58 190.00,229.58 123.00,190.83 123.00,190.83 123.00,190.83 80.00,167.00 80.00,167.00 80.00,167.00 80.00,350.00 80.00,350.00 80.00,350.00 80.98,357.32 80.98,357.32 80.98,357.32 93.00,365.28 93.00,365.28 93.00,365.28 118.00,379.61 118.00,379.61 118.00,379.61 150.00,398.49 150.00,398.49 150.00,398.49 199.00,426.52 199.00,426.52 199.00,426.52 227.00,442.80 227.00,442.80 227.00,442.80 246.00,453.00 246.00,453.00 Z M 431.00,167.00 C 431.00,167.00 388.00,190.83 388.00,190.83 388.00,190.83 302.00,240.28 302.00,240.28 302.00,240.28 278.00,254.39 278.00,254.39 278.00,254.39 266.02,262.22 266.02,262.22 266.02,262.22 265.00,270.00 265.00,270.00 265.00,270.00 265.00,453.00 265.00,453.00 265.00,453.00 307.00,429.56 307.00,429.56 307.00,429.56 393.00,379.70 393.00,379.70 393.00,379.70 418.00,365.28 418.00,365.28 418.00,365.28 430.01,357.47 430.01,357.47 430.01,357.47 431.00,350.00 431.00,350.00 431.00,350.00 431.00,167.00 431.00,167.00 Z M 149.00,274.00 C 144.98,272.06 130.99,264.95 129.02,261.68 125.20,255.33 131.80,242.71 140.00,241.23 150.61,239.30 159.64,244.29 168.00,250.04 184.02,261.06 199.39,281.43 197.54,302.00 196.82,309.98 195.30,315.79 187.00,318.87 182.28,320.62 178.58,319.61 174.21,323.47 170.25,326.96 169.89,332.13 169.00,337.00 164.66,335.94 153.28,330.18 150.76,326.53 149.01,323.83 150.30,320.93 150.76,318.00 151.52,312.08 150.27,307.14 155.34,302.47 161.41,296.87 176.23,299.76 174.87,286.00 174.23,279.49 168.30,271.27 163.00,267.70 155.57,262.68 150.23,265.25 149.00,274.00 Z M 314.00,301.00 C 314.00,277.56 328.62,258.54 348.00,246.60 355.24,242.14 371.73,237.23 378.70,244.28 382.58,248.18 382.99,253.85 383.00,259.00 383.00,259.00 383.00,265.00 383.00,265.00 382.70,282.71 367.09,296.22 359.59,311.00 357.50,315.13 356.72,316.36 356.00,321.00 355.57,323.80 355.35,329.11 353.43,331.15 353.43,331.15 337.00,341.00 337.00,341.00 333.26,327.84 339.33,311.89 346.68,301.00 350.88,294.78 356.03,289.10 358.79,282.00 361.39,275.32 360.37,262.85 350.00,266.74 344.55,268.78 338.54,276.69 336.35,282.00 336.35,282.00 333.83,289.62 333.83,289.62 331.83,292.73 317.93,300.05 314.00,301.00 Z M 151.23,342.02 C 161.51,338.30 169.09,349.36 171.63,358.00 172.78,361.89 173.31,368.30 169.57,371.05 165.75,373.87 159.36,371.30 156.26,368.47 150.05,362.81 143.88,348.79 151.23,342.02 Z M 346.29,344.93 C 352.53,342.87 358.68,345.49 358.42,353.00 358.16,360.25 352.30,370.50 346.00,374.07 337.54,378.85 333.49,371.82 334.09,364.00 334.69,356.27 340.02,349.14 346.29,344.93 Z"/></svg>Zufall';
+    randomButton.onclick = () => {
+      if (currentData.length === 0) return;
+      const randomIndex = Math.floor(Math.random() * currentData.length);
+      const randomMovie = currentData[randomIndex];
+      loadTableData([randomMovie], 'Zufall');
+      randomButton.blur();
     };
+    sidebar.appendChild(randomButton);
 
-    navigation_container.appendChild(sort_button);
-    navigation_container.appendChild(random_button);
+    const searchContainer = document.createElement('div');
+    searchContainer.id = 'searchContainer';
+    searchContainer.className = 'searchContainer sidebarButton';
+    const searchContainerInput = document.createElement('input');
+    searchContainerInput.type = 'search';
+    searchContainerInput.id = 'searchContainerInput';
+    searchContainerInput.className = 'searchContainerInput';
+    searchContainerInput.placeholder = 'Titel-Suche...';
+    searchContainerInput.addEventListener('input', () => {searchTableData(searchContainerInput.value);});
+    searchContainer.appendChild(searchContainerInput);
+    sidebar.appendChild(searchContainer);
 
-    const output = document.querySelector('#output');
-    const header_div = document.querySelector('#header_div');
-    header_div.appendChild(navigation_container, header_div);
-    document.body.appendChild(sort_overlay);
+    const sidebarSpacer = document.createElement('div');
+    sidebarSpacer.className = 'sidebarSpacer';
+    sidebar.appendChild(sidebarSpacer);
 
-    set_group_active();
-
-    const search_container = document.createElement('div');
-    search_container.id = 'search_container';
-    if (windowMode === 'landscape') {search_container.className = 'searchContainerLandscape';output.className = 'outputLandscape';}
-    else {search_container.className = 'searchContainerPortrait';output.className = 'outputPortrait';}
-    const search_input = document.createElement('input');
-    search_input.type = 'search';
-    search_input.id = 'search_input';
-    search_input.placeholder = 'Titel-Suche...';
-    search_input.addEventListener('input', () => {search_in_table_data(search_input.value);});
-    search_container.appendChild(search_input);
-    header_div.appendChild(search_container, header_div);
+    setGroupActive();
   }
   
-  function sort_group(z) {
-    if (current_group === z) {current_sort_direction = current_sort_direction === 'asc' ? 'desc' : 'asc';}
-    else {current_group = z;current_sort_direction = 'asc';}
-    load_table_data(current_data, z);
-    set_group_active();
+  function sortGroup(z) {
+    const sameGroup = currentGroup === z;
+    if (sameGroup) {currentData.reverse();currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';}
+    else {currentGroup = z;currentSortDirection = 'asc';currentData.sort((a, b) => {
+      if (z === 'Nummer') {const numA = parseInt(a[Object.keys(a)[0]]) || 0;const numB = parseInt(b[Object.keys(b)[0]]) || 0;return numA - numB;}
+      else {const nameA = String(a[Object.keys(a)[1]] ?? '');const nameB = String(b[Object.keys(b)[1]] ?? '');return nameA.localeCompare(nameB, 'de');}
+    });}
+    loadTableData(currentData, z);setGroupActive();
   }
 
-  function load_table_data(data, group_extra = null) {
-    const container = document.getElementById('output');
-    container.innerHTML = '';
+  function sortOverlayDirection(obj) {event.stopPropagation();currentData.reverse();currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';loadTableData(currentData, obj);setGroupActive();}
+
+  function loadTableData(data, groupName = null) {
+    main.innerHTML = '';
     const groups = {'Nummer': [],'Name': [],'Zufall': [],'Food': [],'Suppen': [],'Salate': [],'Finger Food': [],'Süßspeisen': [],'Kekse & Gebäck': [],'Kuchen & Torten': [],'Sonstiges': []};
-    
     for (const entry of data) {
+      const name = entry.title ?? '';
+      const letter1 = name.charAt(0).toUpperCase();
       groups['Name'].push(entry);
       groups['Zufall'].push(entry);
       groups['Nummer'].push(entry);
       const category = entry.category ?? '';
       if (groups[category]) {groups[category].push(entry);}
     }
-    for (const group_single in groups) {
-      const groupDiv = document.createElement('div');
-      groupDiv.id = 'group_single_' + group_single;
-      if (group_single === 'Zufall' && windowMode === 'landscape') {groupDiv.className = 'group_button randomLandscape';}
-      else if (group_single === 'Zufall' && windowMode === 'portrait') {groupDiv.className = 'group_button randomPortrait';}
-      else {groupDiv.className = 'group_button';}
-      if (group_single === (group_extra || 'Name')) {groupDiv.classList.add('aktiv');}
-      let group_data = groups[group_single];
-      
-      if (group_single === 'Nummer') {
-        group_data.sort((a, b) => {
-          const numA = parseInt(a.id, 10) || 0;
-          const numB = parseInt(b.id, 10) || 0;
-          return current_sort_direction === 'asc' ? numA - numB : numB - numA;
-        });
-      }
-      else if (group_single !== 'Zufall') {
-        group_data.sort((a, b) => {
-          const nameA = a.title ?? '';
-          const nameB = b.title ?? '';
-          return current_sort_direction === 'asc' ? nameA.localeCompare(nameB, 'de') : nameB.localeCompare(nameA, 'de');
-        });
-      }
-      if (group_data.length > 0) {const table = generate_table_data(group_data);groupDiv.appendChild(table);}
-      else {groupDiv.innerHTML = '<p>Keine Einträge gefunden...</p>';}
-      container.appendChild(groupDiv);
+    for (const groupContainer in groups) {
+      const groupLayout = document.createElement('div');
+      groupLayout.id = 'groupContainer' + groupContainer;
+      groupLayout.className = 'groupLayout';
+      if (groupContainer === (groupName || 'Name')) {groupLayout.classList.add('show');}
+      let data = groups[groupContainer];
+      if (groupContainer === 'Nummer') {data.sort((a, b) => {const numA = parseInt(a.id) || 0;const numB = parseInt(b.id) || 0;return currentSortDirection === 'asc' ? numA - numB : numB - numA;});}
+      else if (groupContainer !== 'Zufall') {data.sort((a, b) => {const nameA = a.title ?? '';const nameB = b.title ?? '';return currentSortDirection === 'asc' ? nameA.localeCompare(nameB, 'de') : nameB.localeCompare(nameA, 'de');});}
+      if (data.length > 0) {const table = generateTableData(data);groupLayout.appendChild(table);}
+      else {groupLayout.innerHTML = '<p>Keine Einträge gefunden...</p>';}
+      main.appendChild(groupLayout);
     }
   }
 
-  function set_group_active() {
-    const sort_button_text = document.querySelector('.sort_button_text');
-    const sort_button_arrow = document.querySelector('.sort_arrow');
-    if (!sort_button_text || !sort_button_arrow) return;
-    sort_button_text.textContent = 'Sortieren Nach:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + current_group;
-    if (current_group === 'Zufall') {sort_button_arrow.textContent = '';}
-    else {sort_button_arrow.textContent = current_sort_direction === 'asc' ? '▼' : '▲';}
+  function setGroupActive() {
+    const sortButtonArrow = document.querySelector('.sortButtonArrow');
+    const sortButtonText = document.getElementById('sortButtonText');
+    const arrowDown = '<svg width="2rem" height="2rem" viewBox="0 -1000 960 960" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>';
+    const arrowUp = '<svg width="2rem" height="2rem" viewBox="0 -960 960 960" fill="currentColor" style="transform: rotate(180deg);"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>';
+    if (!sortButtonText || !sortButtonArrow) return;sortButtonText.textContent = currentGroup;
+    if (currentGroup === 'Zufall') {sortButtonArrow.innerHTML = '';}
+    else {sortButtonArrow.innerHTML = currentSortDirection === 'asc' ? arrowDown : arrowUp;}
   }
 
-  function generate_table_data(data) {
-    const cardContainer = document.createElement("div");
-    cardContainer.className = "cardContainer";
+  function generateTableData(data) {
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'cardContainer';
     data.forEach(row => {
-      const card = document.createElement("div");
-      card.className = "movieCard";
-      card.dataset.title = (row.title ?? "").toLowerCase();
+      const card = document.createElement('div');
+      card.className = 'movieCard';
+      card.dataset.title = (row.title ?? '').toLowerCase();
 
-      const moviePoster = document.createElement("div");
-      moviePoster.className = "moviePoster";
+      const moviePoster = document.createElement('div');
+      moviePoster.className = 'moviePoster';
       moviePoster.innerHTML = '<img src="' + row.poster + '" loading="lazy">';
+
+      const moviePosterOverlay = document.createElement('div');
+      moviePosterOverlay.className = 'moviePosterOverlay';
       
-      const movieTitle = document.createElement("div");
-      movieTitle.className = "movieTitle";
-      movieTitle.innerHTML = row.title ?? "";
+      const movieNumber = document.createElement('div');
+      movieNumber.className = 'movieNumber';
+      movieNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + row.id ?? "";
       
-      const overlay = document.createElement("div");
-      overlay.className = "movieOverlay";
-      overlay.onclick = () => createOverlay(row);
+      const movieYear = document.createElement('div');
+      movieYear.className = 'movieYear';
+      movieYear.innerHTML = '<svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 125.00,323.00 C 114.11,322.76 103.36,319.70 93.00,316.66 68.55,309.51 42.21,297.76 25.30,278.00 -7.71,239.44 -8.62,172.74 26.44,135.17 53.04,106.66 93.88,103.57 130.00,110.17 130.00,110.17 155.00,116.63 155.00,116.63 157.17,117.21 163.12,119.19 164.96,118.89 168.62,118.28 170.98,112.89 172.86,110.00 176.63,104.22 182.48,97.87 188.00,93.76 200.76,84.26 218.18,77.23 234.00,75.06 234.00,75.06 242.00,75.06 242.00,75.06 242.00,75.06 254.00,74.00 254.00,74.00 254.00,74.00 263.00,74.83 263.00,74.83 263.00,74.83 272.00,75.43 272.00,75.43 302.65,79.84 330.65,96.26 344.11,125.00 353.53,145.11 354.25,161.44 354.00,183.00 353.93,188.86 353.05,198.02 350.00,203.00 350.00,177.26 351.17,156.86 338.51,133.00 334.76,125.92 326.94,114.61 320.96,109.46 292.88,85.29 245.51,83.29 213.00,99.11 200.17,105.35 191.93,113.39 185.32,126.00 182.73,130.93 182.21,133.63 181.27,139.00 180.92,140.98 180.85,143.46 178.69,144.36 176.48,145.28 173.11,143.79 171.00,143.05 171.00,143.05 154.00,137.88 154.00,137.88 127.97,131.01 122.00,129.96 95.00,130.00 86.82,130.01 76.64,131.48 69.00,134.46 48.00,142.67 32.26,162.33 26.90,184.00 24.58,193.37 24.89,201.47 25.00,211.00 25.16,224.29 30.09,240.81 37.23,252.00 52.89,276.54 84.43,290.49 112.00,296.58 112.00,296.58 149.00,303.00 149.00,303.00 149.00,303.00 149.00,319.00 149.00,319.00 149.00,319.00 148.00,335.00 148.00,335.00 148.00,335.00 148.00,360.00 148.00,360.00 148.00,360.00 147.00,375.00 147.00,375.00 147.00,375.00 147.00,391.00 147.00,391.00 172.41,380.90 209.20,375.60 236.00,382.04 267.95,389.72 296.14,407.94 327.00,418.66 338.94,422.80 355.38,427.14 368.00,427.00 377.88,426.88 379.98,425.81 380.00,416.00 380.00,416.00 380.00,393.00 380.00,393.00 380.00,393.00 381.00,379.00 381.00,379.00 381.00,379.00 381.00,350.00 381.00,350.00 381.00,344.59 380.22,332.49 382.00,328.00 382.00,328.00 385.17,361.00 385.17,361.00 385.17,361.00 386.91,373.00 386.91,373.00 386.91,373.00 388.17,398.00 388.17,398.00 388.17,398.00 390.00,420.00 390.00,420.00 390.00,420.00 390.00,427.00 390.00,427.00 389.84,435.31 384.29,435.41 377.00,436.56 364.71,438.50 349.19,438.24 337.00,435.72 317.05,431.59 297.83,423.30 279.00,415.73 279.00,415.73 265.00,410.69 265.00,410.69 252.01,405.53 226.72,397.21 213.00,398.18 199.93,399.11 186.80,401.60 174.00,404.42 174.00,404.42 161.00,407.79 161.00,407.79 149.15,409.48 136.95,409.00 125.00,409.00 125.00,409.00 125.00,323.00 125.00,323.00 Z M 368.00,178.00 C 373.18,170.76 379.85,165.96 387.00,160.86 406.26,147.13 430.01,141.55 453.00,148.44 464.82,151.98 474.43,159.43 483.00,168.00 483.00,168.00 492.68,178.00 492.68,178.00 504.26,191.85 511.66,210.91 511.66,229.00 511.66,260.61 492.47,283.87 466.00,299.00 420.39,325.08 366.36,314.92 319.00,299.74 319.00,299.74 299.00,293.59 299.00,293.59 284.23,288.28 262.33,281.86 247.00,278.81 247.00,278.81 219.00,275.34 219.00,275.34 219.00,275.34 202.00,277.16 202.00,277.16 196.07,277.80 181.69,281.77 178.00,281.00 193.65,272.09 206.39,268.89 224.00,266.72 228.22,266.20 236.14,264.87 240.00,265.09 254.14,265.89 268.13,268.29 282.00,270.91 282.00,270.91 305.00,275.33 305.00,275.33 305.00,275.33 353.00,286.58 353.00,286.58 353.00,286.58 374.00,289.17 374.00,289.17 381.23,289.93 381.02,290.99 390.00,291.00 390.00,291.00 402.00,291.00 402.00,291.00 409.63,290.99 409.03,290.56 416.00,289.44 416.00,289.44 431.00,286.84 431.00,286.84 451.85,281.13 478.13,265.09 485.91,244.00 487.57,239.49 489.66,230.76 489.66,226.00 489.67,205.92 474.31,182.01 459.00,170.01 449.39,162.49 435.48,156.30 423.00,157.18 409.39,158.15 398.10,162.05 386.00,168.26 386.00,168.26 368.00,178.00 368.00,178.00 Z M 175.00,282.00 C 175.00,282.00 176.00,282.00 176.00,282.00 176.00,282.00 175.00,283.00 175.00,283.00 175.00,283.00 175.00,282.00 175.00,282.00 Z"></path></svg>' + row.category ?? "";
+
+      const movieTitle = document.createElement('div');
+      movieTitle.className = 'movieTitle';
+      movieTitle.innerHTML = row.title;
+      
+      const movieOverlay1 = document.createElement('div');
+      movieOverlay1.className = 'movieOverlay1';
+      movieOverlay1.onclick = () => createOverlay(row);
+
+      const movieOverlay2 = document.createElement('div');
+      movieOverlay2.className = 'movieOverlay2';
+      movieOverlay2.onclick = () => createOverlay(row);
       
       card.appendChild(moviePoster);
+      card.appendChild(moviePosterOverlay);
+      card.appendChild(movieNumber);
+      card.appendChild(movieYear);
       card.appendChild(movieTitle);
-      card.appendChild(overlay);
+      card.appendChild(movieOverlay1);
+      card.appendChild(movieOverlay2);
       
       cardContainer.appendChild(card);
     });
     return cardContainer;
   }
 
-  function search_in_table_data(search_index) {
-    const group_div = document.getElementById("group_single_" + current_group);
-    if (!group_div) return;
-    const cards = group_div.querySelectorAll(".movieCard");
-    const search = search_index.trim().toLowerCase();
+  function searchTableData(searchIndex) {
+    const groupDiv = document.getElementById('groupContainer' + currentGroup);
+    if (!groupDiv) return;
+    const cards = groupDiv.querySelectorAll('.movieCard');
+    const search = searchIndex.trim().toLowerCase();
     cards.forEach(card => {
       const title = card.dataset.title;
-      card.style.display = (search === "" || title.includes(search)) ? "" : "none";
+      card.style.display = (search === '' || title.includes(search)) ? '' : 'none';
     });
   }
 
   function createOverlay(movie) {
-    check_window_mode();
-    const overlayWindow = document.createElement("div");
+    const movieOverlay = document.createElement('div');
+    const movieOverlayContent = document.createElement('div');
     const overlayImage = document.createElement("div");
     const exitButton = document.createElement("div");
 
@@ -309,7 +365,6 @@
     const overlayIngredients1 = document.createElement("div");
     const overlayIngredients2Header = document.createElement("div");
     const overlayIngredients2 = document.createElement("div");
-
     const overlayRecipeContainer = document.createElement("div");
     const overlayRecipeHeader = document.createElement("div");
     const overlayRecipe1Header = document.createElement("div");
@@ -319,133 +374,118 @@
     const overlayNotesHeader = document.createElement("div");
     const overlayNotes = document.createElement("div");
     
-    if (windowMode === "landscape") {
-      overlayWindow.className = "overlayWindowLandscape";
-        overlayImage.className = "overlayImageLandscape";
+    movieOverlay.className = 'movieOverlay';
+    movieOverlay.onclick = (event) => {if (event.target === movieOverlay) {removeOverlay();}};
+      movieOverlayContent.className = 'movieOverlayContent';
+
+        overlayImage.className = "overlayImage";
         overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
-        overlayWindow.appendChild(overlayImage);
+        movieOverlayContent.appendChild(overlayImage);
 
-        overlayIngredientsContainer.className = "overlayIngredientsContainerLandscape";
-          overlayIngredientsHeader.className = "overlayIngredientsHeaderLandscape";
+        overlayIngredientsContainer.className = "overlayIngredientsContainer";
+          overlayIngredientsHeader.className = "overlayIngredientsHeader";
           overlayIngredientsHeader.innerHTML = 'Zutaten';
           overlayIngredientsContainer.appendChild(overlayIngredientsHeader);
-          overlayIngredients1Header.className = "overlayIngredients1HeaderLandscape";
+          overlayIngredients1Header.className = "overlayIngredients1Header";
           overlayIngredients1Header.innerHTML = movie.ingredients_1_header;
           overlayIngredientsContainer.appendChild(overlayIngredients1Header);
-          overlayIngredients1.className = "overlayIngredients1Landscape";
+          overlayIngredients1.className = "overlayIngredients1";
           overlayIngredients1.innerHTML = movie.ingredients_1;
           overlayIngredientsContainer.appendChild(overlayIngredients1);
-          overlayIngredients2Header.className = "overlayIngredients2HeaderLandscape";
+          overlayIngredients2Header.className = "overlayIngredients2Header";
           overlayIngredients2Header.innerHTML = movie.ingredients_2_header;
           overlayIngredientsContainer.appendChild(overlayIngredients2Header);
-          overlayIngredients2.className = "overlayIngredients2Landscape";
+          overlayIngredients2.className = "overlayIngredients2";
           overlayIngredients2.innerHTML = movie.ingredients_2;
           overlayIngredientsContainer.appendChild(overlayIngredients2);
-        overlayWindow.appendChild(overlayIngredientsContainer);
+        movieOverlayContent.appendChild(overlayIngredientsContainer);
 
-        overlayRecipeContainer.className = "overlayRecipeContainerLandscape";
-          overlayRecipeHeader.className = "overlayRecipeHeaderLandscape";
-          overlayRecipeHeader.innerHTML = '&#9;Zubereitung';
-          overlayRecipeContainer.appendChild(overlayRecipeHeader);
-          overlayRecipe1Header.className = "overlayRecipe1HeaderLandscape";
-          overlayRecipe1Header.innerHTML = movie.recipe_1_header;
-          overlayRecipeContainer.appendChild(overlayRecipe1Header);
-          overlayRecipe1.className = "overlayRecipe1Landscape";
-          let recipe_1_line = movie.recipe_1.split('<br>');
-          for (let i = 0; i < recipe_1_line.length; i++) {overlayRecipe1.innerHTML += '<span>'+ recipe_1_line[i] +'<br><br></span>';}
-          overlayRecipeContainer.appendChild(overlayRecipe1);
-          overlayRecipe2Header.className = "overlayRecipe2HeaderLandscape";
-          overlayRecipe2Header.innerHTML = movie.recipe_2_header;
-          overlayRecipeContainer.appendChild(overlayRecipe2Header);
-          overlayRecipe2.className = "overlayRecipe2Landscape";
-          let recipe_2_line = movie.recipe_2.split('<br>');
-          for (let i = 0; i < recipe_2_line.length; i++) {overlayRecipe2.innerHTML += '<span>'+ recipe_2_line[i] +'<br><br></span>';}
-          overlayRecipeContainer.appendChild(overlayRecipe2);
-          overlayNotesHeader.className = "overlayNotesHeaderLandscape";
-          overlayNotesHeader.innerHTML = movie.notes_header;
-          overlayRecipeContainer.appendChild(overlayNotesHeader);
-          overlayNotes.className = "overlayNotesLandscape";
-          overlayNotes.innerHTML = movie.notes;
-          overlayRecipeContainer.appendChild(overlayNotes);
-
-          exitButton.className = "exitButtonLandscape";
-          exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-          exitButton.onclick = () => removeOverlay();
-          overlayRecipeContainer.appendChild(exitButton);
-
-        overlayWindow.appendChild(overlayRecipeContainer);
-
-      document.body.appendChild(overlayWindow);
-    }
-
-    else {
-      overlayWindow.className = "overlayWindowPortrait";
-        overlayImage.className = "overlayImagePortrait";
-        overlayImage.innerHTML = '<img src="' + movie.poster + '" loading="lazy">' + '<div></div>';
-        overlayWindow.appendChild(overlayImage);
-        exitButton.className = "exitButtonPortrait";
-        exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
-        exitButton.onclick = () => removeOverlay();
-        overlayWindow.appendChild(exitButton);
-
-        overlayIngredientsContainer.className = "overlayIngredientsContainerPortrait";
-          overlayIngredientsHeader.className = "overlayIngredientsHeaderPortrait";
-          overlayIngredientsHeader.innerHTML = 'Zutaten';
-          overlayIngredientsContainer.appendChild(overlayIngredientsHeader);
-          overlayIngredients1Header.className = "overlayIngredients1HeaderPortrait";
-          overlayIngredients1Header.innerHTML = movie.ingredients_1_header;
-          overlayIngredientsContainer.appendChild(overlayIngredients1Header);
-          overlayIngredients1.className = "overlayIngredients1Portrait";
-          overlayIngredients1.innerHTML = movie.ingredients_1;
-          overlayIngredientsContainer.appendChild(overlayIngredients1);
-          overlayIngredients2Header.className = "overlayIngredients2HeaderPortrait";
-          overlayIngredients2Header.innerHTML = movie.ingredients_2_header;
-          overlayIngredientsContainer.appendChild(overlayIngredients2Header);
-          overlayIngredients2.className = "overlayIngredients2Portrait";
-          overlayIngredients2.innerHTML = movie.ingredients_2;
-          overlayIngredientsContainer.appendChild(overlayIngredients2);
-        overlayWindow.appendChild(overlayIngredientsContainer);
-
-        overlayRecipeContainer.className = "overlayRecipeContainerPortrait";
-          overlayRecipeHeader.className = "overlayRecipeHeaderPortrait";
+        overlayRecipeContainer.className = "overlayRecipeContainer";
+          overlayRecipeHeader.className = "overlayRecipeHeader";
+          //overlayRecipeHeader.innerHTML = '&#9;Zubereitung';
           overlayRecipeHeader.innerHTML = 'Zubereitung';
           overlayRecipeContainer.appendChild(overlayRecipeHeader);
-          overlayRecipe1Header.className = "overlayRecipe1HeaderPortrait";
+          overlayRecipe1Header.className = "overlayRecipe1Header";
           overlayRecipe1Header.innerHTML = movie.recipe_1_header;
           overlayRecipeContainer.appendChild(overlayRecipe1Header);
-          overlayRecipe1.className = "overlayRecipe1Portrait";
+          overlayRecipe1.className = "overlayRecipe1";
           let recipe_1_line = movie.recipe_1.split('<br>');
           for (let i = 0; i < recipe_1_line.length; i++) {overlayRecipe1.innerHTML += '<span>'+ recipe_1_line[i] +'<br><br></span>';}
           overlayRecipeContainer.appendChild(overlayRecipe1);
-          overlayRecipe2Header.className = "overlayRecipe2HeaderPortrait";
+          overlayRecipe2Header.className = "overlayRecipe2Header";
           overlayRecipe2Header.innerHTML = movie.recipe_2_header;
           overlayRecipeContainer.appendChild(overlayRecipe2Header);
-          overlayRecipe2.className = "overlayRecipe2Portrait";
+          overlayRecipe2.className = "overlayRecipe2";
           let recipe_2_line = movie.recipe_2.split('<br>');
           for (let i = 0; i < recipe_2_line.length; i++) {overlayRecipe2.innerHTML += '<span>'+ recipe_2_line[i] +'<br><br></span>';}
           overlayRecipeContainer.appendChild(overlayRecipe2);
-          overlayNotesHeader.className = "overlayNotesHeaderPortrait";
+          overlayNotesHeader.className = "overlayNotesHeader";
           overlayNotesHeader.innerHTML = movie.notes_header;
           overlayRecipeContainer.appendChild(overlayNotesHeader);
-          overlayNotes.className = "overlayNotesPortrait";
+          overlayNotes.className = "overlayNotes";
           overlayNotes.innerHTML = movie.notes;
           overlayRecipeContainer.appendChild(overlayNotes);
-        overlayWindow.appendChild(overlayRecipeContainer);
 
-      document.body.appendChild(overlayWindow);
-    }
+        movieOverlayContent.appendChild(overlayRecipeContainer);
 
-    document.body.style = "overflow: hidden;";
+        exitButton.className = "exitButton sidebarButton";
+        exitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+        exitButton.onclick = () => removeOverlay();
+        movieOverlayContent.appendChild(exitButton);
+
+      movieOverlay.appendChild(movieOverlayContent);
+      /*
+        overlayFSK.className = 'overlayFSK';
+        overlayFSK.innerHTML = '<img src="icons/' + movie.mpaa + '.png" loading="lazy">';
+        movieOverlayContent.appendChild(overlayFSK);
+        overlayNumber.className = 'overlayNumber sidebarButtonNoClick';
+        overlayNumber.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m240-160 40-160H120l20-80h160l40-160H180l20-80h160l40-160h80l-40 160h160l40-160h80l-40 160h160l-20 80H660l-40 160h160l-20 80H600l-40 160h-80l40-160H360l-40 160h-80Zm140-240h160l40-160H420l-40 160Z"/></svg>' + movie.id;
+        movieOverlayContent.appendChild(overlayNumber);
+        overlayYear.className = 'overlayYear sidebarButtonNoClick';
+        overlayYear.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>' + movie.year;
+        movieOverlayContent.appendChild(overlayYear);
+        overlayTime.className = 'overlayTime sidebarButtonNoClick';
+        overlayTime.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M420-800h120-120Zm0 640h120-120Zm-60 80-54-182q-48-38-77-95t-29-123q0-66 29-123t77-95l54-182h240l54 182q48 38 77 95t29 123q0 66-29 123t-77 95L600-80H360Zm261.5-258.5Q680-397 680-480t-58.5-141.5Q563-680 480-680t-141.5 58.5Q280-563 280-480t58.5 141.5Q397-280 480-280t141.5-58.5ZM404-750q20-5 38.5-8t37.5-3q19 0 37.5 3t38.5 8l-16-50H420l-16 50Zm16 590h120l16-50q-20 5-38.5 7.5T480-200q-19 0-37.5-2.5T404-210l16 50Z"/></svg>' + movie.runtime;
+        movieOverlayContent.appendChild(overlayTime);
+        const spacer1 = document.createElement('div');
+        spacer1.className = 'spacer1';
+        movieOverlayContent.appendChild(spacer1);
+        movieOverlayDownloadImage.className = 'movieOverlayDownloadImage sidebarButton';
+        movieOverlayDownloadImage.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Cover';
+        movieOverlayDownloadImage.onclick = () => downloadImage(movie);
+        movieOverlayContent.appendChild(movieOverlayDownloadImage);
+        movieOverlayDownloadNFO.className = 'movieOverlayDownloadNFO sidebarButton';
+        movieOverlayDownloadNFO.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg> Info-File';
+        movieOverlayDownloadNFO.onclick = () => downloadNFO(movie);
+        movieOverlayContent.appendChild(movieOverlayDownloadNFO);
+        movieOverlayExitButton.className = 'movieOverlayExitButton sidebarButton';
+        movieOverlayExitButton.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>';
+        movieOverlayExitButton.onclick = () => removeOverlay();
+        movieOverlayContent.appendChild(movieOverlayExitButton);
+
+        movieOverlayTitle.className = 'movieOverlayTitle';
+        movieOverlayTitle.innerHTML = movie.title;
+        movieOverlayContent.appendChild(movieOverlayTitle);
+
+        movieOverlayPlot.className = 'movieOverlayPlot';
+        movieOverlayPlot.innerHTML = movie.plot;
+        movieOverlayContent.appendChild(movieOverlayPlot);
+        movieOverlayPoster.className = 'movieOverlayPoster';
+        movieOverlayPoster.innerHTML = '<img src="' + movie.poster + '" loading="lazy">';
+        movieOverlayContent.appendChild(movieOverlayPoster);
+      */
+    main.style = 'overflow: hidden;'
+    document.body.appendChild(movieOverlay);
   }
-  function removeOverlay() {document.querySelector(".overlayWindowLandscape")?.remove();document.querySelector(".overlayWindowPortrait")?.remove();document.body.style = "overflow: scroll;";}
+  function removeOverlay() {document.querySelector('.movieOverlay')?.remove();document.querySelector('.movieOverlayContent')?.remove();main.style = 'overflow: scroll;';}
 
   function downloadImage(movie) {downloadFile(movie.poster, `${movie.filename}-poster.jpg`);}
   function downloadNFO(movie) {downloadFile(`Movies/${movie.folder}/${movie.filename}.nfo`, `${movie.filename}.nfo`);}
   function downloadFile(url, filename) {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = url;
     link.download = filename;
-    link.style.display = "none";
+    link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cooking Corner</title>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
+    <link rel="icon" type="image/x-icon" href="../homepage/assets/mb_icon0.svg"></link>
+    <style>
+      body {width: 100vw;height: 100vh;display: grid;grid-template-columns: min-content auto;grid-template-rows: 100vh;background-color: #000000;margin: 0;padding: 0;overflow: hidden;color: #dbdbdb;font-size: 1rem;font-family: Arial, Helvetica, sans-serif;-webkit-tap-highlight-color: transparent;}
+      body {background: radial-gradient(circle at 80% 10%,#111111, transparent 40%), radial-gradient(circle at 30% 90%, #111111, transparent 30%), linear-gradient(50deg,#000000,#111111 55%,#000000);}
+
+      .sidebar {grid-column: 1;grid-row: 1;display: grid;grid-template-columns: min-content;grid-template-rows: min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content;border-right: 0.01rem solid #999999;overflow-y: auto;}
+      .sidebar {background: radial-gradient(circle at 80% 10%,#111111, transparent 40%), radial-gradient(circle at 30% 90%, #111111, transparent 30%), linear-gradient(50deg,#000000,#111111 55%,#000000);}
+      .sidebar a {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;}
+      .sidebar a svg {margin: 0 0.5rem 0 0;}
+      .sidebarSpacer {height: 0.01rem;background-color: #999999;margin: 1rem 3rem 0.5rem 3rem;}
+      .sidebarToggle {display: none;}
+      .sidebarButton {background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem;border: 0.01rem solid #444444;outline: none;text-decoration: none;color: #999999;white-space: pre;cursor: pointer;transition: all 0.6s;}
+      .sidebarButton:hover, .sidebarButton:active, .sidebarButton:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+      .sidebarButtonActive {background: linear-gradient(125deg, #111111, #222222);border-radius: 1rem;border: 0.01rem solid #00bb66;text-decoration: none;color: #00bb66;white-space: pre;cursor: default;transition: all 0.6s;}
+      .sidebarButtonNoClick {background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem;border: 0.01rem solid #444444;text-decoration: none;color: #999999;white-space: pre;cursor: default;transition: all 0.6s;}
+      .sidebarDiv {height: 3rem;display: flex;align-items: center;justify-content: left;margin: 0.5rem 0.5rem 0 0.5rem;padding: 0 1rem 0 0.5rem;}
+      .sidebarDiv svg {margin: 0 0.5rem 0 0;}
+
+      .mbInputTextBox {background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem;border: 0.01rem solid #444444;outline: none;text-decoration: none;color: #999999;text-align: justify;cursor: pointer;transition: all 0.6s;}
+      .mbInputTextBox:hover, .mbInputTextBox:active, .mbInputTextBox:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+
+      .mbSelectText {margin: 1rem 0 0 0.5rem;background: linear-gradient(125deg, #222222, #444444);border-radius: 1rem 0 0 1rem;border: 0.01rem solid #444444;outline: none;text-decoration: none;color: #999999;text-align: justify;white-space: pre;cursor: pointer;transition: all 0.6s;}
+      .mbSelectText:hover, .mbSelectText:active, .mbSelectText:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+      .mbSelectTextMiddle {margin: 1rem 0 0 0;background: linear-gradient(125deg, #222222, #444444);border-radius: 0;border: 0.01rem solid #444444;outline: none;text-decoration: none;color: #999999;text-align: justify;white-space: pre;cursor: pointer;transition: all 0.6s;}
+      .mbSelectTextMiddle:hover, .mbSelectTextMiddle:active, .mbSelectTextMiddle:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+      .mbSelectDrop {width: 3rem;height: 3rem;margin: 1rem 0.5rem 0 0;background: linear-gradient(125deg, #222222, #444444);border-radius: 0 1rem 1rem 0;border: 0.01rem solid #444444;text-decoration: none;color: #999999;text-align: justify;white-space: pre;cursor: pointer;transition: all 0.6s;display: grid;grid-template-columns: min-content;grid-template-rows: min-content;}
+      .mbSelectDrop:hover, .mbSelectDrop:active, .mbSelectDrop:focus {background: linear-gradient(125deg, #132b13, #081a04);border-color: #0f9b03;color: #dbdbdb;}
+      .mbSelectDrop svg {grid-column: 1;grid-row: 1;width: 2rem;height: 2rem;margin: 0.5rem;padding: 0;}
+      .mbSelectDrop select {grid-column: 1;grid-row: 1;width: 3rem;height: 100%;margin: 0;padding: 0;background-color: #00000000;cursor: pointer;outline: none;border-radius: 0 1rem 1rem 0;border: none;color: #9999ff00;font-size: 1rem;text-align: right;appearance: none;}
+
+      .main {grid-column: 2;grid-row: 1;position: relative;display: grid;grid-template-columns: min-content min-content min-content min-content;grid-template-rows: min-content min-content min-content min-content min-content;overflow-y: auto;overflow-x: hidden;}
+
+      .inputNumberLabel {grid-column: 1;grid-row: 1;height: 3rem;margin: 1rem 0 0 1rem;display: flex;align-items: center;justify-content: end;color: #999999;white-space: pre;}
+      .inputNumber {grid-column: 2;grid-row: 1;min-height: 1.2rem;margin: 1rem 0.5rem 0 0.5rem;padding: 0.9rem 1rem 0.9rem 1rem;display: flex;align-items: center;}
+      .inputCategoryLabel {grid-column: 3;grid-row: 1;height: 3rem;margin: 1rem 0 0 1rem;display: flex;align-items: center;justify-content: end;color: #999999;white-space: pre;}
+      .inputCategory {grid-column: 4;grid-row: 1;min-height: 1.2rem;padding: 0.9rem 1rem 0.9rem 1rem;display: flex;align-items: center;justify-content: left;}
+      .inputCategorySelect {grid-column: 5;grid-row: 1;}
+
+      .titleLabel {grid-column: 1;grid-row: 2;height: 3rem;margin: 1rem 0 0 1rem;display: flex;align-items: center;justify-content: end;color: #999999;white-space: pre;}
+      .title {grid-column: 2 / span 3;grid-row: 2;min-height: 1.2rem;margin: 1rem 0.5rem 0 0.5rem;padding: 0.9rem 1rem 0.9rem 1rem;display: block;}
+      
+      .ingredients1HeaderLabel {grid-column: 1;grid-row: 3;height: 3rem;margin: 1rem 0 0 1rem;display: flex;align-items: center;justify-content: end;color: #999999;white-space: pre;}
+      .ingredients1Header {grid-column: 2 / span 3;grid-row: 3;min-height: 1.2rem;margin: 1rem 0.5rem 0 0.5rem;padding: 0.9rem 1rem 0.9rem 1rem;display: flex;align-items: center;}
+
+      .inputIngredients1Label {grid-column: 1;grid-row: 4;height: 3rem;margin: 1rem 0 0 1rem;display: flex;align-items: center;justify-content: end;color: #999999;white-space: pre;}
+      .inputIngredients1A {grid-column: 2;grid-row: 4;min-height: 1.2rem;padding: 0.9rem 1rem 0.9rem 1rem;display: flex;align-items: center;justify-content: end;}
+      .inputIngredients1B {grid-column: 3;grid-row: 4;min-height: 1.2rem;padding: 0.9rem 1rem 0.9rem 1rem;display: flex;align-items: center;justify-content: start;}
+      .inputIngredients1CSelect {grid-column: 4;grid-row: 4;}
+    </style>
+  </head>
+  <body onload="loadMovieBase();">
+    <button id="sidebarToggle" class="sidebarToggle" onclick="toggleSidebar()" aria-label="Menü öffnen oder schließen" aria-controls="sidebar" aria-expanded="false">☰</button>
+    <div id="sidebar" class="sidebar">
+      <a href="../homepage/index.html" id="homepage" class="sidebarButton"><svg width="2rem" height="2rem" viewBox="0 0 2440 2440" fill="currentColor"><path d="M 0 1240 L 160 1240 L 680 1760 L 680 800 L 860 800 L 1070 1190 L 1280 800 L 1640 800 A 230 230 0 0 1 1833 1153 A 240 240 0 0 1 1680 1560 L 1180 1560 L 1276 1380 L 1680 1380 A 60 60 0 0 0 1640 1260 L 1344 1260 L 1440 1080 L 1640 1080 A 50 50 0 0 0 1640 980 L 1363 980 L 1160 1360 L 980 1360 L 860 1136 L 860 1660 L 770 1840 L 1200 2280 L 1200 2440 L 0 1240 M 0 1200 L 1200 0 L 1200 160 L 160 1200 L 0 1200 M 1240 0 L 2440 1200 L 2280 1200 L 1240 160 L 1240 0 M 1240 2280 L 2280 1240 L 2440 1240 L 1240 2440 L 1240 2280 Z"></path></svg>Home</a>
+      <a href="index.html" id="cookingcorner" class="sidebarButton"><svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 125.00,323.00 C 114.11,322.76 103.36,319.70 93.00,316.66 68.55,309.51 42.21,297.76 25.30,278.00 -7.71,239.44 -8.62,172.74 26.44,135.17 53.04,106.66 93.88,103.57 130.00,110.17 130.00,110.17 155.00,116.63 155.00,116.63 157.17,117.21 163.12,119.19 164.96,118.89 168.62,118.28 170.98,112.89 172.86,110.00 176.63,104.22 182.48,97.87 188.00,93.76 200.76,84.26 218.18,77.23 234.00,75.06 234.00,75.06 242.00,75.06 242.00,75.06 242.00,75.06 254.00,74.00 254.00,74.00 254.00,74.00 263.00,74.83 263.00,74.83 263.00,74.83 272.00,75.43 272.00,75.43 302.65,79.84 330.65,96.26 344.11,125.00 353.53,145.11 354.25,161.44 354.00,183.00 353.93,188.86 353.05,198.02 350.00,203.00 350.00,177.26 351.17,156.86 338.51,133.00 334.76,125.92 326.94,114.61 320.96,109.46 292.88,85.29 245.51,83.29 213.00,99.11 200.17,105.35 191.93,113.39 185.32,126.00 182.73,130.93 182.21,133.63 181.27,139.00 180.92,140.98 180.85,143.46 178.69,144.36 176.48,145.28 173.11,143.79 171.00,143.05 171.00,143.05 154.00,137.88 154.00,137.88 127.97,131.01 122.00,129.96 95.00,130.00 86.82,130.01 76.64,131.48 69.00,134.46 48.00,142.67 32.26,162.33 26.90,184.00 24.58,193.37 24.89,201.47 25.00,211.00 25.16,224.29 30.09,240.81 37.23,252.00 52.89,276.54 84.43,290.49 112.00,296.58 112.00,296.58 149.00,303.00 149.00,303.00 149.00,303.00 149.00,319.00 149.00,319.00 149.00,319.00 148.00,335.00 148.00,335.00 148.00,335.00 148.00,360.00 148.00,360.00 148.00,360.00 147.00,375.00 147.00,375.00 147.00,375.00 147.00,391.00 147.00,391.00 172.41,380.90 209.20,375.60 236.00,382.04 267.95,389.72 296.14,407.94 327.00,418.66 338.94,422.80 355.38,427.14 368.00,427.00 377.88,426.88 379.98,425.81 380.00,416.00 380.00,416.00 380.00,393.00 380.00,393.00 380.00,393.00 381.00,379.00 381.00,379.00 381.00,379.00 381.00,350.00 381.00,350.00 381.00,344.59 380.22,332.49 382.00,328.00 382.00,328.00 385.17,361.00 385.17,361.00 385.17,361.00 386.91,373.00 386.91,373.00 386.91,373.00 388.17,398.00 388.17,398.00 388.17,398.00 390.00,420.00 390.00,420.00 390.00,420.00 390.00,427.00 390.00,427.00 389.84,435.31 384.29,435.41 377.00,436.56 364.71,438.50 349.19,438.24 337.00,435.72 317.05,431.59 297.83,423.30 279.00,415.73 279.00,415.73 265.00,410.69 265.00,410.69 252.01,405.53 226.72,397.21 213.00,398.18 199.93,399.11 186.80,401.60 174.00,404.42 174.00,404.42 161.00,407.79 161.00,407.79 149.15,409.48 136.95,409.00 125.00,409.00 125.00,409.00 125.00,323.00 125.00,323.00 Z M 368.00,178.00 C 373.18,170.76 379.85,165.96 387.00,160.86 406.26,147.13 430.01,141.55 453.00,148.44 464.82,151.98 474.43,159.43 483.00,168.00 483.00,168.00 492.68,178.00 492.68,178.00 504.26,191.85 511.66,210.91 511.66,229.00 511.66,260.61 492.47,283.87 466.00,299.00 420.39,325.08 366.36,314.92 319.00,299.74 319.00,299.74 299.00,293.59 299.00,293.59 284.23,288.28 262.33,281.86 247.00,278.81 247.00,278.81 219.00,275.34 219.00,275.34 219.00,275.34 202.00,277.16 202.00,277.16 196.07,277.80 181.69,281.77 178.00,281.00 193.65,272.09 206.39,268.89 224.00,266.72 228.22,266.20 236.14,264.87 240.00,265.09 254.14,265.89 268.13,268.29 282.00,270.91 282.00,270.91 305.00,275.33 305.00,275.33 305.00,275.33 353.00,286.58 353.00,286.58 353.00,286.58 374.00,289.17 374.00,289.17 381.23,289.93 381.02,290.99 390.00,291.00 390.00,291.00 402.00,291.00 402.00,291.00 409.63,290.99 409.03,290.56 416.00,289.44 416.00,289.44 431.00,286.84 431.00,286.84 451.85,281.13 478.13,265.09 485.91,244.00 487.57,239.49 489.66,230.76 489.66,226.00 489.67,205.92 474.31,182.01 459.00,170.01 449.39,162.49 435.48,156.30 423.00,157.18 409.39,158.15 398.10,162.05 386.00,168.26 386.00,168.26 368.00,178.00 368.00,178.00 Z M 175.00,282.00 C 175.00,282.00 176.00,282.00 176.00,282.00 176.00,282.00 175.00,283.00 175.00,283.00 175.00,283.00 175.00,282.00 175.00,282.00 Z"></path></svg>CookingCorner</a>
+      <a href="index_recipecreator.html" id="recipecreator" class="sidebarButtonActive"><svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 105.00,31.11 C 105.00,31.11 141.00,31.11 141.00,31.11 141.00,31.11 208.00,31.11 208.00,31.11 208.00,31.11 401.00,31.11 401.00,31.11 425.49,31.29 440.96,49.11 441.00,73.00 441.00,73.00 441.00,387.00 441.00,387.00 441.00,387.00 441.00,423.00 441.00,423.00 441.00,443.53 443.14,460.40 424.00,474.06 420.96,476.24 417.54,477.74 414.00,478.91 408.63,480.69 404.58,480.99 399.00,481.00 399.00,481.00 147.00,481.00 147.00,481.00 147.00,481.00 123.00,481.00 123.00,481.00 104.21,481.00 90.19,481.16 77.94,464.00 75.76,460.96 74.26,457.54 73.09,454.00 71.31,448.63 71.01,444.58 71.00,439.00 71.00,439.00 71.00,130.00 71.00,130.00 71.00,130.00 71.00,90.00 71.00,90.00 71.00,73.19 68.81,57.54 81.17,44.01 84.19,40.71 87.99,37.53 92.00,35.52 96.36,33.33 100.26,32.33 105.00,31.11 Z M 109.00,44.07 C 105.29,44.90 101.37,45.50 98.00,47.24 81.94,55.50 84.00,72.82 84.00,88.00 84.00,88.00 84.00,136.00 84.00,136.00 84.00,136.00 84.00,391.00 84.00,391.00 84.00,391.00 84.00,438.00 84.00,438.00 84.14,449.83 88.07,461.03 100.00,465.66 104.85,467.55 110.84,467.99 116.00,468.00 116.00,468.00 260.00,468.00 260.00,468.00 260.00,468.00 396.00,468.00 396.00,468.00 417.27,467.97 427.97,458.75 428.00,437.00 428.00,437.00 428.00,135.00 428.00,135.00 428.00,135.00 428.00,85.00 428.00,85.00 428.00,76.62 428.67,65.60 424.76,58.00 418.79,46.40 407.96,44.02 396.00,44.07 396.00,44.07 207.00,44.07 207.00,44.07 207.00,44.07 144.00,44.07 144.00,44.07 144.00,44.07 109.00,44.07 109.00,44.07 Z M 136.00,92.72 C 141.72,91.38 156.34,92.00 163.00,92.00 163.00,92.00 214.00,92.00 214.00,92.00 227.69,92.02 230.98,96.79 231.00,110.00 231.00,110.00 231.00,209.00 231.00,209.00 230.94,221.19 227.47,225.98 215.00,226.00 215.00,226.00 143.00,226.00 143.00,226.00 129.87,225.98 127.02,220.37 127.00,208.00 127.00,208.00 127.00,123.00 127.00,123.00 127.00,111.67 124.04,98.59 136.00,92.72 Z M 139.04,98.60 C 137.07,99.75 136.38,99.85 135.17,102.06 133.21,105.65 134.00,122.00 134.00,127.00 134.00,127.00 134.00,197.00 134.00,197.00 134.00,202.22 132.57,215.86 137.28,218.83 139.49,220.22 143.42,220.00 146.00,220.00 146.00,220.00 212.00,220.00 212.00,220.00 223.76,219.98 224.98,217.38 225.00,206.00 225.00,206.00 225.00,124.00 225.00,124.00 225.00,117.76 226.85,102.61 220.87,99.17 218.46,97.79 214.73,98.00 212.00,98.00 212.00,98.00 164.00,98.00 164.00,98.00 157.82,98.00 144.36,97.44 139.04,98.60 Z M 258.15,112.74 C 263.73,111.30 283.01,112.00 290.00,112.00 290.00,112.00 352.00,112.00 352.00,112.00 352.00,112.00 372.00,112.00 372.00,112.00 374.09,112.03 382.07,112.39 379.83,116.53 378.31,119.34 371.75,119.00 369.00,119.00 369.00,119.00 282.00,119.00 282.00,119.00 282.00,119.00 264.00,119.00 264.00,119.00 260.18,118.94 251.50,117.49 258.15,112.74 Z M 259.06,157.57 C 259.06,157.57 297.00,157.00 297.00,157.00 297.00,157.00 369.00,157.00 369.00,157.00 371.22,157.00 383.15,157.20 379.26,162.46 377.24,165.18 370.10,165.00 367.00,165.00 367.00,165.00 281.00,165.00 281.00,165.00 275.97,165.00 264.31,165.34 260.02,164.37 254.69,163.15 253.80,159.99 259.06,157.57 Z M 257.33,204.02 C 262.47,202.05 280.43,203.00 287.00,203.00 287.00,203.00 352.00,203.00 352.00,203.00 352.00,203.00 372.00,203.00 372.00,203.00 374.09,203.03 382.07,203.39 379.83,207.53 378.31,210.34 371.75,210.00 369.00,210.00 369.00,210.00 282.00,210.00 282.00,210.00 282.00,210.00 264.00,210.00 264.00,210.00 260.30,209.95 252.82,209.33 257.33,204.02 Z M 135.02,248.57 C 135.02,248.57 162.00,248.00 162.00,248.00 162.00,248.00 213.00,248.00 213.00,248.00 213.00,248.00 369.00,248.00 369.00,248.00 371.54,248.00 381.36,247.81 379.66,252.77 378.45,256.33 370.99,256.00 368.00,256.00 368.00,256.00 192.00,256.00 192.00,256.00 192.00,256.00 142.00,256.00 142.00,256.00 137.62,255.94 124.00,253.30 135.02,248.57 Z M 130.00,297.00 C 136.56,292.67 143.38,294.00 151.00,294.00 151.00,294.00 192.00,294.00 192.00,294.00 192.00,294.00 336.00,294.00 336.00,294.00 336.00,294.00 372.00,294.00 372.00,294.00 374.20,294.03 382.04,294.37 379.83,298.61 378.38,301.40 372.67,301.00 370.00,301.00 370.00,301.00 191.00,301.00 191.00,301.00 191.00,301.00 148.00,301.00 148.00,301.00 141.03,301.00 135.03,302.54 130.00,297.00 Z M 134.06,339.74 C 139.64,338.35 153.53,339.00 160.00,339.00 160.00,339.00 210.00,339.00 210.00,339.00 210.00,339.00 369.00,339.00 369.00,339.00 371.26,339.00 374.89,338.87 376.94,339.74 379.96,341.02 381.15,343.91 377.84,345.40 376.26,346.12 372.80,346.00 371.00,346.00 371.00,346.00 192.00,346.00 192.00,346.00 192.00,346.00 139.00,346.00 139.00,346.00 134.63,345.97 126.49,344.53 134.06,339.74 Z M 133.24,385.74 C 138.29,384.39 148.36,385.00 154.00,385.00 154.00,385.00 194.00,385.00 194.00,385.00 194.00,385.00 322.00,385.00 322.00,385.00 322.00,385.00 372.00,385.00 372.00,385.00 374.20,385.03 382.04,385.37 379.83,389.61 378.38,392.40 372.67,392.00 370.00,392.00 370.00,392.00 190.00,392.00 190.00,392.00 190.00,392.00 140.00,392.00 140.00,392.00 136.52,391.95 127.14,390.57 133.24,385.74 Z M 130.00,435.00 C 132.59,430.16 134.82,430.07 140.00,430.00 140.00,430.00 189.00,430.00 189.00,430.00 189.00,430.00 369.00,430.00 369.00,430.00 371.26,430.00 374.89,429.87 376.94,430.74 379.96,432.02 381.15,434.91 377.84,436.40 376.26,437.12 372.80,437.00 371.00,437.00 371.00,437.00 201.00,437.00 201.00,437.00 201.00,437.00 154.00,437.00 154.00,437.00 146.40,437.00 136.92,438.21 130.00,435.00 Z"></svg>Rezept-Creator</a>
+      <div class="sidebarSpacer"></div>
+      <div class="sidebarDiv sidebarButton" onclick="makeVisible('ingredients1HeaderElement');"><svg width="2rem" height="2rem" viewBox="0 0 512 512" fill="currentColor"><path d="M 125.00,323.00 C 114.11,322.76 103.36,319.70 93.00,316.66 68.55,309.51 42.21,297.76 25.30,278.00 -7.71,239.44 -8.62,172.74 26.44,135.17 53.04,106.66 93.88,103.57 130.00,110.17 130.00,110.17 155.00,116.63 155.00,116.63 157.17,117.21 163.12,119.19 164.96,118.89 168.62,118.28 170.98,112.89 172.86,110.00 176.63,104.22 182.48,97.87 188.00,93.76 200.76,84.26 218.18,77.23 234.00,75.06 234.00,75.06 242.00,75.06 242.00,75.06 242.00,75.06 254.00,74.00 254.00,74.00 254.00,74.00 263.00,74.83 263.00,74.83 263.00,74.83 272.00,75.43 272.00,75.43 302.65,79.84 330.65,96.26 344.11,125.00 353.53,145.11 354.25,161.44 354.00,183.00 353.93,188.86 353.05,198.02 350.00,203.00 350.00,177.26 351.17,156.86 338.51,133.00 334.76,125.92 326.94,114.61 320.96,109.46 292.88,85.29 245.51,83.29 213.00,99.11 200.17,105.35 191.93,113.39 185.32,126.00 182.73,130.93 182.21,133.63 181.27,139.00 180.92,140.98 180.85,143.46 178.69,144.36 176.48,145.28 173.11,143.79 171.00,143.05 171.00,143.05 154.00,137.88 154.00,137.88 127.97,131.01 122.00,129.96 95.00,130.00 86.82,130.01 76.64,131.48 69.00,134.46 48.00,142.67 32.26,162.33 26.90,184.00 24.58,193.37 24.89,201.47 25.00,211.00 25.16,224.29 30.09,240.81 37.23,252.00 52.89,276.54 84.43,290.49 112.00,296.58 112.00,296.58 149.00,303.00 149.00,303.00 149.00,303.00 149.00,319.00 149.00,319.00 149.00,319.00 148.00,335.00 148.00,335.00 148.00,335.00 148.00,360.00 148.00,360.00 148.00,360.00 147.00,375.00 147.00,375.00 147.00,375.00 147.00,391.00 147.00,391.00 172.41,380.90 209.20,375.60 236.00,382.04 267.95,389.72 296.14,407.94 327.00,418.66 338.94,422.80 355.38,427.14 368.00,427.00 377.88,426.88 379.98,425.81 380.00,416.00 380.00,416.00 380.00,393.00 380.00,393.00 380.00,393.00 381.00,379.00 381.00,379.00 381.00,379.00 381.00,350.00 381.00,350.00 381.00,344.59 380.22,332.49 382.00,328.00 382.00,328.00 385.17,361.00 385.17,361.00 385.17,361.00 386.91,373.00 386.91,373.00 386.91,373.00 388.17,398.00 388.17,398.00 388.17,398.00 390.00,420.00 390.00,420.00 390.00,420.00 390.00,427.00 390.00,427.00 389.84,435.31 384.29,435.41 377.00,436.56 364.71,438.50 349.19,438.24 337.00,435.72 317.05,431.59 297.83,423.30 279.00,415.73 279.00,415.73 265.00,410.69 265.00,410.69 252.01,405.53 226.72,397.21 213.00,398.18 199.93,399.11 186.80,401.60 174.00,404.42 174.00,404.42 161.00,407.79 161.00,407.79 149.15,409.48 136.95,409.00 125.00,409.00 125.00,409.00 125.00,323.00 125.00,323.00 Z M 368.00,178.00 C 373.18,170.76 379.85,165.96 387.00,160.86 406.26,147.13 430.01,141.55 453.00,148.44 464.82,151.98 474.43,159.43 483.00,168.00 483.00,168.00 492.68,178.00 492.68,178.00 504.26,191.85 511.66,210.91 511.66,229.00 511.66,260.61 492.47,283.87 466.00,299.00 420.39,325.08 366.36,314.92 319.00,299.74 319.00,299.74 299.00,293.59 299.00,293.59 284.23,288.28 262.33,281.86 247.00,278.81 247.00,278.81 219.00,275.34 219.00,275.34 219.00,275.34 202.00,277.16 202.00,277.16 196.07,277.80 181.69,281.77 178.00,281.00 193.65,272.09 206.39,268.89 224.00,266.72 228.22,266.20 236.14,264.87 240.00,265.09 254.14,265.89 268.13,268.29 282.00,270.91 282.00,270.91 305.00,275.33 305.00,275.33 305.00,275.33 353.00,286.58 353.00,286.58 353.00,286.58 374.00,289.17 374.00,289.17 381.23,289.93 381.02,290.99 390.00,291.00 390.00,291.00 402.00,291.00 402.00,291.00 409.63,290.99 409.03,290.56 416.00,289.44 416.00,289.44 431.00,286.84 431.00,286.84 451.85,281.13 478.13,265.09 485.91,244.00 487.57,239.49 489.66,230.76 489.66,226.00 489.67,205.92 474.31,182.01 459.00,170.01 449.39,162.49 435.48,156.30 423.00,157.18 409.39,158.15 398.10,162.05 386.00,168.26 386.00,168.26 368.00,178.00 368.00,178.00 Z M 175.00,282.00 C 175.00,282.00 176.00,282.00 176.00,282.00 176.00,282.00 175.00,283.00 175.00,283.00 175.00,283.00 175.00,282.00 175.00,282.00 Z"></path></svg>Zutaten-Überschrift 1</div>
+      <div class="sidebarSpacer"></div>
+      <div class="sidebarDiv sidebarButton" onclick="downloadRecipe();"><svg width="2rem" height="2rem" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>Herunterladen</div>
+    </div>
+    <div id="main" class="main">
+      <div class="inputNumberLabel">Rezept-Nummer:</div><div id="inputNumber" class="inputNumber sidebarButton" contenteditable="true"></div>
+      <div class="inputCategoryLabel">Kategorie:</div>
+      <div id="inputCategory" class="inputCategory mbSelectText" contenteditable="true">Food</div>
+      <div class="inputCategorySelect mbSelectDrop">
+        <svg width="24px" height="24px" viewBox="0 -960 960 960" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>
+        <select name="categorys" id="categorySelector" onchange="selectCategory(this);">
+          <option value="Finger Food">Finger Food</option>
+          <option value="Food" selected>Food</option>
+          <option value="Kekse & Gebäck">Kekse & Gebäck</option>
+          <option value="Kuchen & Torten">Kuchen & Torten</option>
+          <option value="Salate">Salate</option>
+          <option value="Suppen">Suppen</option>
+          <option value="Süßspeisen">Süßspeisen</option>
+        </select>
+      </div>
+
+      <div class="titleLabel">Titel:</div>
+      <div id="title" class="title sidebarButton" contenteditable="true"></div>
+
+      <div class="ingredients1HeaderLabel ingredients1HeaderElement" style="display: none;">Zutaten-Überschrift 1:</div>
+      <div id="ingredients1Header" class="ingredients1Header sidebarButton ingredients1HeaderElement" contenteditable="true" style="display: none;"></div>
+
+      <div class="inputIngredients1Label">Zutaten-Liste 1:</div>
+      <div class="inputIngredients1A ingredientsA mbSelectText" contenteditable="true"></div>
+      <div class="inputIngredients1B ingredientsB mbSelectTextMiddle" contenteditable="true">g</div>
+      <div class="inputIngredients1CSelect ingredientsC mbSelectDrop">
+        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>
+        <select onchange="selectUnity('inputIngredients1B', this);">
+          <option value="mg">Milligramm</option>
+          <option value="g" selected>Gramm</option>
+          <option value="kg">Kilogramm</option>
+          <option value="ml">Milliliter</option>
+          <option value="l">Liter</option>
+          <option value="TL">Teelöffel</option>
+          <option value="EL">Esslöffel</option>
+          <option value="Pkg">Packung</option>
+          <option value="Stk">Stück</option>
+          <option value="Glas">Glas</option>
+          <option value="Becher">Becher</option>
+          <option value="Tasse">Tasse</option>
+        </select>
+      </div>
+    </div>
+    <div id="preview"></div>
+  </body>
+</html>
+
+<script>
+  async function loadMovieBase() {
+    try {const response = await fetch('rezepte.json');if (!response.ok) throw new Error('movies.json konnte nicht geladen werden.');currentData = await response.json();loadTableData(currentData);}
+    catch(err) {document.getElementById('inputNumber').innerHTML = '<h3>Fehler</h3><p>' + err.message + '</p>';console.error(err);}
+  }
+
+  function loadTableData(data) {const movieCounter = data.length + 1;document.getElementById('inputNumber').innerHTML = String(parseInt(movieCounter)).padStart(4, '0');}
+
+  function clickElement(obj) {document.getElementById(obj).click();}
+  function selectCategory(obj) {document.getElementById('inputCategory').innerHTML = obj.value;}
+
+  function makeVisible(obj) {
+    let elements = document.getElementsByClassName(obj);
+    for (let i = 0; i < elements.length; i++) {const display = getComputedStyle(elements[i]).display;elements[i].style.display = display === 'none' ? 'flex' : 'none';}
+  }
+
+  function makeVisibleHeader(obj) {
+    let invisible = obj.parentNode.parentNode.parentNode;
+    let number = invisible.children.length;
+    invisible = invisible.children[number - 1];
+    const opacity = getComputedStyle(invisible).opacity;
+    invisible.style.opacity = opacity === '0' ? '1' : '0';
+  }
+
+  function makeVisibleIngredients(obj) {
+    let invisible = obj.parentNode.parentNode.parentNode;
+    const children = invisible.children;
+    let number = invisible.children.length;
+    for (let i = Math.max(0, number - 6); i < number; i++) {
+        const child = children[i];
+        const opacity = getComputedStyle(child).opacity;
+        child.style.opacity = opacity === '0' ? '1' : '0';
+    }
+  }
+  function checkIngredients2Header() {
+    const ingredients_2_header = document.getElementById('ingredients_2_header');
+    const opacity = getComputedStyle(ingredients_2_header).opacity;
+    ingredients_2_header.style.opacity = opacity === '0' ? '1' : '0';
+  }
+
+  function selectUnity(obj, value) {
+    console.log(obj)
+    console.log(value.value)
+    document.getElementById(obj).innerHTML = value.value;
+  }
+
+  function selectProduct(obj) {
+    let unityInput = obj.parentNode.parentNode;
+    let number = unityInput.children.length;
+    selectorInput = unityInput.children[number - 3];
+    selectorInput.innerHTML = obj.value;
+  }
+
+  let saveContent = '';
+
+  let ingredients_1_counter = 1;
+  function addIngredient1() {
+    const list = document.getElementById('ingredients_1_list');
+    const adder = document.createElement('tr');
+    ingredients_1_counter ++;
+    adder.innerHTML = 
+    '<tr>' +
+      '<td class="descriptionTD" colspan="2"></td>' +
+      '<td class="recipeTD ingredients_1 ingredients_a" contenteditable="true"></td>' +
+      '<td class="recipeTDInput ingredients_1 ingredients_b" contenteditable="true">g</td>' +
+      '<td class="recipeTDSelect ingredients_c">' +
+        '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>' +
+        '<select onchange="selectUnity(this);">' +
+          '<option value="mg">Milligramm</option>' +
+          '<option value="g" selected>Gramm</option>' +
+          '<option value="kg">Kilogramm</option>' +
+          '<option value="ml">Milliliter</option>' +
+          '<option value="l">Liter</option>' +
+          '<option value="TL">Teelöffel</option>' +
+          '<option value="EL">Esslöffel</option>' +
+          '<option value="Pkg">Packung</option>' +
+          '<option value="Stk">Stück</option>' +
+          '<option value="Glas">Glas</option>' +
+          '<option value="Becher">Becher</option>' +
+          '<option value="Tasse">Tasse</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="recipeTDInput ingredients_1 ingredients_d" contenteditable="true"></td>' +
+      '<td class="recipeTDSelect ingredients_e">' +
+        '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>' +
+        '<select onchange="selectProduct(this);">' +
+          '<option value="Butter">Butter</option>' +
+          '<option value="Eier">Eier</option>' +
+          '<option value="Hackfleisch">Stück</option>' +
+          '<option value="Knoblauch">Knoblauch</option>' +
+          '<option value="Mais">Mais</option>' +
+          '<option value="Mehl" selected>Mehl</option>' +
+          '<option value="Milch">Milch</option>' +
+          '<option value="Petersilie">Petersilie</option>' +
+          '<option value="Pfeffer">Pfeffer</option>' +
+          '<option value="Sahne">Sahne</option>' +
+          '<option value="Salz">Salz</option>' +
+          '<option value="Schmand">Schmand</option>' +
+          '<option value="Wasser">Wasser</option>' +
+          '<option value="Zwiebeln">Zwiebeln</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="removeIngredient" onclick="removeIngredient1(this);">-</td>' +
+    '</tr>';
+    list.parentNode.insertBefore(adder,list);
+  }
+  function removeIngredient1(obj) {obj.parentNode.parentNode.removeChild(obj.parentNode);}
+
+  let ingredients_2_counter = 1;
+  function addIngredient2() {
+    const list = document.getElementById('ingredients_2_list');
+    const adder = document.createElement('tr');
+    ingredients_2_counter ++;
+    adder.innerHTML = 
+    '<tr>' +
+      '<td class="descriptionTD" colspan="2"></td>' +
+      '<td class="recipeTD ingredients_2 ingredients_a" contenteditable="true"></td>' +
+      '<td class="recipeTDInput ingredients_2 ingredients_b" contenteditable="true">g</td>' +
+      '<td class="recipeTDSelect ingredients_c">' +
+        '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>' +
+        '<select onchange="selectUnity(this);">' +
+          '<option value="mg">Milligramm</option>' +
+          '<option value="g" selected>Gramm</option>' +
+          '<option value="kg">Kilogramm</option>' +
+          '<option value="ml">Milliliter</option>' +
+          '<option value="l">Liter</option>' +
+          '<option value="TL">Teelöffel</option>' +
+          '<option value="EL">Esslöffel</option>' +
+          '<option value="Pkg">Packung</option>' +
+          '<option value="Stk">Stück</option>' +
+          '<option value="Glas">Glas</option>' +
+          '<option value="Becher">Becher</option>' +
+          '<option value="Tasse">Tasse</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="recipeTDInput ingredients_2 ingredients_d" contenteditable="true"></td>' +
+      '<td class="recipeTDSelect ingredients_e">' +
+        '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M465-363.5q-7-2.5-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5q-8 0-15-2.5Z"/></svg>' +
+        '<select onchange="selectProduct(this);">' +
+          '<option value="Butter">Butter</option>' +
+          '<option value="Eier">Eier</option>' +
+          '<option value="Hackfleisch">Stück</option>' +
+          '<option value="Knoblauch">Knoblauch</option>' +
+          '<option value="Mais">Mais</option>' +
+          '<option value="Mehl" selected>Mehl</option>' +
+          '<option value="Milch">Milch</option>' +
+          '<option value="Petersilie">Petersilie</option>' +
+          '<option value="Pfeffer">Pfeffer</option>' +
+          '<option value="Sahne">Sahne</option>' +
+          '<option value="Salz">Salz</option>' +
+          '<option value="Schmand">Schmand</option>' +
+          '<option value="Wasser">Wasser</option>' +
+          '<option value="Zwiebeln">Zwiebeln</option>' +
+        '</select>' +
+      '</td>' +
+      '<td class="removeIngredient" onclick="removeIngredient2(this);">-</td>' +
+    '</tr>';
+    list.parentNode.insertBefore(adder,list);
+  }
+  function removeIngredient2(obj) {obj.parentNode.parentNode.removeChild(obj.parentNode);}
+
+  function createRecipe() {
+    const preview = document.getElementById('preview');
+    let id = document.getElementById('id').innerHTML;
+    id = parseFloat(id);
+    if (id <= 9) {id = '000'+id;} else if (id >= 10 && id <= 99) {id = '00'+id;} else if (id >= 100 && id <= 999) {id = '0'+id;}
+    const title = document.getElementById('title').innerHTML;
+    const category = document.getElementById('category').innerHTML;
+
+    let ingredients_1_text = '';
+    const ingredients1Header = document.getElementById('ingredients1Header').innerHTML;
+    let ingredients_1 = document.getElementsByClassName('ingredients_1');
+    for (let i = 0; i < ingredients_1.length; i++) {
+      ingredients_1_text += ingredients_1[i].innerHTML;
+      if ((i + 1) % 3 === 0) {ingredients_1_text += '<br>';}
+      else {ingredients_1_text += '&#9;';}
+    }
+    if (ingredients_1_text === '&#9;&#9;<br>') {ingredients_1_text = '';}
+
+    let ingredients_2_text = '';
+    const ingredients_2_header = document.getElementById('ingredients_2_header').innerHTML;
+    let ingredients_2 = document.getElementsByClassName('ingredients_2');
+    for (let i = 0; i < ingredients_2.length; i++) {
+      ingredients_2_text += ingredients_2[i].innerHTML;
+      if ((i + 1) % 3 === 0) {ingredients_2_text += '<br>';}
+      else {ingredients_2_text += '&#9;';}
+    }
+    if (ingredients_2_text === '&#9;&#9;<br>') {ingredients_2_text = '';}
+
+    let recipe_1_text = '';
+    const recipe_1_header = document.getElementById('recipe_1_header').innerHTML;
+    let recipe_1 = document.getElementById('recipe_1').innerHTML;
+    let recipe_1_line = recipe_1.split('<br>');
+    for (let i = 0; i < recipe_1_line.length; i++) {
+      const adder = '-&#9;';const breaker = '<br>';
+      recipe_1_text += adder + recipe_1_line[i] + breaker;
+    }
+    if (recipe_1_text === '-&#9;<br>') {recipe_1_text = '';}
+
+    let recipe_2_text = '';
+    const recipe_2_header = document.getElementById('recipe_2_header').innerHTML;
+    let recipe_2 = document.getElementById('recipe_2').innerHTML;
+    let recipe_2_line = recipe_2.split('<br>');
+    for (let i = 0; i < recipe_2_line.length; i++) {
+      const adder = '-&#9;';const breaker = '<br>';
+      recipe_2_text += adder + recipe_2_line[i] + breaker;
+    }
+    if (recipe_2_text === '-&#9;<br>') {recipe_2_text = '';}
+
+    let notes_header = document.getElementById('notes_header').innerHTML;
+    const notes = document.getElementById('notes').innerHTML;
+    if (notes === '') {notes_header = '';}
+
+    saveContent = 
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n'+
+      '<recipe>\n'+
+      '   <id>'+id+'</id>\n'+
+      '   <title>'+title+'</title>\n'+
+      '   <category>'+category+'</category>\n'+
+      '   <ingredients1Header>'+ingredients1Header+'</ingredients1Header>\n'+
+      '   <ingredients_1>'+ingredients_1_text+'</ingredients_1>\n'+
+      '   <ingredients_2_header>'+ingredients_2_header+'</ingredients_2_header>\n'+
+      '   <ingredients_2>'+ingredients_2_text+'</ingredients_2>\n'+
+      '   <recipe_1_header>'+recipe_1_header+'</recipe_1_header>\n'+
+      '   <recipe_1>'+recipe_1_text+'</recipe_1>\n'+
+      '   <recipe_2_header>'+recipe_2_header+'</recipe_2_header>\n'+
+      '   <recipe_2>'+recipe_2_text+'</recipe_2>\n'+
+      '   <notes_header>'+notes_header+'</notes_header>\n'+
+      '   <notes>'+notes+'</notes>\n'+
+      '</recipe>\n';
+      console.log(saveContent);
+  }
+
+  function downloadRecipe() {
+    createRecipe();
+    const title = document.getElementById('title').innerHTML;
+    const blob = new Blob([saveContent], { type: "application/xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = 'recipe.nfo';
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+</script>
